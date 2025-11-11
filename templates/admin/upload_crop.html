@@ -1,0 +1,247 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Upload et Crop d'Image{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h2 class="text-3xl font-bold mb-2" style="color: #B8941E;">Upload et Crop d'Image</h2>
+    <p class="text-gray-400">Téléchargez une image et découpez-la aux dimensions souhaitées</p>
+</div>
+
+<!-- Dimension presets -->
+<div class="bg-gray-800 rounded-lg p-6 mb-6">
+    <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+        <i class="fas fa-ruler-combined mr-2"></i>Dimensions Pré-définies
+    </h3>
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <button type="button" onclick="setAspectRatio(16/9, '16:9 - Hero Slider')" 
+                class="preset-btn px-4 py-3 bg-gray-700 rounded hover:bg-gray-600 transition">
+            <i class="fas fa-image mr-2"></i>16:9<br><span class="text-xs">Hero Slider</span>
+        </button>
+        <button type="button" onclick="setAspectRatio(4/3, '4:3 - Collection')" 
+                class="preset-btn px-4 py-3 bg-gray-700 rounded hover:bg-gray-600 transition">
+            <i class="fas fa-images mr-2"></i>4:3<br><span class="text-xs">Collection</span>
+        </button>
+        <button type="button" onclick="setAspectRatio(1/1, '1:1 - Carré')" 
+                class="preset-btn px-4 py-3 bg-gray-700 rounded hover:bg-gray-600 transition">
+            <i class="fas fa-square mr-2"></i>1:1<br><span class="text-xs">Carré</span>
+        </button>
+        <button type="button" onclick="setAspectRatio(1200/630, 'OG Image')" 
+                class="preset-btn px-4 py-3 bg-gray-700 rounded hover:bg-gray-600 transition">
+            <i class="fab fa-facebook mr-2"></i>1200x630<br><span class="text-xs">OG Image</span>
+        </button>
+        <button type="button" onclick="setAspectRatio(1200/628, 'Twitter Card')" 
+                class="preset-btn px-4 py-3 bg-gray-700 rounded hover:bg-gray-600 transition">
+            <i class="fab fa-twitter mr-2"></i>1200x628<br><span class="text-xs">Twitter Card</span>
+        </button>
+        <button type="button" onclick="setAspectRatio(3/4, '3:4 - Portrait')" 
+                class="preset-btn px-4 py-3 bg-gray-700 rounded hover:bg-gray-600 transition">
+            <i class="fas fa-portrait mr-2"></i>3:4<br><span class="text-xs">Portrait</span>
+        </button>
+        <button type="button" onclick="setAspectRatio(21/9, '21:9 - Ultrawide')" 
+                class="preset-btn px-4 py-3 bg-gray-700 rounded hover:bg-gray-600 transition">
+            <i class="fas fa-panorama mr-2"></i>21:9<br><span class="text-xs">Ultrawide</span>
+        </button>
+        <button type="button" onclick="setAspectRatio(NaN, 'Libre')" 
+                class="preset-btn px-4 py-3 bg-gray-700 rounded hover:bg-gray-600 transition">
+            <i class="fas fa-unlock mr-2"></i>Libre<br><span class="text-xs">Sans contrainte</span>
+        </button>
+    </div>
+    
+    <div class="mt-4 p-4 bg-gray-700 rounded">
+        <p class="text-sm">Ratio actuel: <span id="current-ratio" style="color: #B8941E;" class="font-bold">Sélectionnez un format</span></p>
+    </div>
+</div>
+
+<!-- Upload Form -->
+<div class="bg-gray-800 rounded-lg p-6 mb-6">
+    <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+        <i class="fas fa-upload mr-2"></i>Télécharger une Image
+    </h3>
+    
+    <form id="upload-form" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        
+        <div class="mb-4">
+            <label class="block text-sm font-medium mb-2">Sélectionnez une image</label>
+            <input type="file" 
+                   id="image-input" 
+                   accept="image/*"
+                   class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none">
+        </div>
+        
+        <div class="mb-4">
+            <label class="block text-sm font-medium mb-2">Texte alternatif (Alt Text)</label>
+            <input type="text" 
+                   id="alt-text" 
+                   name="alt_text"
+                   class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                   placeholder="Description de l'image pour l'accessibilité">
+        </div>
+    </form>
+</div>
+
+<!-- Crop Area -->
+<div id="crop-container" class="bg-gray-800 rounded-lg p-6 mb-6" style="display: none;">
+    <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+        <i class="fas fa-crop-alt mr-2"></i>Recadrer l'Image
+    </h3>
+    
+    <div class="mb-4" style="max-height: 600px; overflow: hidden;">
+        <img id="crop-image" style="max-width: 100%;">
+    </div>
+    
+    <div class="flex justify-end space-x-4">
+        <button type="button" 
+                onclick="cancelCrop()"
+                class="px-6 py-2 bg-gray-700 rounded hover:bg-gray-600 transition">
+            <i class="fas fa-times mr-2"></i>Annuler
+        </button>
+        <button type="button" 
+                onclick="saveCroppedImage()"
+                class="px-6 py-2 rounded transition"
+                style="background: #B8941E; color: black; font-weight: bold;">
+            <i class="fas fa-check mr-2"></i>Enregistrer l'Image
+        </button>
+    </div>
+</div>
+
+<!-- Cropper.js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
+<script>
+let cropper = null;
+let currentAspectRatio = NaN;
+let currentRatioName = 'Libre';
+
+function setAspectRatio(ratio, name) {
+    currentAspectRatio = ratio;
+    currentRatioName = name;
+    document.getElementById('current-ratio').textContent = name;
+    
+    // Highlight selected preset
+    document.querySelectorAll('.preset-btn').forEach(btn => {
+        btn.classList.remove('ring-2', 'ring-yellow-600');
+    });
+    event.target.closest('.preset-btn').classList.add('ring-2', 'ring-yellow-600');
+    
+    // Update cropper if active
+    if (cropper) {
+        cropper.setAspectRatio(ratio);
+    }
+}
+
+document.getElementById('image-input').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const cropImage = document.getElementById('crop-image');
+            cropImage.src = event.target.result;
+            
+            document.getElementById('crop-container').style.display = 'block';
+            
+            // Destroy previous cropper if exists
+            if (cropper) {
+                cropper.destroy();
+            }
+            
+            // Initialize cropper
+            cropper = new Cropper(cropImage, {
+                aspectRatio: currentAspectRatio,
+                viewMode: 1,
+                guides: true,
+                center: true,
+                highlight: true,
+                background: false,
+                autoCropArea: 0.8,
+                responsive: true
+            });
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+function cancelCrop() {
+    document.getElementById('crop-container').style.display = 'none';
+    document.getElementById('image-input').value = '';
+    if (cropper) {
+        cropper.destroy();
+        cropper = null;
+    }
+}
+
+function saveCroppedImage() {
+    if (!cropper) {
+        alert('Aucune image à enregistrer');
+        return;
+    }
+    
+    const altText = document.getElementById('alt-text').value;
+    
+    if (!altText) {
+        alert('Veuillez entrer un texte alternatif pour l\'image');
+        return;
+    }
+    
+    // Get cropped canvas
+    const canvas = cropper.getCroppedCanvas({
+        maxWidth: 2400,
+        maxHeight: 2400,
+        fillColor: '#fff',
+        imageSmoothingEnabled: true,
+        imageSmoothingQuality: 'high'
+    });
+    
+    // Convert to blob and upload
+    canvas.toBlob(function(blob) {
+        const formData = new FormData();
+        formData.append('image', blob, 'cropped-image.jpg');
+        formData.append('alt_text', altText);
+        formData.append('csrf_token', document.querySelector('input[name="csrf_token"]').value);
+        
+        // Show loading
+        const saveBtn = event.target;
+        saveBtn.disabled = true;
+        saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Enregistrement...';
+        
+        // Upload
+        fetch('/admin/upload-cropped', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Image enregistrée avec succès!');
+                window.location.href = '/admin/images';
+            } else {
+                alert('Erreur: ' + data.error);
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Enregistrer l\'Image';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Erreur lors de l\'enregistrement');
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Enregistrer l\'Image';
+        });
+    }, 'image/jpeg', 0.9);
+}
+</script>
+
+<style>
+.preset-btn {
+    transition: all 0.3s;
+}
+.preset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(184, 148, 30, 0.2);
+}
+</style>
+
+{% endblock %}

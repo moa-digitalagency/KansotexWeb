@@ -202,16 +202,34 @@ def seed_complete_content():
                     print(f"  - Field already exists: {section_data['slug']}.{key}")
         
         seo_settings = [
+            # Meta Tags Basiques
             ('meta_title', 'KANSOTEX - Expert en Textiles de Qualité Premium', 'string', 'Titre de la page (balise <title>)'),
             ('meta_description', 'Expert en textiles de qualité premium depuis 2005. Spécialiste des textiles hôteliers, médicaux et résidentiels au Maroc.', 'text', 'Description meta pour SEO'),
             ('meta_keywords', 'textiles premium, linge hôtelier, textiles médicaux, literie luxe, Maroc, Kansotex', 'text', 'Mots-clés meta'),
+            ('meta_author', 'KANSOTEX', 'string', 'Auteur du site'),
+            ('canonical_url', 'https://www.kansotex.com', 'string', 'URL canonique du site'),
+            ('meta_robots', 'index, follow', 'string', 'Instructions pour les robots des moteurs de recherche'),
+            ('favicon_url', '/static/images/favicon.ico', 'string', 'URL du favicon'),
+            
+            # Données Structurées (JSON-LD)
+            ('schema_type', 'Organization', 'string', 'Type d\'entité Schema.org'),
+            ('schema_name', 'KANSOTEX', 'string', 'Nom de l\'organisation'),
+            ('schema_description', 'Expert en textiles de qualité premium depuis 2005. Spécialiste des textiles hôteliers, médicaux et résidentiels.', 'text', 'Description de l\'organisation'),
+            ('schema_logo', '/static/images/logo.png', 'string', 'URL du logo de l\'organisation'),
+            ('schema_url', 'https://www.kansotex.com', 'string', 'URL du site web'),
+            
+            # Open Graph (Facebook)
             ('og_title', 'KANSOTEX - Expert en Textiles de Qualité Premium', 'string', 'Titre Open Graph (Facebook)'),
             ('og_description', 'Expert en textiles de qualité premium depuis 2005. Découvrez notre collection de textiles pour hôtels, cliniques et maisons.', 'text', 'Description Open Graph'),
-            ('og_image', '', 'string', 'URL de l\'image Open Graph'),
+            ('og_image', '/static/images/og-image.jpg', 'string', 'URL de l\'image Open Graph'),
+            ('og_type', 'website', 'string', 'Type de contenu Open Graph'),
+            
+            # Twitter Card
             ('twitter_card', 'summary_large_image', 'string', 'Type de carte Twitter'),
             ('twitter_title', 'KANSOTEX - Expert en Textiles de Qualité Premium', 'string', 'Titre Twitter Card'),
             ('twitter_description', 'Expert en textiles de qualité premium depuis 2005. Découvrez notre collection de textiles pour hôtels, cliniques et maisons.', 'text', 'Description Twitter Card'),
-            ('twitter_image', '', 'string', 'URL de l\'image Twitter Card'),
+            ('twitter_image', '/static/images/twitter-card.jpg', 'string', 'URL de l\'image Twitter Card'),
+            ('twitter_site', '@kansotex', 'string', 'Compte Twitter du site'),
         ]
         
         print("\nSeeding SEO settings...")

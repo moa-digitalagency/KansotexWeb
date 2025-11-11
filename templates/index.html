@@ -6,16 +6,38 @@
     <title>{{ seo.get('meta_title', 'KANSOTEX - Expert en Textiles de Qualité Premium') }}</title>
     <meta name="description" content="{{ seo.get('meta_description', 'Expert en textiles de qualité premium') }}">
     <meta name="keywords" content="{{ seo.get('meta_keywords', 'textiles premium, linge hôtelier, textiles médicaux') }}">
+    {% if seo.get('meta_author') %}<meta name="author" content="{{ seo.get('meta_author') }}">{% endif %}
+    <meta name="robots" content="{{ seo.get('meta_robots', 'index, follow') }}">
+    {% if seo.get('canonical_url') %}<link rel="canonical" href="{{ seo.get('canonical_url') }}">{% endif %}
+    {% if seo.get('favicon_url') %}<link rel="icon" href="{{ seo.get('favicon_url') }}">{% endif %}
     
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="{{ seo.get('og_type', 'website') }}">
     <meta property="og:title" content="{{ seo.get('og_title', seo.get('meta_title', 'KANSOTEX')) }}">
     <meta property="og:description" content="{{ seo.get('og_description', seo.get('meta_description', '')) }}">
+    {% if seo.get('og_image') %}<meta property="og:image" content="{{ seo.get('og_image') }}">{% endif %}
+    {% if seo.get('canonical_url') %}<meta property="og:url" content="{{ seo.get('canonical_url') }}">{% endif %}
     
     <!-- Twitter -->
-    <meta property="twitter:card" content="{{ seo.get('twitter_card', 'summary_large_image') }}">
-    <meta property="twitter:title" content="{{ seo.get('og_title', seo.get('meta_title', 'KANSOTEX')) }}">
-    <meta property="twitter:description" content="{{ seo.get('og_description', seo.get('meta_description', '')) }}">
+    <meta name="twitter:card" content="{{ seo.get('twitter_card', 'summary_large_image') }}">
+    <meta name="twitter:title" content="{{ seo.get('twitter_title', seo.get('og_title', seo.get('meta_title', 'KANSOTEX'))) }}">
+    <meta name="twitter:description" content="{{ seo.get('twitter_description', seo.get('og_description', seo.get('meta_description', ''))) }}">
+    {% if seo.get('twitter_image') %}<meta name="twitter:image" content="{{ seo.get('twitter_image') }}">{% endif %}
+    {% if seo.get('twitter_site') %}<meta name="twitter:site" content="{{ seo.get('twitter_site') }}">{% endif %}
+    
+    <!-- Structured Data (JSON-LD) -->
+    {% if seo.get('schema_name') %}
+    {% set schema_data = {
+        "@context": "https://schema.org",
+        "@type": seo.get('schema_type', 'Organization'),
+        "name": seo.get('schema_name', 'KANSOTEX')
+    } %}
+    {% if seo.get('schema_description') %}{% set _ = schema_data.update({"description": seo.get('schema_description')}) %}{% endif %}
+    {% if seo.get('schema_url') %}{% set _ = schema_data.update({"url": seo.get('schema_url')}) %}{% endif %}
+    {% if seo.get('schema_logo') %}{% set _ = schema_data.update({"logo": seo.get('schema_logo')}) %}{% endif %}
+    {% set _ = schema_data.update({"contactPoint": {"@type": "ContactPoint", "contactType": "customer service"}}) %}
+    <script type="application/ld+json">{{ schema_data|tojson }}</script>
+    {% endif %}
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">

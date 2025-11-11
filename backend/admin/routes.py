@@ -184,19 +184,49 @@ def delete_image(image_id):
     
     return redirect(url_for('admin.images'))
 
+@admin_bp.route('/upload-crop', methods=['GET'])
+@login_required
+def upload_crop():
+    return render_template('admin/upload_crop.html')
+
+@admin_bp.route('/upload-cropped', methods=['POST'])
+@login_required
+def upload_cropped():
+    try:
+        if 'image' not in request.files:
+            return jsonify({'success': False, 'error': 'Aucune image fournie'}), 400
+        
+        file = request.files['image']
+        alt_text = request.form.get('alt_text', '')
+        
+        if file.filename == '':
+            return jsonify({'success': False, 'error': 'Nom de fichier vide'}), 400
+        
+        image = image_service.save_image(file, alt_text)
+        
+        return jsonify({
+            'success': True,
+            'message': 'Image téléchargée avec succès',
+            'image': image.to_dict()
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
+
 @admin_bp.route('/seo', methods=['GET', 'POST'])
 @login_required
 def seo_settings():
     if request.method == 'POST':
         seo_keys = [
-            'meta_title', 'meta_description', 'meta_keywords',
-            'og_title', 'og_description', 'og_image',
-            'twitter_card', 'twitter_title', 'twitter_description', 'twitter_image'
+            'meta_title', 'meta_description', 'meta_keywords', 'meta_author', 
+            'canonical_url', 'meta_robots', 'favicon_url',
+            'schema_type', 'schema_name', 'schema_description', 'schema_logo', 'schema_url',
+            'og_title', 'og_description', 'og_image', 'og_type',
+            'twitter_card', 'twitter_title', 'twitter_description', 'twitter_image', 'twitter_site'
         ]
         
         for key in seo_keys:
             value = request.form.get(key, '')
-            setting_type = 'text' if key in ['meta_description', 'meta_keywords', 'og_description', 'twitter_description'] else 'string'
+            setting_type = 'text' if key in ['meta_description', 'meta_keywords', 'og_description', 'twitter_description', 'schema_description'] else 'string'
             content_service.update_setting(key, value, setting_type)
         
         db.session.commit()
@@ -205,9 +235,11 @@ def seo_settings():
     
     seo_settings = {}
     seo_keys = [
-        'meta_title', 'meta_description', 'meta_keywords',
-        'og_title', 'og_description', 'og_image',
-        'twitter_card', 'twitter_title', 'twitter_description', 'twitter_image'
+        'meta_title', 'meta_description', 'meta_keywords', 'meta_author', 
+        'canonical_url', 'meta_robots', 'favicon_url',
+        'schema_type', 'schema_name', 'schema_description', 'schema_logo', 'schema_url',
+        'og_title', 'og_description', 'og_image', 'og_type',
+        'twitter_card', 'twitter_title', 'twitter_description', 'twitter_image', 'twitter_site'
     ]
     
     for key in seo_keys:
