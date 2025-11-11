@@ -140,6 +140,49 @@ Le serveur Flask écoute sur `0.0.0.0:5000` pour permettre l'accès via le proxy
 ## Démarrage
 L'application démarre automatiquement via le workflow configuré qui exécute `python main.py`.
 
+## Contenu Dynamique (CMS)
+
+Toutes les sections suivantes sont maintenant **complètement dynamiques** et éditables via le panneau d'administration:
+
+### Section Hero (slug: 'hero')
+- `title` - Titre principal "KANSOTEX"
+- `subtitle` - Sous-titre "Expert en Textiles de Qualité Premium"
+- `tagline` - Badge "EXCELLENCE DEPUIS 2005"
+- `cta_text` - Texte du bouton d'action
+
+### Section Points Forts (slug: 'forces')
+- `title` - Titre de la section
+- `description` - Description de la section
+- `strength_1_title` / `strength_1_text` - Carte 1: Expérience Significative
+- `strength_2_title` / `strength_2_text` - Carte 2: Compréhension Parfaite
+- `strength_3_title` / `strength_3_text` - Carte 3: Personnalisation Expert
+- `strength_4_title` / `strength_4_text` - Carte 4: Rapidité d'Exécution
+- `strength_5_title` / `strength_5_text` - Carte 5: Livraison Rapide
+- `strength_6_title` / `strength_6_text` - Carte 6: +20 Ans d'Excellence
+
+### Section Collection (slug: 'collection')
+- `title` - Titre de la section
+- `description` - Description de la section
+
+### Section Volets (slug: 'volets')
+- `title` - Titre de la section
+- `description` - Description de la section
+
+### Section Engagement (slug: 'engagement')
+- `title` - Titre de la section
+- `pillar_1_title` / `pillar_1_text` - Pilier 1: Qualité Premium
+- `pillar_2_title` / `pillar_2_text` - Pilier 2: Service Client
+- `pillar_3_title` / `pillar_3_text` - Pilier 3: Innovation
+
+### Section Contact (slug: 'contact')
+- `title` - Titre de la section
+- `description` - Description de la section
+
+**Pattern d'utilisation dans les templates:**
+```jinja2
+{{ content.section_slug.field_key.value if content.section_slug and content.section_slug.field_key else 'Fallback Text' }}
+```
+
 ## Dernières Modifications
 - 2025-11-11: Migration complète du projet dans l'environnement Replit
 - 2025-11-11: Redesign complet avec thème noir et or foncé (#B8941E) premium
@@ -161,4 +204,5 @@ L'application démarre automatiquement via le workflow configuré qui exécute `
   - Services pour content_provider, content_service, image_service
   - Templates admin avec design cohérent au thème principal
 - **2025-11-11: Layout responsive "Notre Engagement"** - 3 colonnes desktop, 1 colonne mobile
-- **2025-11-11: Contenu dynamique** - Section "Notre Engagement" charge depuis la base de données
+- **2025-11-11: Site entièrement dynamique** - Toutes les sections (Hero, Forces, Collection, Volets, Engagement, Contact) chargent leur contenu depuis la base de données
+- **2025-11-11: Ajout de tous les champs Points Forts** - Les 6 cartes de la section sont maintenant éditables via l'admin
