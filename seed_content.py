@@ -32,6 +32,12 @@ def seed_content():
                     'strength_2_text': 'Une parfaite compréhension des besoins des professionnels et des particuliers, ce qui nous permet de donner vie à vos projets.',
                     'strength_3_title': 'Personnalisation Expert',
                     'strength_3_text': 'Personnalisation de vos commandes en tenant compte de votre cahier de charge et des normes techniques grâce à notre atelier.',
+                    'strength_4_title': 'Rapidité d\'Exécution',
+                    'strength_4_text': 'Une rapidité dans l\'exécution des commandes pour répondre à vos besoins dans les meilleurs délais.',
+                    'strength_5_title': 'Livraison Rapide',
+                    'strength_5_text': 'Livraison partout au Maroc dans un délai de 24h pour assurer votre satisfaction.',
+                    'strength_6_title': '+20 Ans d\'Excellence',
+                    'strength_6_text': 'Expert reconnu dans les textiles premium pour hôtels, cliniques et maisons. Une expérience de luxe inégalée.',
                 }
             },
             {
