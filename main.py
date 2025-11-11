@@ -6,8 +6,8 @@ from backend.routes.main_routes import main_bp
 
 def create_app():
     app = Flask(__name__, 
-                template_folder='frontend/templates',
-                static_folder='frontend/static')
+                template_folder='templates',
+                static_folder='static')
     app.config.from_object(Config)
     
     CORS(app)
