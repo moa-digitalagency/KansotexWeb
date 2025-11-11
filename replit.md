@@ -16,26 +16,28 @@ Site web pour KANSOTEX, expert en textiles de qualité premium. Le site présent
   /models - Modèles de base de données SQLAlchemy
   /services - Logique métier
   /utils - Utilitaires
-  config.py - Configuration de l'application
-/frontend
-  /templates - Templates HTML (Jinja2)
-  /static
-    /css - Styles personnalisés
-    /js - JavaScript pour interactivité
-    /images - Images du site
+/templates - Templates HTML (Jinja2)
+/static
+  /css - Styles personnalisés
+  /js - JavaScript pour interactivité
+  /images - Images du site (incluant images de collection et arrière-plans)
+config.py - Configuration de l'application (racine)
 main.py - Point d'entrée de l'application Flask
 ```
 
 ## Fonctionnalités
-- Page d'accueil avec section "À propos" et expertise (+20 ans)
-- Section "Les volets que nous servons" (5 catégories: Home, Hotel, Medical, Literie, Serviettes)
-- Section "Nos Points Forts" avec les 5 atouts clés de KANSOTEX
-- Section "Notre engagement" (3 piliers: Matériaux, Contrôle Qualité, Innovation)
+- Hero section avec slider d'images automatique (3 images)
+- Header transparent qui devient opaque en mode sticky avec effet de flou
+- Section "Nos Points Forts" avec les 6 atouts clés de KANSOTEX
+- Section "Les volets que nous servons" avec images d'arrière-plan subtiles
+- Slider de collection interactif avec navigation (6 slides, auto-play, flèches)
+- Section "Notre engagement" avec images d'arrière-plan subtiles (3 piliers)
 - Carousel de témoignages clients interactif
 - Formulaire de contact fonctionnel avec stockage en base de données
-- Design responsive en thème noir et or (black & gold) premium
+- Footer avec image d'arrière-plan semi-transparente et 3 colonnes d'information
+- Design responsive en thème noir et or foncé (#B8941E) premium
 - Animations et transitions fluides
-- README.md complet avec informations de l'entreprise
+- Navigation responsive avec menu mobile
 
 ## Base de Données
 ### Modèle Contact
@@ -58,7 +60,11 @@ L'application démarre automatiquement via le workflow configuré qui exécute `
 
 ## Dernières Modifications
 - 2025-11-11: Migration complète du projet dans l'environnement Replit
-- 2025-11-11: Redesign complet avec thème noir et or (black & gold) premium
-- 2025-11-11: Ajout de la section "Nos Points Forts" avec les 5 atouts clés
-- 2025-11-11: Création du README.md avec documentation complète
-- 2025-11-11: Mise à jour de tous les éléments visuels (navigation, hero, sections, footer)
+- 2025-11-11: Redesign complet avec thème noir et or foncé (#B8941E) premium
+- 2025-11-11: Réorganisation de la structure - templates et static à la racine
+- 2025-11-11: Header transparent sauf en mode sticky avec effet de flou
+- 2025-11-11: Transformation de la galerie en slider interactif de collection
+- 2025-11-11: Ajout d'images d'arrière-plan semi-transparentes aux sections clés
+- 2025-11-11: Footer redesigné avec image de fond et 3 colonnes
+- 2025-11-11: Amélioration générale du design pour un aspect plus professionnel et visuel
+- 2025-11-11: Ajout de 6 nouvelles images pour la collection
