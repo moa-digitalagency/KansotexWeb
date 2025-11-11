@@ -67,19 +67,29 @@
         </div>
         
         <!-- Hero Content -->
-        <div class="relative z-10 text-center px-6">
-            <h1 class="text-6xl md:text-8xl font-bold mb-6 text-white tracking-wide">
-                <span class="gradient-text">KANSOTEX</span>
-            </h1>
-            <p class="text-2xl md:text-4xl mb-8 text-white font-light">Expert en Textiles de Qualité Premium</p>
-            <div class="flex justify-center items-center space-x-4 mb-8" style="color: #B8941E;">
-                <div class="h-px w-20" style="background: #B8941E;"></div>
-                <span class="text-2xl font-semibold">+20 ans d'expertise</span>
-                <div class="h-px w-20" style="background: #B8941E;"></div>
+        <div class="container mx-auto relative z-10 text-center px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="inline-block px-6 py-2 rounded-full mb-6" style="background: rgba(184, 148, 30, 0.15); border: 1px solid rgba(184, 148, 30, 0.3);">
+                    <span class="text-sm font-semibold tracking-wider" style="color: #B8941E;">EXCELLENCE DEPUIS 2005</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tight leading-tight">
+                    <span class="gradient-text">KANSOTEX</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-300 font-light max-w-2xl mx-auto">Expert en Textiles de Qualité Premium</p>
+                <div class="flex justify-center items-center space-x-3 mb-10">
+                    <div class="flex items-center space-x-2 px-4 py-2 rounded-lg" style="background: rgba(184, 148, 30, 0.1);">
+                        <i class="fas fa-star text-sm" style="color: #B8941E;"></i>
+                        <span class="text-sm font-medium">+20 ans d'expertise</span>
+                    </div>
+                    <div class="flex items-center space-x-2 px-4 py-2 rounded-lg" style="background: rgba(184, 148, 30, 0.1);">
+                        <i class="fas fa-award text-sm" style="color: #B8941E;"></i>
+                        <span class="text-sm font-medium">Qualité Premium</span>
+                    </div>
+                </div>
+                <a href="#forces" class="inline-block px-10 py-4 text-black font-bold rounded-lg transition transform hover:scale-105 shadow-xl" style="background: linear-gradient(135deg, #B8941E 0%, #D4AF37 100%);">
+                    Découvrir nos atouts
+                </a>
             </div>
-            <a href="#forces" class="inline-block px-8 py-4 text-black font-bold rounded-lg transition transform hover:scale-105" style="background: #B8941E;">
-                Découvrir nos atouts
-            </a>
         </div>
         
         <!-- Scroll Indicator -->
@@ -200,7 +210,7 @@
             </div>
         </div>
     </section>
-    <!-- Notre Collection - 2 Colonnes -->
+    <!-- Notre Collection - Slider 2 Colonnes -->
     <section id="collection" class="py-20 px-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(15, 15, 15, 0.9) 100%);">
         <div class="container mx-auto">
             <div class="text-center mb-12">
@@ -212,58 +222,116 @@
                 </p>
             </div>
             
-            <!-- Collection Grid 2 Colonnes -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-                <!-- Item 1 -->
-                <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
-                    <img src="{{ url_for('static', filename='images/textile-1.jpg') }}" 
-                         alt="Textile Premium" 
-                         class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6">
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">COLLECTION EXCLUSIVE</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">Tissus de Luxe</h3>
-                        <p class="text-gray-300 text-sm">Qualité exceptionnelle pour vos projets premium</p>
+            <!-- Collection Slider Container -->
+            <div class="relative max-w-6xl mx-auto">
+                <div class="collection-two-col-slider overflow-hidden">
+                    <!-- Slide 1 - Pair -->
+                    <div class="collection-two-col-slide active">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Item 1 -->
+                            <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
+                                <img src="{{ url_for('static', filename='images/textile-1.jpg') }}" 
+                                     alt="Textile Premium" 
+                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-6">
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">COLLECTION EXCLUSIVE</span>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Tissus de Luxe</h3>
+                                    <p class="text-gray-300 text-sm">Qualité exceptionnelle pour vos projets premium</p>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
+                                <img src="{{ url_for('static', filename='images/textile-2.jpg') }}" 
+                                     alt="Collection Premium" 
+                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-6">
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">DESIGN MODERNE</span>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Collection Premium</h3>
+                                    <p class="text-gray-300 text-sm">Design moderne et élégant pour vos espaces</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 - Pair -->
+                    <div class="collection-two-col-slide">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Item 3 -->
+                            <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
+                                <img src="{{ url_for('static', filename='images/bedding-1.jpg') }}" 
+                                     alt="Literie Hôtelière" 
+                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-6">
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">HÔTELLERIE DE LUXE</span>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Literie Hôtelière</h3>
+                                    <p class="text-gray-300 text-sm">Confort 5 étoiles pour une expérience exceptionnelle</p>
+                                </div>
+                            </div>
+
+                            <!-- Item 4 -->
+                            <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
+                                <img src="{{ url_for('static', filename='images/serviettes.jpg') }}" 
+                                     alt="Serviettes de Luxe" 
+                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-6">
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">QUALITÉ SUPÉRIEURE</span>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Serviettes de Luxe</h3>
+                                    <p class="text-gray-300 text-sm">Absorption parfaite et douceur exceptionnelle</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 - Pair -->
+                    <div class="collection-two-col-slide">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Item 5 -->
+                            <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
+                                <img src="{{ url_for('static', filename='images/bedding-2.jpg') }}" 
+                                     alt="Literie Excellence" 
+                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-6">
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">EXCELLENCE</span>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Excellence Textile</h3>
+                                    <p class="text-gray-300 text-sm">Douceur suprême et durabilité exceptionnelle</p>
+                                </div>
+                            </div>
+
+                            <!-- Item 6 -->
+                            <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
+                                <img src="{{ url_for('static', filename='images/home-textile.jpg') }}" 
+                                     alt="Textile Maison" 
+                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-6">
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">CONFORT MAISON</span>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Textile Maison</h3>
+                                    <p class="text-gray-300 text-sm">Élégance et confort pour votre intérieur</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Item 2 -->
-                <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
-                    <img src="{{ url_for('static', filename='images/textile-2.jpg') }}" 
-                         alt="Collection Premium" 
-                         class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6">
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">DESIGN MODERNE</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">Collection Premium</h3>
-                        <p class="text-gray-300 text-sm">Design moderne et élégant pour vos espaces</p>
-                    </div>
-                </div>
+                <!-- Navigation Arrows -->
+                <button class="collection-two-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.9);">
+                    <i class="fas fa-chevron-left text-white"></i>
+                </button>
+                <button class="collection-two-next absolute right-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.9);">
+                    <i class="fas fa-chevron-right text-white"></i>
+                </button>
 
-                <!-- Item 3 -->
-                <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
-                    <img src="{{ url_for('static', filename='images/bedding-1.jpg') }}" 
-                         alt="Literie Hôtelière" 
-                         class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6">
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">HÔTELLERIE DE LUXE</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">Literie Hôtelière</h3>
-                        <p class="text-gray-300 text-sm">Confort 5 étoiles pour une expérience exceptionnelle</p>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
-                    <img src="{{ url_for('static', filename='images/serviettes.jpg') }}" 
-                         alt="Serviettes de Luxe" 
-                         class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6">
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">QUALITÉ SUPÉRIEURE</span>
-                        <h3 class="text-2xl font-bold text-white mb-2">Serviettes de Luxe</h3>
-                        <p class="text-gray-300 text-sm">Absorption parfaite et douceur exceptionnelle</p>
-                    </div>
+                <!-- Slider Dots -->
+                <div class="flex justify-center mt-8 space-x-2">
+                    <button class="collection-two-dot active" data-slide="0"></button>
+                    <button class="collection-two-dot" data-slide="1"></button>
+                    <button class="collection-two-dot" data-slide="2"></button>
                 </div>
             </div>
         </div>
@@ -338,6 +406,18 @@
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Serviettes et Sorties de Bain</h3>
                     <p class="text-gray-400">Serviettes douces et absorbantes pour un confort optimal.</p>
+                </div>
+
+                <!-- Textile Professionnel -->
+                <div class="card group">
+                    <div class="relative overflow-hidden rounded-lg mb-4 h-64">
+                        <img src="{{ url_for('static', filename='images/textile-3.jpg') }}" 
+                             alt="Textile Professionnel" 
+                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Textile Professionnel</h3>
+                    <p class="text-gray-400">Solutions textiles sur-mesure pour les professionnels exigeants.</p>
                 </div>
             </div>
         </div>

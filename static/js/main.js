@@ -21,10 +21,12 @@ const testimonials = [
 
 let currentTestimonial = 0;
 let currentHeroSlide = 0;
+let currentCollectionTwoSlide = 0;
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initHeroSlider();
+    initCollectionTwoSlider();
     initTestimonials();
     initMobileMenu();
     initContactForm();
@@ -217,6 +219,59 @@ function initSmoothScroll() {
     });
 }
 
+
+// Initialize Collection Two Column Slider
+function initCollectionTwoSlider() {
+    const slides = document.querySelectorAll('.collection-two-col-slide');
+    const dots = document.querySelectorAll('.collection-two-dot');
+    const prevBtn = document.querySelector('.collection-two-prev');
+    const nextBtn = document.querySelector('.collection-two-next');
+    
+    if (!slides.length || !dots.length) return;
+    
+    // Auto-rotate slides every 5 seconds
+    setInterval(() => {
+        currentCollectionTwoSlide = (currentCollectionTwoSlide + 1) % slides.length;
+        showCollectionTwoSlide(currentCollectionTwoSlide);
+    }, 5000);
+    
+    // Dot click handlers
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentCollectionTwoSlide = index;
+            showCollectionTwoSlide(currentCollectionTwoSlide);
+        });
+    });
+    
+    // Navigation buttons
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            currentCollectionTwoSlide = (currentCollectionTwoSlide - 1 + slides.length) % slides.length;
+            showCollectionTwoSlide(currentCollectionTwoSlide);
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            currentCollectionTwoSlide = (currentCollectionTwoSlide + 1) % slides.length;
+            showCollectionTwoSlide(currentCollectionTwoSlide);
+        });
+    }
+}
+
+// Show specific collection two column slide
+function showCollectionTwoSlide(index) {
+    const slides = document.querySelectorAll('.collection-two-col-slide');
+    const dots = document.querySelectorAll('.collection-two-dot');
+    
+    slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+    });
+    
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+    });
+}
 
 // Scroll animations and header transparency
 window.addEventListener('scroll', function() {
