@@ -218,12 +218,14 @@ function initSmoothScroll() {
     });
 }
 
-// Scroll animations
+// Scroll animations and header transparency
 window.addEventListener('scroll', function() {
-    const header = document.querySelector('header');
+    const header = document.getElementById('main-header');
     if (window.scrollY > 50) {
+        header.classList.add('header-sticky');
         header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
     } else {
+        header.classList.remove('header-sticky');
         header.style.boxShadow = 'none';
     }
 });

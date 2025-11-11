@@ -119,6 +119,15 @@ body {
     animation: fadeInUp 0.6s ease-out;
 }
 
+/* Header Styles */
+#main-header {
+    background: transparent;
+}
+
+#main-header.header-sticky {
+    background: rgba(0, 0, 0, 0.95);
+}
+
 /* Form Styles */
 input:focus, textarea:focus {
     box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
