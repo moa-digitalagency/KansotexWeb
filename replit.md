@@ -206,3 +206,31 @@ Toutes les sections suivantes sont maintenant **complètement dynamiques** et é
 - **2025-11-11: Layout responsive "Notre Engagement"** - 3 colonnes desktop, 1 colonne mobile
 - **2025-11-11: Site entièrement dynamique** - Toutes les sections (Hero, Forces, Collection, Volets, Engagement, Contact) chargent leur contenu depuis la base de données
 - **2025-11-11: Ajout de tous les champs Points Forts** - Les 6 cartes de la section sont maintenant éditables via l'admin
+- **2025-11-11: Optimisation SEO complète**
+  - Ajout de 20+ champs SEO éditables depuis l'admin: canonical URL, robots meta, author, favicon
+  - Structured Data JSON-LD avec Organization schema pour Google Search
+  - Open Graph complet (OG image, type, URL, locale) pour partage social
+  - Twitter Cards avec support summary_large_image
+  - Fix critique: Utilisation du filtre |tojson pour le JSON-LD (évite l'échappement HTML)
+  - Fix critique: Twitter meta tags utilisent name="" au lieu de property=""
+- **2025-11-11: Système d'images 100% dynamique**
+  - TOUTES les 18 images du site sont maintenant éditables via l'admin:
+    * Hero slider (3 images)
+    * Collection carousel (6 images)
+    * Volets section (6 images + 1 background)
+    * Engagement background
+    * Footer background
+  - Création du filtre Jinja personnalisé `image_url` pour gérer les images dynamiques
+  - ContentProvider.get_image_url() helper method pour prioriser ImageAsset puis static paths
+  - Pattern de fallback robuste: `(content.field|image_url) or url_for('static', filename='...')`
+  - Ajout des champs background_image au seed pour volets, engagement et footer
+- **2025-11-11: Interface Upload/Crop avancée**
+  - Nouvelle page admin `/admin/upload-crop` avec Cropper.js intégration
+  - Presets de dimensions pour différents formats:
+    * 16:9 Hero Slider (1920x1080)
+    * 4:3 Collection Cards (1200x900)
+    * 1:1 Square (1080x1080)
+    * Open Graph Image (1200x630)
+    * Twitter Card (1200x675)
+  - Crop en temps réel avec aperçu avant upload
+  - Optimisation automatique des images croppées (qualité 85%, conversion RGB)
