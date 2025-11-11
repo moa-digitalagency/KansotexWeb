@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
+from flask_wtf.csrf import CSRFProtect
 from config import Config
 from backend.models import db
 from backend.routes.main_routes import main_bp
@@ -12,6 +13,7 @@ def create_app():
     app.config.from_object(Config)
     
     CORS(app)
+    csrf = CSRFProtect(app)
     
     db.init_app(app)
     
