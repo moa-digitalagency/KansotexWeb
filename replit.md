@@ -29,12 +29,18 @@ main.py - Point d'entrée de l'application Flask
 - Hero section avec slider d'images automatique (3 images)
 - Header transparent qui devient opaque en mode sticky avec effet de flou
 - Section "Nos Points Forts" avec les 6 atouts clés de KANSOTEX
+- **Carousel de collection premium** (6 slides, auto-play 5s) - Positionné haut après Points Forts
+  - Design premium avec badges de catégorie sur fond semi-transparent
+  - Titres impactants text-5xl/6xl avec descriptions enrichies
+  - Icônes de caractéristiques pour chaque slide
+  - Boutons de navigation XL avec dégradés et effets hover
+  - Images avec effet zoom subtil (scale-105), hauteur 600px
+  - Navigation par dots et flèches prev/next
 - Section "Les volets que nous servons" avec images d'arrière-plan subtiles
-- Slider de collection interactif avec navigation (6 slides, auto-play, flèches)
 - Section "Notre engagement" avec images d'arrière-plan subtiles (3 piliers)
 - Carousel de témoignages clients interactif
 - Formulaire de contact fonctionnel avec stockage en base de données
-- Footer avec image d'arrière-plan semi-transparente et 3 colonnes d'information
+- **Footer modernisé** avec layout 4 colonnes, icônes sociales, ligne de dégradé doré
 - Design responsive en thème noir et or foncé (#B8941E) premium
 - Animations et transitions fluides
 - Navigation responsive avec menu mobile
@@ -64,7 +70,9 @@ L'application démarre automatiquement via le workflow configuré qui exécute `
 - 2025-11-11: Réorganisation de la structure - templates et static à la racine
 - 2025-11-11: Header transparent sauf en mode sticky avec effet de flou
 - 2025-11-11: Transformation de la galerie en slider interactif de collection
+- 2025-11-11: **Déplacement du carousel de collection en position haute** (après Points Forts)
+- 2025-11-11: **Amélioration premium du carousel** avec badges, titres XL, boutons dégradés
+- 2025-11-11: **Modernisation du footer** avec layout 4 colonnes et icônes sociales
 - 2025-11-11: Ajout d'images d'arrière-plan semi-transparentes aux sections clés
-- 2025-11-11: Footer redesigné avec image de fond et 3 colonnes
 - 2025-11-11: Amélioration générale du design pour un aspect plus professionnel et visuel
 - 2025-11-11: Ajout de 6 nouvelles images pour la collection
