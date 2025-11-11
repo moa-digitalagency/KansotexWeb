@@ -105,6 +105,7 @@ def seed_complete_content():
                     'volet_6_image': ('image', 'images/textile-3.jpg'),
                     'volet_6_title': ('text', 'Textile Professionnel'),
                     'volet_6_description': ('text', 'Solutions textiles sur-mesure pour les professionnels exigeants.'),
+                    'background_image': ('image', 'images/textile-3.jpg'),
                 }
             },
             {
@@ -120,6 +121,7 @@ def seed_complete_content():
                     'pillar_2_text': ('text', 'Chaque produit passe par un processus de contrôle rigoureux pour assurer une finition parfaite et une satisfaction client maximale.'),
                     'pillar_3_title': ('text', 'Innovation Constante'),
                     'pillar_3_text': ('text', 'Nous nous engageons à une innovation constante afin de vous offrir constamment des produits tendance et au summum du confort.'),
+                    'background_image': ('image', 'images/bedding-1.jpg'),
                 }
             },
             {
@@ -164,6 +166,7 @@ def seed_complete_content():
                     'social_facebook': ('text', 'https://facebook.com'),
                     'social_instagram': ('text', 'https://instagram.com'),
                     'social_linkedin': ('text', 'https://linkedin.com'),
+                    'background_image': ('image', 'images/footer-bg.jpg'),
                     'contact_title': ('text', 'Contact'),
                     'contact_phone': ('text', '+212 50 898 989'),
                     'contact_email': ('text', 'contact@kansotex.com'),

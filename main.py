@@ -5,6 +5,7 @@ from config import Config
 from backend.models import db
 from backend.routes.main_routes import main_bp
 from backend.admin import admin_bp
+from backend.services.content_provider import ContentProvider
 
 def create_app():
     app = Flask(__name__, 
@@ -16,6 +17,9 @@ def create_app():
     csrf = CSRFProtect(app)
     
     db.init_app(app)
+    
+    # Register custom Jinja filters
+    app.jinja_env.filters['image_url'] = ContentProvider.get_image_url
     
     app.register_blueprint(main_bp)
     app.register_blueprint(admin_bp)

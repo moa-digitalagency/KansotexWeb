@@ -93,21 +93,21 @@
         <div class="absolute inset-0 hero-slider-container">
             <!-- Slide 1 -->
             <div class="hero-slide active">
-                <img src="{{ url_for('static', filename='images/hotel-textile.jpg') }}" 
+                <img src="{{ (content.hero.slider_image_1|image_url) or url_for('static', filename='images/hotel-textile.jpg') }}" 
                      alt="KANSOTEX Textiles Hôtelier" 
                      class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-60"></div>
             </div>
             <!-- Slide 2 -->
             <div class="hero-slide">
-                <img src="{{ url_for('static', filename='images/medical-textile.jpg') }}" 
+                <img src="{{ (content.hero.slider_image_2|image_url) or url_for('static', filename='images/medical-textile.jpg') }}" 
                      alt="KANSOTEX Textiles Médical" 
                      class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-60"></div>
             </div>
             <!-- Slide 3 -->
             <div class="hero-slide">
-                <img src="{{ url_for('static', filename='images/literie.jpg') }}" 
+                <img src="{{ (content.hero.slider_image_3|image_url) or url_for('static', filename='images/literie.jpg') }}" 
                      alt="KANSOTEX Literie Premium" 
                      class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-60"></div>
@@ -280,7 +280,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Item 1 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
-                                <img src="{{ url_for('static', filename='images/textile-1.jpg') }}" 
+                                <img src="{{ (content.collection.slide_1_image|image_url) or url_for('static', filename='images/textile-1.jpg') }}" 
                                      alt="Textile Premium" 
                                      class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
@@ -293,7 +293,7 @@
 
                             <!-- Item 2 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
-                                <img src="{{ url_for('static', filename='images/textile-2.jpg') }}" 
+                                <img src="{{ (content.collection.slide_2_image|image_url) or url_for('static', filename='images/textile-2.jpg') }}" 
                                      alt="Collection Premium" 
                                      class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
@@ -311,7 +311,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Item 3 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
-                                <img src="{{ url_for('static', filename='images/bedding-1.jpg') }}" 
+                                <img src="{{ (content.collection.slide_3_image|image_url) or url_for('static', filename='images/bedding-1.jpg') }}" 
                                      alt="Literie Hôtelière" 
                                      class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
@@ -324,7 +324,7 @@
 
                             <!-- Item 4 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
-                                <img src="{{ url_for('static', filename='images/serviettes.jpg') }}" 
+                                <img src="{{ (content.collection.slide_4_image|image_url) or url_for('static', filename='images/serviettes.jpg') }}" 
                                      alt="Serviettes de Luxe" 
                                      class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
@@ -342,7 +342,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Item 5 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
-                                <img src="{{ url_for('static', filename='images/bedding-2.jpg') }}" 
+                                <img src="{{ (content.collection.slide_5_image|image_url) or url_for('static', filename='images/bedding-2.jpg') }}" 
                                      alt="Literie Excellence" 
                                      class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
@@ -355,7 +355,7 @@
 
                             <!-- Item 6 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
-                                <img src="{{ url_for('static', filename='images/home-textile.jpg') }}" 
+                                <img src="{{ (content.collection.slide_6_image|image_url) or url_for('static', filename='images/home-textile.jpg') }}" 
                                      alt="Textile Maison" 
                                      class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
@@ -391,7 +391,7 @@
     <section id="volets" class="py-20 px-6 relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="{{ url_for('static', filename='images/textile-3.jpg') }}" 
+            <img src="{{ (content.volets.background_image|image_url) or url_for('static', filename='images/textile-3.jpg') }}" 
                  alt="Background" 
                  class="w-full h-full object-cover opacity-5">
         </div>
@@ -404,7 +404,7 @@
                 <!-- Volet 1 -->
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
-                        <img src="{{ url_for('static', filename='images/home-textile.jpg') }}" 
+                        <img src="{{ (content.volets.volet_1_image|image_url) or url_for('static', filename='images/home-textile.jpg') }}" 
                              alt="Home textile" 
                              class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
@@ -416,7 +416,7 @@
                 <!-- Volet 2 -->
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
-                        <img src="{{ url_for('static', filename='images/hotel-textile.jpg') }}" 
+                        <img src="{{ (content.volets.volet_2_image|image_url) or url_for('static', filename='images/hotel-textile.jpg') }}" 
                              alt="Hotel textile" 
                              class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
@@ -428,7 +428,7 @@
                 <!-- Volet 3 -->
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
-                        <img src="{{ url_for('static', filename='images/medical-textile.jpg') }}" 
+                        <img src="{{ (content.volets.volet_3_image|image_url) or url_for('static', filename='images/medical-textile.jpg') }}" 
                              alt="Medical textile" 
                              class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
@@ -440,7 +440,7 @@
                 <!-- Volet 4 -->
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
-                        <img src="{{ url_for('static', filename='images/literie.jpg') }}" 
+                        <img src="{{ (content.volets.volet_4_image|image_url) or url_for('static', filename='images/literie.jpg') }}" 
                              alt="Literie" 
                              class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
@@ -452,7 +452,7 @@
                 <!-- Volet 5 -->
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
-                        <img src="{{ url_for('static', filename='images/serviettes.jpg') }}" 
+                        <img src="{{ (content.volets.volet_5_image|image_url) or url_for('static', filename='images/serviettes.jpg') }}" 
                              alt="Serviettes" 
                              class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
@@ -464,7 +464,7 @@
                 <!-- Volet 6 -->
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
-                        <img src="{{ url_for('static', filename='images/textile-3.jpg') }}" 
+                        <img src="{{ (content.volets.volet_6_image|image_url) or url_for('static', filename='images/textile-3.jpg') }}" 
                              alt="Textile Professionnel" 
                              class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
@@ -480,7 +480,7 @@
     <section id="engagement" class="py-20 px-6 relative overflow-hidden" style="background: rgba(15, 15, 15, 0.8);">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="{{ url_for('static', filename='images/bedding-1.jpg') }}" 
+            <img src="{{ (content.engagement.background_image|image_url) or url_for('static', filename='images/bedding-1.jpg') }}" 
                  alt="Background" 
                  class="w-full h-full object-cover opacity-5">
         </div>
@@ -647,7 +647,7 @@
     <footer class="relative py-20 px-6 overflow-hidden" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 1) 100%);">
         <!-- Background Pattern -->
         <div class="absolute inset-0 z-0 opacity-5">
-            <img src="{{ url_for('static', filename='images/footer-bg.jpg') }}" 
+            <img src="{{ (content.footer.background_image|image_url) or url_for('static', filename='images/footer-bg.jpg') }}" 
                  alt="Footer Background" 
                  class="w-full h-full object-cover">
         </div>
