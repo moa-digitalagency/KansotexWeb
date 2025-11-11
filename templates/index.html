@@ -15,26 +15,39 @@
         <nav class="container mx-auto px-6 py-4 max-w-6xl">
             <div class="flex items-center justify-between">
                 <div class="text-2xl font-bold" style="color: #B8941E;">KANSOTEX</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#accueil" class="hover:text-yellow-500 transition">Accueil</a>
-                    <a href="#volets" class="hover:text-yellow-500 transition">Nos Volets</a>
-                    <a href="#forces" class="hover:text-yellow-500 transition">Points Forts</a>
-                    <a href="#engagement" class="hover:text-yellow-500 transition">Engagement</a>
-                    <a href="#temoignages" class="hover:text-yellow-500 transition">Témoignages</a>
-                    <a href="#contact" class="hover:text-yellow-500 transition">Contact</a>
+                <div class="flex items-center space-x-8">
+                    <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide">
+                    <a href="#accueil" class="hover:text-yellow-500 transition uppercase">Accueil</a>
+                    <a href="#collection" class="hover:text-yellow-500 transition uppercase">Collection</a>
+                    <a href="#volets" class="hover:text-yellow-500 transition uppercase">Nos Volets</a>
+                    <a href="#forces" class="hover:text-yellow-500 transition uppercase">Points Forts</a>
+                    <a href="#engagement" class="hover:text-yellow-500 transition uppercase">Engagement</a>
+                    <a href="#contact" class="hover:text-yellow-500 transition uppercase">Contact</a>
+                    </div>
+                    <div class="hidden lg:flex items-center space-x-4 border-l border-yellow-600/30 pl-6">
+                        <a href="https://facebook.com" target="_blank" class="hover:text-yellow-500 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="hover:text-yellow-500 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="hover:text-yellow-500 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden text-2xl">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3">
-                <a href="#accueil" class="block hover:text-yellow-500 transition">Accueil</a>
-                <a href="#volets" class="block hover:text-yellow-500 transition">Nos Volets</a>
-                <a href="#forces" class="block hover:text-yellow-500 transition">Points Forts</a>
-                <a href="#engagement" class="block hover:text-yellow-500 transition">Engagement</a>
-                <a href="#temoignages" class="block hover:text-yellow-500 transition">Témoignages</a>
-                <a href="#contact" class="block hover:text-yellow-500 transition">Contact</a>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3 text-sm font-semibold">
+                <a href="#accueil" class="block hover:text-yellow-500 transition uppercase">Accueil</a>
+                <a href="#collection" class="block hover:text-yellow-500 transition uppercase">Collection</a>
+                <a href="#volets" class="block hover:text-yellow-500 transition uppercase">Nos Volets</a>
+                <a href="#forces" class="block hover:text-yellow-500 transition uppercase">Points Forts</a>
+                <a href="#engagement" class="block hover:text-yellow-500 transition uppercase">Engagement</a>
+                <a href="#contact" class="block hover:text-yellow-500 transition uppercase">Contact</a>
             </div>
         </nav>
     </header>
@@ -108,8 +121,10 @@
     <!-- Points Forts Section - Moved After Hero -->
     <section id="forces" class="py-20 px-6" style="background: rgba(15, 15, 15, 0.9);">
         <div class="container mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">Nos <span style="color: #B8941E;">Points Forts</span></h2>
-            <p class="text-center text-gray-400 mb-16 max-w-2xl mx-auto">Ce qui nous distingue dans l'univers des textiles de qualité premium</p>
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">Nos <span style="color: #B8941E;">Points Forts</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Ce qui nous distingue dans l'univers des textiles de qualité premium</p>
+            </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <!-- Strength 1 -->
@@ -214,10 +229,10 @@
     <section id="collection" class="py-20 px-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(15, 15, 15, 0.9) 100%);">
         <div class="container mx-auto">
             <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">
                     Notre <span class="gradient-text">Collection</span> Premium
                 </h2>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+                <p class="text-gray-400 max-w-2xl mx-auto">
                     Découvrez l'excellence de nos textiles de luxe
                 </p>
             </div>
@@ -346,7 +361,10 @@
                  class="w-full h-full object-cover opacity-5">
         </div>
         <div class="container mx-auto relative z-10 max-w-6xl">
-            <h2 class="text-4xl font-bold text-center mb-16">Les volets que nous servons</h2>
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">Les Volets Que <span style="color: #B8941E;">Nous Servons</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Solutions textiles adaptées à tous vos besoins professionnels et personnels</p>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Home Textile -->
                 <div class="card group">
@@ -432,8 +450,11 @@
                  class="w-full h-full object-cover opacity-5">
         </div>
         <div class="container mx-auto relative z-10 max-w-6xl">
-            <h2 class="text-4xl font-bold text-center mb-16">Notre <span style="color: #B8941E;">engagement</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">Notre <span style="color: #B8941E;">Engagement</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Des valeurs fortes au service de votre satisfaction</p>
+            </div>
+            <div class="grid grid-cols-1 gap-8">
                 <!-- Matériaux -->
                 <div class="engagement-card">
                     <div class="text-5xl mb-6" style="color: #B8941E;">
@@ -476,7 +497,10 @@
     <!-- Témoignages Section -->
     <section id="temoignages" class="py-20 px-6">
         <div class="container mx-auto max-w-6xl">
-            <h2 class="text-4xl font-bold text-center mb-16">Témoignages <span style="color: #B8941E;">clients</span></h2>
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">Témoignages <span style="color: #B8941E;">Clients</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Ce que nos clients disent de nous</p>
+            </div>
             <div class="max-w-4xl mx-auto">
                 <div id="testimonials-container" class="relative">
                     <!-- Testimonials will be dynamically loaded here -->
@@ -491,7 +515,10 @@
     <!-- Contact Section -->
     <section id="contact" class="py-20 px-6" style="background: rgba(15, 15, 15, 0.8);">
         <div class="container mx-auto max-w-6xl">
-            <h2 class="text-4xl font-bold text-center mb-16">Infos <span style="color: #B8941E;">contact</span></h2>
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">Infos <span style="color: #B8941E;">Contact</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Contactez-nous pour tous vos besoins en textiles premium</p>
+            </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Contact Info -->
                 <div>
@@ -596,9 +623,21 @@
                     <p class="text-gray-400 leading-relaxed mb-6">
                         Expert en textiles de qualité premium depuis plus de 20 ans. Nous vous accompagnons dans vos projets hôteliers, médicaux et résidentiels avec passion et excellence.
                     </p>
-                    <div class="flex items-center space-x-2 text-gray-400">
+                    <div class="flex items-center space-x-2 text-gray-400 mb-6">
                         <i class="fas fa-award" style="color: #B8941E;"></i>
                         <span class="text-sm">+20 ans d'excellence | ICE: 002323065B06</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm font-semibold" style="color: #B8941E;">Suivez-nous:</span>
+                        <a href="https://facebook.com" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
+                            <i class="fab fa-facebook-f" style="color: #B8941E;"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
+                            <i class="fab fa-instagram" style="color: #B8941E;"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
+                            <i class="fab fa-linkedin-in" style="color: #B8941E;"></i>
+                        </a>
                     </div>
                 </div>
                 
@@ -673,21 +712,10 @@
             
             <!-- Bottom Section -->
             <div class="border-t pt-6" style="border-color: rgba(184, 148, 30, 0.2);">
-                <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-4 text-center">
+                <div class="text-center">
                     <p class="text-gray-500 text-xs">
                         &copy; 2025 KANSOTEX. Tous droits réservés.
                     </p>
-                    <div class="flex items-center space-x-4">
-                        <a href="#" class="text-gray-500 hover:text-white transition-colors duration-300">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-500 hover:text-white transition-colors duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-500 hover:text-white transition-colors duration-300">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
