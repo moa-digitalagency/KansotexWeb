@@ -21,13 +21,52 @@ const testimonials = [
 
 let currentTestimonial = 0;
 
+let currentHeroSlide = 0;
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    initHeroSlider();
     initTestimonials();
     initMobileMenu();
     initContactForm();
     initSmoothScroll();
 });
+
+// Initialize Hero Slider
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    
+    if (!slides.length || !dots.length) return;
+    
+    // Auto-rotate slides every 5 seconds
+    setInterval(() => {
+        currentHeroSlide = (currentHeroSlide + 1) % slides.length;
+        showHeroSlide(currentHeroSlide);
+    }, 5000);
+    
+    // Dot click handlers
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentHeroSlide = index;
+            showHeroSlide(currentHeroSlide);
+        });
+    });
+}
+
+// Show specific hero slide
+function showHeroSlide(index) {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    
+    slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+    });
+    
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+    });
+}
 
 // Initialize Testimonials Carousel
 function initTestimonials() {
@@ -44,7 +83,7 @@ function initTestimonials() {
         card.innerHTML = `
             <p class="text-lg text-gray-300 mb-6 italic leading-relaxed">${testimonial.quote}</p>
             <div class="flex items-center space-x-4">
-                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-2xl font-bold">
+                <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold" style="background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);">
                     ${testimonial.name.charAt(0)}
                 </div>
                 <div>

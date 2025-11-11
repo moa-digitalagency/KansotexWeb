@@ -164,9 +164,62 @@ input:focus, textarea:focus {
     box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
 }
 
+/* Hero Section Slider Styles */
+.hero-slider-container {
+    position: relative;
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.hero-slide img {
+    animation: slowZoom 20s ease-in-out infinite;
+}
+
+@keyframes slowZoom {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(212, 175, 55, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+    background: #D4AF37;
+    transform: scale(1.3);
+    border-color: #D4AF37;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .gradient-text {
         font-size: 2.5rem;
+    }
+    
+    #accueil h1 {
+        font-size: 3rem !important;
+    }
+    
+    #accueil p {
+        font-size: 1.25rem !important;
     }
 }
