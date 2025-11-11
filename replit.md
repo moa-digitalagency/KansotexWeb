@@ -29,11 +29,13 @@ main.py - Point d'entrée de l'application Flask
 ## Fonctionnalités
 - Page d'accueil avec section "À propos" et expertise (+20 ans)
 - Section "Les volets que nous servons" (5 catégories: Home, Hotel, Medical, Literie, Serviettes)
+- Section "Nos Points Forts" avec les 5 atouts clés de KANSOTEX
 - Section "Notre engagement" (3 piliers: Matériaux, Contrôle Qualité, Innovation)
 - Carousel de témoignages clients interactif
 - Formulaire de contact fonctionnel avec stockage en base de données
-- Design responsive en dark theme moderne
+- Design responsive en thème noir et or (black & gold) premium
 - Animations et transitions fluides
+- README.md complet avec informations de l'entreprise
 
 ## Base de Données
 ### Modèle Contact
@@ -55,4 +57,8 @@ Le serveur Flask écoute sur `0.0.0.0:5000` pour permettre l'accès via le proxy
 L'application démarre automatiquement via le workflow configuré qui exécute `python main.py`.
 
 ## Dernières Modifications
-- 2025-11-11: Création initiale du site KANSOTEX avec backend structuré et frontend dark theme
+- 2025-11-11: Migration complète du projet dans l'environnement Replit
+- 2025-11-11: Redesign complet avec thème noir et or (black & gold) premium
+- 2025-11-11: Ajout de la section "Nos Points Forts" avec les 5 atouts clés
+- 2025-11-11: Création du README.md avec documentation complète
+- 2025-11-11: Mise à jour de tous les éléments visuels (navigation, hero, sections, footer)
