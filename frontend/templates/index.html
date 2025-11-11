@@ -8,19 +8,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="bg-gray-900 text-gray-100">
+<body class="bg-black text-gray-100">
     
     <!-- Header / Navigation -->
-    <header class="fixed top-0 left-0 right-0 bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
+    <header class="fixed top-0 left-0 right-0 bg-black/95 backdrop-blur-sm z-50 border-b border-yellow-600/30">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="text-2xl font-bold text-blue-400">KANSOTEX</div>
+                <div class="text-2xl font-bold" style="color: #D4AF37;">KANSOTEX</div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#accueil" class="hover:text-blue-400 transition">Accueil</a>
-                    <a href="#volets" class="hover:text-blue-400 transition">Nos Volets</a>
-                    <a href="#engagement" class="hover:text-blue-400 transition">Engagement</a>
-                    <a href="#temoignages" class="hover:text-blue-400 transition">Témoignages</a>
-                    <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+                    <a href="#accueil" class="hover:text-yellow-500 transition">Accueil</a>
+                    <a href="#volets" class="hover:text-yellow-500 transition">Nos Volets</a>
+                    <a href="#forces" class="hover:text-yellow-500 transition">Points Forts</a>
+                    <a href="#engagement" class="hover:text-yellow-500 transition">Engagement</a>
+                    <a href="#temoignages" class="hover:text-yellow-500 transition">Témoignages</a>
+                    <a href="#contact" class="hover:text-yellow-500 transition">Contact</a>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden text-2xl">
                     <i class="fas fa-bars"></i>
@@ -28,11 +29,12 @@
             </div>
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3">
-                <a href="#accueil" class="block hover:text-blue-400 transition">Accueil</a>
-                <a href="#volets" class="block hover:text-blue-400 transition">Nos Volets</a>
-                <a href="#engagement" class="block hover:text-blue-400 transition">Engagement</a>
-                <a href="#temoignages" class="block hover:text-blue-400 transition">Témoignages</a>
-                <a href="#contact" class="block hover:text-blue-400 transition">Contact</a>
+                <a href="#accueil" class="block hover:text-yellow-500 transition">Accueil</a>
+                <a href="#volets" class="block hover:text-yellow-500 transition">Nos Volets</a>
+                <a href="#forces" class="block hover:text-yellow-500 transition">Points Forts</a>
+                <a href="#engagement" class="block hover:text-yellow-500 transition">Engagement</a>
+                <a href="#temoignages" class="block hover:text-yellow-500 transition">Témoignages</a>
+                <a href="#contact" class="block hover:text-yellow-500 transition">Contact</a>
             </div>
         </nav>
     </header>
@@ -41,22 +43,22 @@
     <section id="accueil" class="pt-32 pb-20 px-6">
         <div class="container mx-auto">
             <div class="text-center max-w-4xl mx-auto">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">KANSOTEX</h1>
-                <p class="text-xl md:text-2xl mb-8 text-gray-300">Expert en Textiles de Qualité Premium</p>
-                <div class="flex justify-center items-center space-x-4 text-blue-400">
-                    <div class="h-px w-20 bg-blue-400"></div>
+                <h1 class="text-6xl md:text-8xl font-bold mb-6 gradient-text tracking-wide">KANSOTEX</h1>
+                <p class="text-xl md:text-3xl mb-8 text-gray-300 font-light">Expert en Textiles de Qualité Premium</p>
+                <div class="flex justify-center items-center space-x-4" style="color: #D4AF37;">
+                    <div class="h-px w-20" style="background: #D4AF37;"></div>
                     <span class="text-2xl font-semibold">+20 ans d'expertise</span>
-                    <div class="h-px w-20 bg-blue-400"></div>
+                    <div class="h-px w-20" style="background: #D4AF37;"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- À Propos Section -->
-    <section class="py-20 px-6 bg-gray-800/50">
+    <section class="py-20 px-6" style="background: rgba(15, 15, 15, 0.8);">
         <div class="container mx-auto">
             <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl font-bold mb-8">À propos de <span class="text-blue-400">KANSOTEX</span></h2>
+                <h2 class="text-4xl font-bold mb-8">À propos de <span style="color: #D4AF37;">KANSOTEX</span></h2>
                 <p class="text-lg text-gray-300 leading-relaxed">
                     Kansotex, expert en textiles de qualité premium, offre une gamme complète de literie, peignoirs et serviettes 
                     idéale pour hôtels, cliniques et maisons. Spécialisés dans le textile pour la maison, le secteur médical et hôtelier, 
@@ -135,17 +137,90 @@
         </div>
     </section>
 
-    <!-- Notre Engagement Section -->
-    <section id="engagement" class="py-20 px-6 bg-gray-800/50">
+    <!-- Points Forts Section -->
+    <section id="forces" class="py-20 px-6">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-16">Notre <span class="text-blue-400">engagement</span></h2>
+            <h2 class="text-4xl font-bold text-center mb-16">Nos <span style="color: #D4AF37;">Points Forts</span></h2>
+            <div class="max-w-5xl mx-auto space-y-6">
+                <!-- Strength 1 -->
+                <div class="strength-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl" style="color: #D4AF37;"><i class="fas fa-star"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2" style="color: #D4AF37;">Expérience Significative</h3>
+                            <p class="text-gray-400">
+                                Une expérience significative dans l'accompagnement des professionnels désireux de se distinguer grâce à un travail de qualité alliant un choix méticuleux des tissus de qualité.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strength 2 -->
+                <div class="strength-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl" style="color: #D4AF37;"><i class="fas fa-handshake"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2" style="color: #D4AF37;">Compréhension Parfaite</h3>
+                            <p class="text-gray-400">
+                                Une parfaite compréhension des besoins des professionnels et des particuliers, ce qui nous permet de donner vie à vos projets.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strength 3 -->
+                <div class="strength-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl" style="color: #D4AF37;"><i class="fas fa-cogs"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2" style="color: #D4AF37;">Personnalisation Expert</h3>
+                            <p class="text-gray-400">
+                                Personnalisation de vos commandes en tenant compte de votre cahier de charge et des normes techniques grâce à notre atelier et à l'expertise de nos équipes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strength 4 -->
+                <div class="strength-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl" style="color: #D4AF37;"><i class="fas fa-bolt"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2" style="color: #D4AF37;">Rapidité d'Exécution</h3>
+                            <p class="text-gray-400">
+                                Une rapidité dans l'exécution des commandes pour répondre à vos besoins dans les meilleurs délais.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strength 5 -->
+                <div class="strength-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl" style="color: #D4AF37;"><i class="fas fa-shipping-fast"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2" style="color: #D4AF37;">Livraison Rapide</h3>
+                            <p class="text-gray-400">
+                                Livraison partout au Maroc dans un délai de 24h pour assurer votre satisfaction.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Engagement Section -->
+    <section id="engagement" class="py-20 px-6" style="background: rgba(15, 15, 15, 0.8);">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16">Notre <span style="color: #D4AF37;">engagement</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Matériaux -->
                 <div class="engagement-card">
-                    <div class="text-5xl mb-6 text-blue-400">
+                    <div class="text-5xl mb-6" style="color: #D4AF37;">
                         <i class="fas fa-gem"></i>
                     </div>
-                    <div class="text-6xl font-bold text-blue-400/20 mb-4">01</div>
+                    <div class="text-6xl font-bold mb-4" style="color: rgba(212, 175, 55, 0.2);">01</div>
                     <h3 class="text-2xl font-bold mb-4">Matériaux Haut de Gamme</h3>
                     <p class="text-gray-400">
                         Chez Kansotex, nous sélectionnons uniquement des tissus de première qualité, garantissant durabilité et confort exceptionnels.
@@ -154,10 +229,10 @@
 
                 <!-- Contrôle -->
                 <div class="engagement-card">
-                    <div class="text-5xl mb-6 text-blue-400">
+                    <div class="text-5xl mb-6" style="color: #D4AF37;">
                         <i class="fas fa-check-circle"></i>
                     </div>
-                    <div class="text-6xl font-bold text-blue-400/20 mb-4">02</div>
+                    <div class="text-6xl font-bold mb-4" style="color: rgba(212, 175, 55, 0.2);">02</div>
                     <h3 class="text-2xl font-bold mb-4">Contrôle de Qualité Rigoureux</h3>
                     <p class="text-gray-400">
                         Chaque produit passe par un processus de contrôle rigoureux pour assurer une finition parfaite et une satisfaction client maximale.
@@ -166,10 +241,10 @@
 
                 <!-- Innovation -->
                 <div class="engagement-card">
-                    <div class="text-5xl mb-6 text-blue-400">
+                    <div class="text-5xl mb-6" style="color: #D4AF37;">
                         <i class="fas fa-lightbulb"></i>
                     </div>
-                    <div class="text-6xl font-bold text-blue-400/20 mb-4">03</div>
+                    <div class="text-6xl font-bold mb-4" style="color: rgba(212, 175, 55, 0.2);">03</div>
                     <h3 class="text-2xl font-bold mb-4">Innovation Constante</h3>
                     <p class="text-gray-400">
                         Nous nous engageons à une innovation constante afin de vous offrir constamment des produits tendance et au summum du confort.
@@ -182,7 +257,7 @@
     <!-- Témoignages Section -->
     <section id="temoignages" class="py-20 px-6">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-16">Témoignages <span class="text-blue-400">clients</span></h2>
+            <h2 class="text-4xl font-bold text-center mb-16">Témoignages <span style="color: #D4AF37;">clients</span></h2>
             <div class="max-w-4xl mx-auto">
                 <div id="testimonials-container" class="relative">
                     <!-- Testimonials will be dynamically loaded here -->
@@ -195,39 +270,39 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 bg-gray-800/50">
+    <section id="contact" class="py-20 px-6" style="background: rgba(15, 15, 15, 0.8);">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-16">Infos <span class="text-blue-400">contact</span></h2>
+            <h2 class="text-4xl font-bold text-center mb-16">Infos <span style="color: #D4AF37;">contact</span></h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
                 <!-- Contact Info -->
                 <div>
-                    <h3 class="text-2xl font-bold mb-6 text-blue-400">KANSOTEX</h3>
+                    <h3 class="text-2xl font-bold mb-6" style="color: #D4AF37;">KANSOTEX</h3>
                     <p class="text-gray-400 mb-6">
                         Expert en textiles de qualité premium, nous vous accompagnons depuis plus de 20 ans 
                         dans vos projets hôteliers, médicaux et résidentiels.
                     </p>
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-building text-blue-400 text-xl w-6"></i>
+                            <i class="fas fa-building text-xl w-6" style="color: #D4AF37;"></i>
                             <span><strong>ICE:</strong> 002323065B06</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-phone text-blue-400 text-xl w-6"></i>
-                            <a href="tel:+21250898989" class="hover:text-blue-400 transition">+212 50 898 989</a>
+                            <i class="fas fa-phone text-xl w-6" style="color: #D4AF37;"></i>
+                            <a href="tel:+21250898989" class="hover:text-yellow-500 transition">+212 50 898 989</a>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-envelope text-blue-400 text-xl w-6"></i>
-                            <a href="mailto:contact@kansotex.com" class="hover:text-blue-400 transition">contact@kansotex.com</a>
+                            <i class="fas fa-envelope text-xl w-6" style="color: #D4AF37;"></i>
+                            <a href="mailto:contact@kansotex.com" class="hover:text-yellow-500 transition">contact@kansotex.com</a>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-map-marker-alt text-blue-400 text-xl w-6"></i>
+                            <i class="fas fa-map-marker-alt text-xl w-6" style="color: #D4AF37;"></i>
                             <span>Maroc</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Contact Form -->
-                <div class="bg-gray-900 p-8 rounded-lg border border-gray-700">
+                <div class="p-8 rounded-lg border" style="background: #0a0a0a; border-color: rgba(212, 175, 55, 0.3);">
                     <h3 class="text-2xl font-bold mb-6">Contactez-nous</h3>
                     <form id="contact-form" class="space-y-4">
                         <div>
@@ -236,7 +311,8 @@
                                    name="name" 
                                    placeholder="Votre nom *" 
                                    required
-                                   class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 transition">
+                                   class="w-full px-4 py-3 rounded-lg focus:outline-none transition"
+                                   style="background: #141414; border: 1px solid rgba(100, 100, 100, 0.3);">
                         </div>
                         <div>
                             <input type="email" 
@@ -244,14 +320,16 @@
                                    name="email" 
                                    placeholder="Votre email *" 
                                    required
-                                   class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 transition">
+                                   class="w-full px-4 py-3 rounded-lg focus:outline-none transition"
+                                   style="background: #141414; border: 1px solid rgba(100, 100, 100, 0.3);">
                         </div>
                         <div>
                             <input type="tel" 
                                    id="phone" 
                                    name="phone" 
                                    placeholder="Votre téléphone" 
-                                   class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 transition">
+                                   class="w-full px-4 py-3 rounded-lg focus:outline-none transition"
+                                   style="background: #141414; border: 1px solid rgba(100, 100, 100, 0.3);">
                         </div>
                         <div>
                             <textarea id="message" 
@@ -259,10 +337,12 @@
                                       rows="4" 
                                       placeholder="Votre message *" 
                                       required
-                                      class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-400 transition"></textarea>
+                                      class="w-full px-4 py-3 rounded-lg focus:outline-none transition"
+                                      style="background: #141414; border: 1px solid rgba(100, 100, 100, 0.3);"></textarea>
                         </div>
                         <button type="submit" 
-                                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition transform hover:scale-105">
+                                class="w-full text-black font-bold py-3 px-6 rounded-lg transition transform hover:scale-105"
+                                style="background: #D4AF37;">
                             Envoyer le message
                         </button>
                     </form>
@@ -273,7 +353,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-950 py-8 px-6 border-t border-gray-800">
+    <footer class="py-8 px-6 border-t" style="background: #000000; border-color: rgba(212, 175, 55, 0.3);">
         <div class="container mx-auto text-center">
             <p class="text-gray-400">&copy; 2025 KANSOTEX. Tous droits réservés.</p>
             <p class="text-gray-500 mt-2">Expert en textiles de qualité premium depuis plus de 20 ans</p>
