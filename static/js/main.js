@@ -20,15 +20,11 @@ const testimonials = [
 ];
 
 let currentTestimonial = 0;
-
 let currentHeroSlide = 0;
-
-let currentCollectionSlide = 0;
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initHeroSlider();
-    initCollectionSlider();
     initTestimonials();
     initMobileMenu();
     initContactForm();
@@ -221,58 +217,6 @@ function initSmoothScroll() {
     });
 }
 
-// Initialize Collection Slider
-function initCollectionSlider() {
-    const slides = document.querySelectorAll('.collection-slide');
-    const dots = document.querySelectorAll('.collection-dot');
-    const prevBtn = document.querySelector('.collection-prev');
-    const nextBtn = document.querySelector('.collection-next');
-    
-    if (!slides.length || !dots.length) return;
-    
-    // Auto-rotate slides every 5 seconds
-    setInterval(() => {
-        currentCollectionSlide = (currentCollectionSlide + 1) % slides.length;
-        showCollectionSlide(currentCollectionSlide);
-    }, 5000);
-    
-    // Dot click handlers
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            currentCollectionSlide = index;
-            showCollectionSlide(currentCollectionSlide);
-        });
-    });
-    
-    // Navigation buttons
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            currentCollectionSlide = (currentCollectionSlide - 1 + slides.length) % slides.length;
-            showCollectionSlide(currentCollectionSlide);
-        });
-    }
-    
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            currentCollectionSlide = (currentCollectionSlide + 1) % slides.length;
-            showCollectionSlide(currentCollectionSlide);
-        });
-    }
-}
-
-// Show specific collection slide
-function showCollectionSlide(index) {
-    const slides = document.querySelectorAll('.collection-slide');
-    const dots = document.querySelectorAll('.collection-dot');
-    
-    slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-    });
-    
-    dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-    });
-}
 
 // Scroll animations and header transparency
 window.addEventListener('scroll', function() {

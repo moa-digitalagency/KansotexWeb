@@ -206,19 +206,19 @@ input:focus, textarea:focus {
 }
 
 .slider-dot {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    border: 2px solid rgba(184, 148, 30, 0.5);
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .slider-dot.active {
     background: #B8941E;
-    transform: scale(1.3);
-    border-color: #B8941E;
+    width: 24px;
+    border-radius: 4px;
 }
 
 /* Collection Slider Styles */

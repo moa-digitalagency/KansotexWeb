@@ -84,11 +84,11 @@
         
         <!-- Scroll Indicator -->
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i class="fas fa-chevron-down text-3xl" style="color: #B8941E;"></i>
+            <i class="fas fa-chevron-down text-2xl" style="color: #B8941E;"></i>
         </div>
         
         <!-- Slider Navigation Dots -->
-        <div class="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+        <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
             <button class="slider-dot active" data-slide="0"></button>
             <button class="slider-dot" data-slide="1"></button>
             <button class="slider-dot" data-slide="2"></button>
@@ -200,206 +200,70 @@
             </div>
         </div>
     </section>
-    <!-- Notre Collection - Carousel Premium -->
-    <section id="collection" class="py-24 px-6 relative overflow-hidden" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(15, 15, 15, 0.9) 100%);">
-        <!-- Decorative Background -->
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-yellow-600 to-transparent rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-yellow-600 to-transparent rounded-full blur-3xl"></div>
-        </div>
-        
-        <div class="container mx-auto relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl md:text-6xl font-bold mb-6">
+    <!-- Notre Collection - 2 Colonnes -->
+    <section id="collection" class="py-20 px-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(15, 15, 15, 0.9) 100%);">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
                     Notre <span class="gradient-text">Collection</span> Premium
                 </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Découvrez l'excellence de nos textiles de luxe, sélectionnés avec soin pour répondre aux standards les plus exigeants
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+                    Découvrez l'excellence de nos textiles de luxe
                 </p>
             </div>
             
-            <!-- Collection Carousel -->
-            <div class="relative max-w-6xl mx-auto">
-                <div class="collection-slider-container overflow-hidden rounded-2xl shadow-2xl" style="height: 600px;">
-                    <!-- Slide 1 -->
-                    <div class="collection-slide active">
-                        <img src="{{ url_for('static', filename='images/textile-1.jpg') }}" 
-                             alt="Textile Premium 1" 
-                             class="w-full h-full object-cover transform scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-12 z-10">
-                            <div class="max-w-4xl">
-                                <div class="inline-block px-4 py-2 rounded-full mb-4" style="background: rgba(184, 148, 30, 0.2); border: 1px solid rgba(184, 148, 30, 0.5);">
-                                    <span class="text-sm font-semibold" style="color: #B8941E;">COLLECTION EXCLUSIVE</span>
-                                </div>
-                                <h3 class="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">Tissus de Luxe</h3>
-                                <p class="text-xl text-gray-200 mb-6">Qualité exceptionnelle pour vos projets premium</p>
-                                <div class="flex items-center space-x-6">
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-check-circle" style="color: #B8941E;"></i>
-                                        <span class="text-gray-300">Premium Quality</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-star" style="color: #B8941E;"></i>
-                                        <span class="text-gray-300">Luxury Design</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 2 -->
-                    <div class="collection-slide">
-                        <img src="{{ url_for('static', filename='images/textile-2.jpg') }}" 
-                             alt="Textile Premium 2" 
-                             class="w-full h-full object-cover transform scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-12 z-10">
-                            <div class="max-w-4xl">
-                                <div class="inline-block px-4 py-2 rounded-full mb-4" style="background: rgba(184, 148, 30, 0.2); border: 1px solid rgba(184, 148, 30, 0.5);">
-                                    <span class="text-sm font-semibold" style="color: #B8941E;">DESIGN MODERNE</span>
-                                </div>
-                                <h3 class="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">Collection Premium</h3>
-                                <p class="text-xl text-gray-200 mb-6">Design moderne et élégant pour vos espaces</p>
-                                <div class="flex items-center space-x-6">
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-palette" style="color: #B8941E;"></i>
-                                        <span class="text-gray-300">Design Unique</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-gem" style="color: #B8941E;"></i>
-                                        <span class="text-gray-300">Élégance Raffinée</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 3 -->
-                    <div class="collection-slide">
-                        <img src="{{ url_for('static', filename='images/textile-3.jpg') }}" 
-                             alt="Textile Premium 3" 
-                             class="w-full h-full object-cover transform scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-12 z-10">
-                            <div class="max-w-4xl">
-                                <div class="inline-block px-4 py-2 rounded-full mb-4" style="background: rgba(184, 148, 30, 0.2); border: 1px solid rgba(184, 148, 30, 0.5);">
-                                    <span class="text-sm font-semibold" style="color: #B8941E;">INTEMPOREL</span>
-                                </div>
-                                <h3 class="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">Élégance Intemporelle</h3>
-                                <p class="text-xl text-gray-200 mb-6">Confort optimal pour votre bien-être quotidien</p>
-                                <div class="flex items-center space-x-6">
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-infinity" style="color: #B8941E;"></i>
-                                        <span class="text-gray-300">Style Classique</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-heart" style="color: #B8941E;"></i>
-                                        <span class="text-gray-300">Confort Suprême</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 4 -->
-                    <div class="collection-slide">
-                        <img src="{{ url_for('static', filename='images/bedding-1.jpg') }}" 
-                             alt="Literie Premium 1" 
-                             class="w-full h-full object-cover transform scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-12 z-10">
-                            <div class="max-w-4xl">
-                                <div class="inline-block px-4 py-2 rounded-full mb-4" style="background: rgba(184, 148, 30, 0.2); border: 1px solid rgba(184, 148, 30, 0.5);">
-                                    <span class="text-sm font-semibold" style="color: #B8941E;">HÔTELLERIE DE LUXE</span>
-                                </div>
-                                <h3 class="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">Literie Hôtelière</h3>
-                                <p class="text-xl text-gray-200 mb-6">Confort 5 étoiles pour une expérience client exceptionnelle</p>
-                                <div class="flex items-center space-x-6">
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-hotel" style="color: #B8941E;"></i>
-                                        <span class="text-gray-300">Hôtels Premium</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-award" style="color: #B8941E;"></i>
-                                        <span class="text-gray-300">5 Étoiles</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 5 -->
-                    <div class="collection-slide">
-                        <img src="{{ url_for('static', filename='images/bedding-2.jpg') }}" 
-                             alt="Literie Premium 2" 
-                             class="w-full h-full object-cover transform scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-12 z-10">
-                            <div class="max-w-4xl">
-                                <div class="inline-block px-4 py-2 rounded-full mb-4" style="background: rgba(184, 148, 30, 0.2); border: 1px solid rgba(184, 148, 30, 0.5);">
-                                    <span class="text-sm font-semibold" style="color: #B8941E;">EXCELLENCE</span>
-                                </div>
-                                <h3 class="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">Excellence Textile</h3>
-                                <p class="text-xl text-gray-200 mb-6">Douceur suprême et durabilité exceptionnelle</p>
-                                <div class="flex items-center space-x-6">
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-shield-alt" style="color: #B8941E;"></i>
-                                        <span class="text-gray-300">Durabilité</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-feather" style="color: #B8941E;"></i>
-                                        <span class="text-gray-300">Douceur</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 6 -->
-                    <div class="collection-slide">
-                        <img src="{{ url_for('static', filename='images/serviettes.jpg') }}" 
-                             alt="Serviettes Premium" 
-                             class="w-full h-full object-cover transform scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-12 z-10">
-                            <div class="max-w-4xl">
-                                <div class="inline-block px-4 py-2 rounded-full mb-4" style="background: rgba(184, 148, 30, 0.2); border: 1px solid rgba(184, 148, 30, 0.5);">
-                                    <span class="text-sm font-semibold" style="color: #B8941E;">QUALITÉ SUPÉRIEURE</span>
-                                </div>
-                                <h3 class="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">Serviettes de Luxe</h3>
-                                <p class="text-xl text-gray-200 mb-6">Absorption parfaite et douceur exceptionnelle</p>
-                                <div class="flex items-center space-x-6">
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-tint" style="color: #B8941E;"></i>
-                                        <span class="text-gray-300">Absorption Optimale</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-spa" style="color: #B8941E;"></i>
-                                        <span class="text-gray-300">Bien-être</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Collection Grid 2 Colonnes -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+                <!-- Item 1 -->
+                <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
+                    <img src="{{ url_for('static', filename='images/textile-1.jpg') }}" 
+                         alt="Textile Premium" 
+                         class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">COLLECTION EXCLUSIVE</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Tissus de Luxe</h3>
+                        <p class="text-gray-300 text-sm">Qualité exceptionnelle pour vos projets premium</p>
                     </div>
                 </div>
-                
-                <!-- Navigation Arrows -->
-                <button class="collection-prev absolute left-8 top-1/2 transform -translate-y-1/2 z-20 w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-xl" style="background: linear-gradient(135deg, rgba(184, 148, 30, 0.95), rgba(184, 148, 30, 0.8)); backdrop-filter: blur(10px); border: 2px solid rgba(255, 255, 255, 0.1);">
-                    <i class="fas fa-chevron-left text-white text-2xl"></i>
-                </button>
-                <button class="collection-next absolute right-8 top-1/2 transform -translate-y-1/2 z-20 w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-xl" style="background: linear-gradient(135deg, rgba(184, 148, 30, 0.95), rgba(184, 148, 30, 0.8)); backdrop-filter: blur(10px); border: 2px solid rgba(255, 255, 255, 0.1);">
-                    <i class="fas fa-chevron-right text-white text-2xl"></i>
-                </button>
-                
-                <!-- Slider Dots -->
-                <div class="flex justify-center mt-8 space-x-3">
-                    <button class="collection-dot active" data-slide="0"></button>
-                    <button class="collection-dot" data-slide="1"></button>
-                    <button class="collection-dot" data-slide="2"></button>
-                    <button class="collection-dot" data-slide="3"></button>
-                    <button class="collection-dot" data-slide="4"></button>
-                    <button class="collection-dot" data-slide="5"></button>
+
+                <!-- Item 2 -->
+                <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
+                    <img src="{{ url_for('static', filename='images/textile-2.jpg') }}" 
+                         alt="Collection Premium" 
+                         class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">DESIGN MODERNE</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Collection Premium</h3>
+                        <p class="text-gray-300 text-sm">Design moderne et élégant pour vos espaces</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
+                    <img src="{{ url_for('static', filename='images/bedding-1.jpg') }}" 
+                         alt="Literie Hôtelière" 
+                         class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">HÔTELLERIE DE LUXE</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Literie Hôtelière</h3>
+                        <p class="text-gray-300 text-sm">Confort 5 étoiles pour une expérience exceptionnelle</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
+                    <img src="{{ url_for('static', filename='images/serviettes.jpg') }}" 
+                         alt="Serviettes de Luxe" 
+                         class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">QUALITÉ SUPÉRIEURE</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Serviettes de Luxe</h3>
+                        <p class="text-gray-300 text-sm">Absorption parfaite et douceur exceptionnelle</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -728,20 +592,20 @@
             </div>
             
             <!-- Bottom Section -->
-            <div class="border-t pt-8" style="border-color: rgba(184, 148, 30, 0.2);">
-                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                    <p class="text-gray-500 text-sm">
-                        &copy; 2025 KANSOTEX. Tous droits réservés. | Expert en textiles de qualité premium
+            <div class="border-t pt-6" style="border-color: rgba(184, 148, 30, 0.2);">
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-4 text-center">
+                    <p class="text-gray-500 text-xs">
+                        &copy; 2025 KANSOTEX. Tous droits réservés.
                     </p>
-                    <div class="flex items-center space-x-6">
-                        <a href="#" class="text-gray-500 hover:text-white transition-colors duration-300" style="hover:color: #B8941E;">
-                            <i class="fab fa-facebook-f text-lg"></i>
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="text-gray-500 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="text-gray-500 hover:text-white transition-colors duration-300" style="hover:color: #B8941E;">
-                            <i class="fab fa-instagram text-lg"></i>
+                        <a href="#" class="text-gray-500 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="text-gray-500 hover:text-white transition-colors duration-300" style="hover:color: #B8941E;">
-                            <i class="fab fa-linkedin-in text-lg"></i>
+                        <a href="#" class="text-gray-500 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
                 </div>
