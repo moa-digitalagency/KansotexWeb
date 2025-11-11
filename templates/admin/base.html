@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Panel{% endblock %} - KANSOTEX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+    <style>
+        .admin-sidebar {
+            background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+            border-right: 1px solid #B8941E;
+        }
+        .admin-nav-link {
+            transition: all 0.3s ease;
+        }
+        .admin-nav-link:hover {
+            background: rgba(184, 148, 30, 0.1);
+            border-left: 3px solid #B8941E;
+        }
+        .admin-nav-link.active {
+            background: rgba(184, 148, 30, 0.2);
+            border-left: 3px solid #B8941E;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <div class="flex h-screen overflow-hidden">
+        {% if session.get('admin_logged_in') %}
+        <aside class="admin-sidebar w-64 flex-shrink-0">
+            <div class="p-6">
+                <h1 class="text-2xl font-bold" style="color: #B8941E;">KANSOTEX</h1>
+                <p class="text-sm text-gray-400">Admin Panel</p>
+            </div>
+            <nav class="px-4">
+                <a href="{{ url_for('admin.dashboard') }}" class="admin-nav-link block px-4 py-3 mb-2 rounded">
+                    <i class="fas fa-home mr-2"></i> Tableau de bord
+                </a>
+                <a href="{{ url_for('admin.images') }}" class="admin-nav-link block px-4 py-3 mb-2 rounded">
+                    <i class="fas fa-images mr-2"></i> Gestion des images
+                </a>
+                <div class="border-t border-gray-700 my-4"></div>
+                <form action="{{ url_for('admin.logout') }}" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <button type="submit" class="admin-nav-link block w-full text-left px-4 py-3 mb-2 rounded text-red-400 hover:text-red-300">
+                        <i class="fas fa-sign-out-alt mr-2"></i> Déconnexion
+                    </button>
+                </form>
+            </nav>
+        </aside>
+        {% endif %}
+        
+        <main class="flex-1 overflow-y-auto">
+            <div class="container mx-auto px-6 py-8">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="mb-6">
+                            {% for category, message in messages %}
+                                <div class="p-4 mb-3 rounded {% if category == 'error' %}bg-red-900/50 text-red-200{% else %}bg-green-900/50 text-green-200{% endif %}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

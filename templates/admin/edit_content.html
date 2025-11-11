@@ -1,0 +1,59 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Éditer {{ section.name }}{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <a href="{{ url_for('admin.dashboard') }}" class="text-sm mb-2 inline-block" style="color: #B8941E;">
+        <i class="fas fa-arrow-left mr-2"></i>Retour au tableau de bord
+    </a>
+    <h2 class="text-3xl font-bold mb-2" style="color: #B8941E;">{{ section.name }}</h2>
+    <p class="text-gray-400">{{ section.description or 'Modifiez le contenu de cette section' }}</p>
+</div>
+
+<form method="POST" class="space-y-6">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    
+    {% if fields %}
+        {% for key, field in fields.items() %}
+        <div class="bg-gray-800 rounded-lg p-6">
+            <label class="block text-sm font-medium mb-2">{{ key.replace('_', ' ').title() }}</label>
+            
+            {% if field.field_type == 'image' %}
+            <div class="mb-4">
+                {% if field.image %}
+                <img src="{{ field.image.to_dict().url }}" alt="{{ field.image.alt_text }}" class="max-w-xs rounded mb-2">
+                {% endif %}
+                <select name="{{ key }}_image_id" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded">
+                    <option value="">Aucune image</option>
+                    {% for img in images %}
+                    <option value="{{ img.id }}" {% if field.image_id == img.id %}selected{% endif %}>
+                        {{ img.original_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <input type="hidden" name="{{ key }}_type" value="image">
+            </div>
+            {% else %}
+            <textarea name="{{ key }}" rows="4" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-yellow-500">{{ field.value or '' }}</textarea>
+            <input type="hidden" name="{{ key }}_type" value="text">
+            {% endif %}
+        </div>
+        {% endfor %}
+    {% else %}
+    <div class="bg-gray-800 rounded-lg p-6 text-center text-gray-400">
+        <p>Aucun champ configuré pour cette section.</p>
+        <p class="text-sm mt-2">Vous pouvez ajouter des champs via le code ou la base de données.</p>
+    </div>
+    {% endif %}
+    
+    <div class="flex space-x-4">
+        <button type="submit" class="px-6 py-3 font-bold rounded-lg transition transform hover:scale-105" style="background: linear-gradient(135deg, #B8941E 0%, #D4AF37 100%); color: black;">
+            <i class="fas fa-save mr-2"></i>Enregistrer les modifications
+        </button>
+        <a href="{{ url_for('admin.dashboard') }}" class="px-6 py-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition">
+            Annuler
+        </a>
+    </div>
+</form>
+{% endblock %}

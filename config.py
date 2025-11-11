@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -15,3 +16,8 @@ class Config:
         "pool_recycle": 300,
         "pool_pre_ping": True,
     }
+    
+    WTF_CSRF_ENABLED = True
+    WTF_CSRF_TIME_LIMIT = None
+    PERMANENT_SESSION_LIFETIME = timedelta(hours=8)
+    MAX_CONTENT_LENGTH = 10 * 1024 * 1024

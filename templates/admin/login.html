@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Admin - KANSOTEX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <div class="min-h-screen flex items-center justify-center px-4">
+        <div class="max-w-md w-full">
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold mb-2" style="color: #B8941E;">KANSOTEX</h1>
+                <p class="text-gray-400">Administration</p>
+            </div>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="mb-6">
+                        {% for category, message in messages %}
+                            <div class="p-4 mb-3 rounded {% if category == 'error' %}bg-red-900/50 text-red-200{% else %}bg-green-900/50 text-green-200{% endif %}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            
+            <div class="bg-gray-800 rounded-lg p-8 shadow-xl" style="border: 1px solid #B8941E;">
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    
+                    <div class="mb-6">
+                        <label for="password" class="block text-sm font-medium mb-2">Mot de passe</label>
+                        {{ form.password(class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500", id="password", placeholder="Entrez votre mot de passe") }}
+                        {% if form.password.errors %}
+                            <p class="text-red-400 text-sm mt-1">{{ form.password.errors[0] }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <button type="submit" class="w-full py-3 px-4 font-bold rounded-lg transition transform hover:scale-105" style="background: linear-gradient(135deg, #B8941E 0%, #D4AF37 100%); color: black;">
+                        Se connecter
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

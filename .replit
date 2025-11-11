@@ -32,12 +32,12 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 34097
-externalPort = 3002
-
-[[ports]]
 localPort = 34255
 externalPort = 3000
+
+[[ports]]
+localPort = 37213
+externalPort = 3002
 
 [[ports]]
 localPort = 44071
@@ -45,3 +45,4 @@ externalPort = 3001
 
 [nix]
 channel = "stable-25_05"
+packages = ["freetype", "lcms2", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "tcl", "tk", "zlib"]
