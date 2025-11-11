@@ -2,13 +2,15 @@ from flask import Blueprint, render_template, request, jsonify
 from backend.models import db
 from backend.models.contact import Contact
 from backend.services.contact_service import ContactService
+from backend.services.content_provider import content_provider
 
 main_bp = Blueprint('main', __name__)
 contact_service = ContactService()
 
 @main_bp.route('/')
 def index():
-    return render_template('index.html')
+    content = content_provider.get_all_content()
+    return render_template('index.html', content=content)
 
 @main_bp.route('/api/contact', methods=['POST'])
 def submit_contact():
