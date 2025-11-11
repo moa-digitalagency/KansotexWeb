@@ -123,3 +123,38 @@ class AdminSession(db.Model):
             'expires_at': self.expires_at.isoformat(),
             'is_valid': self.is_valid()
         }
+
+
+class SeoMeta(db.Model):
+    __tablename__ = 'seo_meta'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    page_slug = db.Column(db.String(100), unique=True, nullable=False)
+    meta_title = db.Column(db.String(200))
+    meta_description = db.Column(db.Text)
+    meta_keywords = db.Column(db.Text)
+    og_title = db.Column(db.String(200))
+    og_description = db.Column(db.Text)
+    og_image_id = db.Column(db.Integer, db.ForeignKey('image_assets.id'), nullable=True)
+    twitter_card = db.Column(db.String(50), default='summary_large_image')
+    canonical_url = db.Column(db.String(500))
+    structured_data_json = db.Column(db.Text)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    og_image = db.relationship('ImageAsset', backref='seo_metas', lazy=True)
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'page_slug': self.page_slug,
+            'meta_title': self.meta_title,
+            'meta_description': self.meta_description,
+            'meta_keywords': self.meta_keywords,
+            'og_title': self.og_title,
+            'og_description': self.og_description,
+            'og_image': self.og_image.to_dict() if self.og_image else None,
+            'twitter_card': self.twitter_card,
+            'canonical_url': self.canonical_url,
+            'structured_data_json': self.structured_data_json
+        }

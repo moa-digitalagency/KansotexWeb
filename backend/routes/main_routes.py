@@ -9,8 +9,8 @@ contact_service = ContactService()
 
 @main_bp.route('/')
 def index():
-    content = content_provider.get_all_content()
-    return render_template('index.html', content=content)
+    context = content_provider.get_complete_context('home')
+    return render_template('index.html', **context)
 
 @main_bp.route('/api/contact', methods=['POST'])
 def submit_contact():
