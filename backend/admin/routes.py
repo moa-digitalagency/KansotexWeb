@@ -103,19 +103,25 @@ def edit_content(section_slug):
         return redirect(url_for('admin.dashboard'))
     
     if request.method == 'POST':
-        for key, value in request.form.items():
-            if key.startswith('csrf_token'):
-                continue
-            
+        existing_fields = content_service.get_section_fields(section_slug)
+        
+        for key in existing_fields.keys():
             field_type = request.form.get(f'{key}_type', 'text')
-            image_id = request.form.get(f'{key}_image_id')
+            
+            if field_type == 'image':
+                image_id_str = request.form.get(f'{key}_image_id', '')
+                image_id = int(image_id_str) if image_id_str else None
+                value = ''
+            else:
+                value = request.form.get(key, '')
+                image_id = None
             
             content_service.update_field(
                 section.id,
                 key,
                 value,
                 field_type,
-                int(image_id) if image_id else None
+                image_id
             )
         
         db.session.commit()
@@ -177,3 +183,65 @@ def delete_image(image_id):
         flash(f'Erreur lors de la suppression: {str(e)}', 'error')
     
     return redirect(url_for('admin.images'))
+
+@admin_bp.route('/seo', methods=['GET', 'POST'])
+@login_required
+def seo_settings():
+    if request.method == 'POST':
+        seo_keys = [
+            'meta_title', 'meta_description', 'meta_keywords',
+            'og_title', 'og_description', 'og_image',
+            'twitter_card', 'twitter_title', 'twitter_description', 'twitter_image'
+        ]
+        
+        for key in seo_keys:
+            value = request.form.get(key, '')
+            setting_type = 'text' if key in ['meta_description', 'meta_keywords', 'og_description', 'twitter_description'] else 'string'
+            content_service.update_setting(key, value, setting_type)
+        
+        db.session.commit()
+        flash('Paramètres SEO mis à jour avec succès!', 'success')
+        return redirect(url_for('admin.seo_settings'))
+    
+    seo_settings = {}
+    seo_keys = [
+        'meta_title', 'meta_description', 'meta_keywords',
+        'og_title', 'og_description', 'og_image',
+        'twitter_card', 'twitter_title', 'twitter_description', 'twitter_image'
+    ]
+    
+    for key in seo_keys:
+        seo_settings[key] = content_service.get_setting(key, '')
+    
+    all_images = image_service.get_all_images()
+    return render_template('admin/seo.html', seo_settings=seo_settings, images=all_images)
+
+@admin_bp.route('/settings', methods=['GET', 'POST'])
+@login_required
+def site_settings():
+    if request.method == 'POST':
+        settings_keys = [
+            'site_name', 'site_logo', 'company_address', 'company_phone',
+            'company_email', 'company_ice', 'facebook_url', 'instagram_url',
+            'linkedin_url', 'twitter_url'
+        ]
+        
+        for key in settings_keys:
+            value = request.form.get(key, '')
+            content_service.update_setting(key, value, 'string')
+        
+        db.session.commit()
+        flash('Paramètres du site mis à jour avec succès!', 'success')
+        return redirect(url_for('admin.site_settings'))
+    
+    settings = {}
+    settings_keys = [
+        'site_name', 'site_logo', 'company_address', 'company_phone',
+        'company_email', 'company_ice', 'facebook_url', 'instagram_url',
+        'linkedin_url', 'twitter_url'
+    ]
+    
+    for key in settings_keys:
+        settings[key] = content_service.get_setting(key, '')
+    
+    return render_template('admin/settings.html', settings=settings)

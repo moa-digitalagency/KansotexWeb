@@ -1,0 +1,141 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Param&egrave;tres SEO{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h2 class="text-3xl font-bold mb-2" style="color: #B8941E;">Param&egrave;tres SEO</h2>
+    <p class="text-gray-400">Optimisez le r&eacute;f&eacute;rencement de votre site web</p>
+</div>
+
+<form method="POST" class="space-y-8">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    
+    <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+            <i class="fas fa-search mr-2"></i>M&eacute;ta Tags Basiques
+        </h3>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Titre de la page (Meta Title)</label>
+                <input type="text" 
+                       name="meta_title" 
+                       value="{{ seo_settings.meta_title }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       placeholder="KANSOTEX - Expert en Textiles de Qualit&eacute; Premium">
+                <p class="text-xs text-gray-500 mt-1">Longueur recommand&eacute;e: 50-60 caract&egrave;res</p>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Description (Meta Description)</label>
+                <textarea name="meta_description" 
+                          rows="3"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                          placeholder="Expert en textiles de qualit&eacute; premium depuis 2005...">{{ seo_settings.meta_description }}</textarea>
+                <p class="text-xs text-gray-500 mt-1">Longueur recommand&eacute;e: 150-160 caract&egrave;res</p>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Mots-cl&eacute;s (Meta Keywords)</label>
+                <textarea name="meta_keywords" 
+                          rows="2"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                          placeholder="textiles premium, linge h&ocirc;telier, textiles m&eacute;dicaux...">{{ seo_settings.meta_keywords }}</textarea>
+                <p class="text-xs text-gray-500 mt-1">S&eacute;parez les mots-cl&eacute;s par des virgules</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+            <i class="fab fa-facebook mr-2"></i>Open Graph (Facebook)
+        </h3>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Titre OG</label>
+                <input type="text" 
+                       name="og_title" 
+                       value="{{ seo_settings.og_title }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       placeholder="KANSOTEX - Expert en Textiles">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Description OG</label>
+                <textarea name="og_description" 
+                          rows="3"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                          placeholder="D&eacute;couvrez notre collection...">{{ seo_settings.og_description }}</textarea>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Image OG (URL)</label>
+                <input type="text" 
+                       name="og_image" 
+                       value="{{ seo_settings.og_image }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       placeholder="https://votre-site.com/image-og.jpg">
+                <p class="text-xs text-gray-500 mt-1">Taille recommand&eacute;e: 1200x630 pixels</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+            <i class="fab fa-twitter mr-2"></i>Twitter Card
+        </h3>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Type de carte</label>
+                <select name="twitter_card" 
+                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none">
+                    <option value="summary" {% if seo_settings.twitter_card == 'summary' %}selected{% endif %}>Summary</option>
+                    <option value="summary_large_image" {% if seo_settings.twitter_card == 'summary_large_image' %}selected{% endif %}>Summary Large Image</option>
+                </select>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Titre Twitter</label>
+                <input type="text" 
+                       name="twitter_title" 
+                       value="{{ seo_settings.twitter_title }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       placeholder="KANSOTEX - Expert en Textiles">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Description Twitter</label>
+                <textarea name="twitter_description" 
+                          rows="3"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                          placeholder="D&eacute;couvrez notre collection...">{{ seo_settings.twitter_description }}</textarea>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Image Twitter (URL)</label>
+                <input type="text" 
+                       name="twitter_image" 
+                       value="{{ seo_settings.twitter_image }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       placeholder="https://votre-site.com/image-twitter.jpg">
+                <p class="text-xs text-gray-500 mt-1">Taille recommand&eacute;e: 1200x628 pixels</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex justify-end space-x-4">
+        <a href="{{ url_for('admin.dashboard') }}" 
+           class="px-6 py-2 bg-gray-700 rounded hover:bg-gray-600 transition">
+            Annuler
+        </a>
+        <button type="submit" 
+                class="px-6 py-2 rounded transition"
+                style="background: #B8941E; color: black; font-weight: bold;">
+            <i class="fas fa-save mr-2"></i>Enregistrer les param&egrave;tres SEO
+        </button>
+    </div>
+</form>
+{% endblock %}

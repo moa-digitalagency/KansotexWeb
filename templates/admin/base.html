@@ -41,6 +41,12 @@
                 <a href="{{ url_for('admin.images') }}" class="admin-nav-link block px-4 py-3 mb-2 rounded">
                     <i class="fas fa-images mr-2"></i> Gestion des images
                 </a>
+                <a href="{{ url_for('admin.seo_settings') }}" class="admin-nav-link block px-4 py-3 mb-2 rounded">
+                    <i class="fas fa-search mr-2"></i> Param&egrave;tres SEO
+                </a>
+                <a href="{{ url_for('admin.site_settings') }}" class="admin-nav-link block px-4 py-3 mb-2 rounded">
+                    <i class="fas fa-cog mr-2"></i> Param&egrave;tres du Site
+                </a>
                 <div class="border-t border-gray-700 my-4"></div>
                 <form action="{{ url_for('admin.logout') }}" method="POST">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>

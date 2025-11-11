@@ -1,4 +1,4 @@
-from backend.models.content import ContentSection, ContentField, SiteSetting, SeoMeta
+from backend.models.content import ContentSection, ContentField, SiteSetting
 
 class ContentProvider:
     @staticmethod
@@ -49,22 +49,24 @@ class ContentProvider:
         return settings_dict
     
     @staticmethod
+    def get_setting_value(key, default=''):
+        setting = SiteSetting.query.filter_by(key=key).first()
+        return setting.value if setting else default
+    
+    @staticmethod
     def get_seo_meta(page_slug='home'):
-        seo = SeoMeta.query.filter_by(page_slug=page_slug).first()
-        if not seo:
-            settings = ContentProvider.get_site_settings()
-            return {
-                'meta_title': settings.get('default_meta_title', {}).get('value', 'KANSOTEX'),
-                'meta_description': settings.get('default_meta_description', {}).get('value', ''),
-                'meta_keywords': settings.get('default_meta_keywords', {}).get('value', ''),
-                'og_title': settings.get('default_meta_title', {}).get('value', 'KANSOTEX'),
-                'og_description': settings.get('default_meta_description', {}).get('value', ''),
-                'og_image': None,
-                'twitter_card': 'summary_large_image',
-                'canonical_url': '',
-                'structured_data_json': ''
-            }
-        return seo.to_dict()
+        return {
+            'meta_title': ContentProvider.get_setting_value('meta_title', 'KANSOTEX - Expert en Textiles de Qualité Premium'),
+            'meta_description': ContentProvider.get_setting_value('meta_description', 'Expert en textiles de qualité premium'),
+            'meta_keywords': ContentProvider.get_setting_value('meta_keywords', 'textiles premium, linge hôtelier, textiles médicaux'),
+            'og_title': ContentProvider.get_setting_value('og_title', 'KANSOTEX'),
+            'og_description': ContentProvider.get_setting_value('og_description', ''),
+            'og_image': ContentProvider.get_setting_value('og_image', ''),
+            'twitter_card': ContentProvider.get_setting_value('twitter_card', 'summary_large_image'),
+            'twitter_title': ContentProvider.get_setting_value('twitter_title', 'KANSOTEX'),
+            'twitter_description': ContentProvider.get_setting_value('twitter_description', ''),
+            'twitter_image': ContentProvider.get_setting_value('twitter_image', ''),
+        }
     
     @staticmethod
     def get_complete_context(page_slug='home'):
