@@ -2,28 +2,35 @@ from backend.models.content import ContentSection, ContentField, SiteSetting
 
 class ContentProvider:
     @staticmethod
-    def get_section_content(slug):
+    def get_section_content(slug, lang='fr'):
         section = ContentSection.query.filter_by(slug=slug).first()
         if not section:
             return {}
         
         content = {}
         for field in section.fields:
+            value = field.value
+            if lang == 'fr' and field.value_fr:
+                value = field.value_fr
+            elif lang == 'en' and field.value_en:
+                value = field.value_en
+            
             content[field.key] = {
-                'value': field.value,
+                'value': value,
                 'type': field.field_type,
-                'image': field.image.to_dict() if field.image else None
+                'image': field.image.to_dict() if field.image else None,
+                'button_link': field.button_link
             }
         
         return content
     
     @staticmethod
-    def get_all_content():
+    def get_all_content(lang='fr'):
         sections = ContentSection.query.all()
         all_content = {}
         
         for section in sections:
-            all_content[section.slug] = ContentProvider.get_section_content(section.slug)
+            all_content[section.slug] = ContentProvider.get_section_content(section.slug, lang=lang)
         
         return all_content
     
@@ -69,9 +76,9 @@ class ContentProvider:
         }
     
     @staticmethod
-    def get_complete_context(page_slug='home'):
+    def get_complete_context(page_slug='home', lang='fr'):
         return {
-            'content': ContentProvider.get_all_content(),
+            'content': ContentProvider.get_all_content(lang=lang),
             'settings': ContentProvider.get_site_settings(),
             'seo': ContentProvider.get_seo_meta(page_slug),
             'color_theme': ContentProvider.get_setting_value('color_theme', 'gold')

@@ -8,8 +8,12 @@ main_bp = Blueprint('main', __name__)
 contact_service = ContactService()
 
 @main_bp.route('/')
-def index():
-    context = content_provider.get_complete_context('home')
+@main_bp.route('/<lang>')
+def index(lang='fr'):
+    if lang not in ['fr', 'en']:
+        lang = 'fr'
+    context = content_provider.get_complete_context('home', lang=lang)
+    context['current_lang'] = lang
     return render_template('index.html', **context)
 
 @main_bp.route('/api/contact', methods=['POST'])

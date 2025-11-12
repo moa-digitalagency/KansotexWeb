@@ -755,6 +755,38 @@
         </div>
     </footer>
 
+    <!-- Floating Language Switcher -->
+    <div class="fixed bottom-6 left-6 z-50">
+        <div class="relative group">
+            <button id="lang-switcher" class="w-14 h-14 rounded-full bg-accent-gradient shadow-lg flex items-center justify-center text-white font-bold hover:scale-110 transition-all duration-300">
+                <span class="text-sm uppercase">{{ current_lang or 'FR' }}</span>
+            </button>
+            <div id="lang-menu" class="absolute bottom-full left-0 mb-2 bg-gray-800 rounded-lg shadow-xl overflow-hidden hidden">
+                <a href="/fr" class="block px-6 py-3 hover:bg-gray-700 transition {% if current_lang == 'fr' %}bg-gray-700{% endif %}">
+                    <span class="font-semibold text-white">Français</span>
+                </a>
+                <a href="/en" class="block px-6 py-3 hover:bg-gray-700 transition {% if current_lang == 'en' %}bg-gray-700{% endif %}">
+                    <span class="font-semibold text-white">English</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('lang-switcher').addEventListener('click', function() {
+            const menu = document.getElementById('lang-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        document.addEventListener('click', function(event) {
+            const switcher = document.getElementById('lang-switcher');
+            const menu = document.getElementById('lang-menu');
+            if (!switcher.contains(event.target) && !menu.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
+
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
