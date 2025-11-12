@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr scroll-smooth">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,67 +46,67 @@
 <body class="bg-black text-gray-100" data-theme="{{ color_theme }}">
     
     <!-- Header / Navigation -->
-    <header id="main-header fixed top-0 left-0 right-0 z-50 border-b border-accent-faint transition-all duration-300">
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 border-b border-accent-faint transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 max-w-6xl">
             <div class="flex items-center justify-between">
                 <div class="text-2xl font-bold text-accent">KANSOTEX</div>
                 <div class="flex items-center space-x-8">
                     <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide">
-                    <a href="#accueil hover-text-accent transition uppercase">Accueil</a>
-                    <a href="#collection hover-text-accent transition uppercase">Collection</a>
-                    <a href="#volets hover-text-accent transition uppercase">Nos Volets</a>
-                    <a href="#forces hover-text-accent transition uppercase">Points Forts</a>
-                    <a href="#engagement hover-text-accent transition uppercase">Engagement</a>
-                    <a href="#contact hover-text-accent transition uppercase">Contact</a>
+                    <a href="#accueil hover-text-accent transition" class="uppercase">Accueil</a>
+                    <a href="#collection hover-text-accent transition" class="uppercase">Collection</a>
+                    <a href="#volets hover-text-accent transition" class="uppercase">Nos Volets</a>
+                    <a href="#forces hover-text-accent transition" class="uppercase">Points Forts</a>
+                    <a href="#engagement hover-text-accent transition" class="uppercase">Engagement</a>
+                    <a href="#contact hover-text-accent transition" class="uppercase">Contact</a>
                     </div>
                     <div class="hidden lg:flex items-center space-x-4 border-l border-accent-faint pl-6">
-                        <a href="{{ content.footer.social_facebook.value if content.footer and content.footer.social_facebook else 'https://facebook.com' }}" target="_blank hover-text-accent transition">
+                        <a href="{{ content.footer.social_facebook.value if content.footer and content.footer.social_facebook else 'https://facebook.com' }}" target="_blank" class="hover-text-accent transition">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="{{ content.footer.social_instagram.value if content.footer and content.footer.social_instagram else 'https://instagram.com' }}" target="_blank hover-text-accent transition">
+                        <a href="{{ content.footer.social_instagram.value if content.footer and content.footer.social_instagram else 'https://instagram.com' }}" target="_blank" class="hover-text-accent transition">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="{{ content.footer.social_linkedin.value if content.footer and content.footer.social_linkedin else 'https://linkedin.com' }}" target="_blank hover-text-accent transition">
+                        <a href="{{ content.footer.social_linkedin.value if content.footer and content.footer.social_linkedin else 'https://linkedin.com' }}" target="_blank" class="hover-text-accent transition">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
                 </div>
-                <button id="mobile-menu-btn md:hidden text-2xl">
+                <button id="mobile-menu-btn" class="md:hidden text-2xl">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
             <!-- Mobile Menu -->
-            <div id="mobile-menu hidden md:hidden mt-4 pb-4 space-y-3 text-sm font-semibold">
-                <a href="#accueil block hover-text-accent transition uppercase">Accueil</a>
-                <a href="#collection block hover-text-accent transition uppercase">Collection</a>
-                <a href="#volets block hover-text-accent transition uppercase">Nos Volets</a>
-                <a href="#forces block hover-text-accent transition uppercase">Points Forts</a>
-                <a href="#engagement block hover-text-accent transition uppercase">Engagement</a>
-                <a href="#contact block hover-text-accent transition uppercase">Contact</a>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3 text-sm font-semibold">
+                <a href="#accueil block hover-text-accent transition" class="uppercase">Accueil</a>
+                <a href="#collection block hover-text-accent transition" class="uppercase">Collection</a>
+                <a href="#volets block hover-text-accent transition" class="uppercase">Nos Volets</a>
+                <a href="#forces block hover-text-accent transition" class="uppercase">Points Forts</a>
+                <a href="#engagement block hover-text-accent transition" class="uppercase">Engagement</a>
+                <a href="#contact block hover-text-accent transition" class="uppercase">Contact</a>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section with Full-Screen Image Slider -->
-    <section id="accueil relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="accueil" class="relative h-screen flex items-center justify-center overflow-hidden">
         <!-- Background Image Slider -->
         <div class="absolute inset-0 hero-slider-container">
             <!-- Slide 1 -->
             <div class="hero-slide active">
                 <img src="{{ (content.hero.slider_image_1|image_url) or url_for('static', filename='images/hotel-textile.jpg') }}" 
-                     alt="KANSOTEX Textiles Hôtelier w-full h-full object-cover">
+                     alt="KANSOTEX Textiles Hôtelier w-full h-full" class="object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-60"></div>
             </div>
             <!-- Slide 2 -->
             <div class="hero-slide">
                 <img src="{{ (content.hero.slider_image_2|image_url) or url_for('static', filename='images/medical-textile.jpg') }}" 
-                     alt="KANSOTEX Textiles Médical w-full h-full object-cover">
+                     alt="KANSOTEX Textiles Médical w-full h-full" class="object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-60"></div>
             </div>
             <!-- Slide 3 -->
             <div class="hero-slide">
                 <img src="{{ (content.hero.slider_image_3|image_url) or url_for('static', filename='images/literie.jpg') }}" 
-                     alt="KANSOTEX Literie Premium w-full h-full object-cover">
+                     alt="KANSOTEX Literie Premium w-full h-full" class="object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-60"></div>
             </div>
         </div>
@@ -131,7 +131,7 @@
                         <span class="text-sm font-medium">{{ content.hero.badge_2_text.value if content.hero and content.hero.badge_2_text else 'Qualité Premium' }}</span>
                     </div>
                 </div>
-                <a href="#forces inline-block px-10 py-4 rounded-lg shadow-xl btn-primary">
+                <a href="#forces inline-block px-10 py-4 rounded-lg shadow-xl" class="btn-primary">
                     {{ content.hero.cta_text.value if content.hero and content.hero.cta_text else 'Découvrir nos atouts' }}
                 </a>
             </div>
@@ -278,7 +278,7 @@
                             <!-- Item 1 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
                                 <img src="{{ (content.collection.slide_1_image|image_url) or url_for('static', filename='images/textile-1.jpg') }}" 
-                                     alt="Textile Premium w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                     alt="Textile Premium w-full h-full object-cover transform group-hover:scale-105 transition" class="duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
                                     <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 bg-accent-subtle text-accent">{{ content.collection.slide_1_category.value if content.collection and content.collection.slide_1_category else 'COLLECTION EXCLUSIVE' }}</span>
@@ -290,7 +290,7 @@
                             <!-- Item 2 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
                                 <img src="{{ (content.collection.slide_2_image|image_url) or url_for('static', filename='images/textile-2.jpg') }}" 
-                                     alt="Collection Premium w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                     alt="Collection Premium w-full h-full object-cover transform group-hover:scale-105 transition" class="duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
                                     <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 bg-accent-subtle text-accent">{{ content.collection.slide_2_category.value if content.collection and content.collection.slide_2_category else 'DESIGN MODERNE' }}</span>
@@ -307,7 +307,7 @@
                             <!-- Item 3 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
                                 <img src="{{ (content.collection.slide_3_image|image_url) or url_for('static', filename='images/bedding-1.jpg') }}" 
-                                     alt="Literie Hôtelière w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                     alt="Literie Hôtelière w-full h-full object-cover transform group-hover:scale-105 transition" class="duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
                                     <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 bg-accent-subtle text-accent">{{ content.collection.slide_3_category.value if content.collection and content.collection.slide_3_category else 'HÔTELLERIE DE LUXE' }}</span>
@@ -319,7 +319,7 @@
                             <!-- Item 4 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
                                 <img src="{{ (content.collection.slide_4_image|image_url) or url_for('static', filename='images/serviettes.jpg') }}" 
-                                     alt="Serviettes de Luxe w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                     alt="Serviettes de Luxe w-full h-full object-cover transform group-hover:scale-105 transition" class="duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
                                     <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 bg-accent-subtle text-accent">{{ content.collection.slide_4_category.value if content.collection and content.collection.slide_4_category else 'QUALITÉ SUPÉRIEURE' }}</span>
@@ -336,7 +336,7 @@
                             <!-- Item 5 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
                                 <img src="{{ (content.collection.slide_5_image|image_url) or url_for('static', filename='images/bedding-2.jpg') }}" 
-                                     alt="Literie Excellence w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                     alt="Literie Excellence w-full h-full object-cover transform group-hover:scale-105 transition" class="duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
                                     <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 bg-accent-subtle text-accent">{{ content.collection.slide_5_category.value if content.collection and content.collection.slide_5_category else 'EXCELLENCE' }}</span>
@@ -348,7 +348,7 @@
                             <!-- Item 6 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
                                 <img src="{{ (content.collection.slide_6_image|image_url) or url_for('static', filename='images/home-textile.jpg') }}" 
-                                     alt="Textile Maison w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                     alt="Textile Maison w-full h-full object-cover transform group-hover:scale-105 transition" class="duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
                                     <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 bg-accent-subtle text-accent">{{ content.collection.slide_6_category.value if content.collection and content.collection.slide_6_category else 'CONFORT MAISON' }}</span>
@@ -383,7 +383,7 @@
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="{{ (content.volets.background_image|image_url) or url_for('static', filename='images/textile-3.jpg') }}" 
-                 alt="Background w-full h-full object-cover opacity-5">
+                 alt="Background w-full h-full object-cover" class="opacity-5">
         </div>
         <div class="container mx-auto relative z-10 max-w-6xl">
             <div class="text-center mb-12">
@@ -395,7 +395,7 @@
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
                         <img src="{{ (content.volets.volet_1_image|image_url) or url_for('static', filename='images/home-textile.jpg') }}" 
-                             alt="Home textile w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                             alt="Home textile w-full h-full object-cover transform group-hover:scale-110 transition" class="duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">{{ content.volets.volet_1_title.value if content.volets and content.volets.volet_1_title else 'Home Textile' }}</h3>
@@ -406,7 +406,7 @@
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
                         <img src="{{ (content.volets.volet_2_image|image_url) or url_for('static', filename='images/hotel-textile.jpg') }}" 
-                             alt="Hotel textile w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                             alt="Hotel textile w-full h-full object-cover transform group-hover:scale-110 transition" class="duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">{{ content.volets.volet_2_title.value if content.volets and content.volets.volet_2_title else 'Hotel Textile' }}</h3>
@@ -417,7 +417,7 @@
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
                         <img src="{{ (content.volets.volet_3_image|image_url) or url_for('static', filename='images/medical-textile.jpg') }}" 
-                             alt="Medical textile w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                             alt="Medical textile w-full h-full object-cover transform group-hover:scale-110 transition" class="duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">{{ content.volets.volet_3_title.value if content.volets and content.volets.volet_3_title else 'Medical Textile' }}</h3>
@@ -428,7 +428,7 @@
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
                         <img src="{{ (content.volets.volet_4_image|image_url) or url_for('static', filename='images/literie.jpg') }}" 
-                             alt="Literie w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                             alt="Literie w-full h-full object-cover transform group-hover:scale-110 transition" class="duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">{{ content.volets.volet_4_title.value if content.volets and content.volets.volet_4_title else 'Literie et Linge de Maison' }}</h3>
@@ -439,7 +439,7 @@
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
                         <img src="{{ (content.volets.volet_5_image|image_url) or url_for('static', filename='images/serviettes.jpg') }}" 
-                             alt="Serviettes w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                             alt="Serviettes w-full h-full object-cover transform group-hover:scale-110 transition" class="duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">{{ content.volets.volet_5_title.value if content.volets and content.volets.volet_5_title else 'Serviettes et Sorties de Bain' }}</h3>
@@ -450,7 +450,7 @@
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
                         <img src="{{ (content.volets.volet_6_image|image_url) or url_for('static', filename='images/textile-3.jpg') }}" 
-                             alt="Textile Professionnel w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                             alt="Textile Professionnel w-full h-full object-cover transform group-hover:scale-110 transition" class="duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">{{ content.volets.volet_6_title.value if content.volets and content.volets.volet_6_title else 'Textile Professionnel' }}</h3>
@@ -465,7 +465,7 @@
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="{{ (content.engagement.background_image|image_url) or url_for('static', filename='images/bedding-1.jpg') }}" 
-                 alt="Background w-full h-full object-cover opacity-5">
+                 alt="Background w-full h-full object-cover" class="opacity-5">
         </div>
         <div class="container mx-auto relative z-10 max-w-6xl">
             <div class="text-center mb-12">
@@ -629,7 +629,7 @@
         <!-- Background Pattern -->
         <div class="absolute inset-0 z-0 opacity-5">
             <img src="{{ (content.footer.background_image|image_url) or url_for('static', filename='images/footer-bg.jpg') }}" 
-                 alt="Footer Background w-full h-full object-cover">
+                 alt="Footer Background w-full h-full" class="object-cover">
         </div>
         
         <!-- Gradient Overlay -->
@@ -653,13 +653,13 @@
                     </div>
                     <div class="flex items-center space-x-4">
                         <span class="text-sm font-semibold text-accent">{{ content.footer.social_label.value if content.footer and content.footer.social_label else 'Suivez-nous:' }}</span>
-                        <a href="{{ content.footer.social_facebook.value if content.footer and content.footer.social_facebook else 'https://facebook.com' }}" target="_blank w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
+                        <a href="{{ content.footer.social_facebook.value if content.footer and content.footer.social_facebook else 'https://facebook.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
                             <i class="fab fa-facebook-f text-accent"></i>
                         </a>
-                        <a href="{{ content.footer.social_instagram.value if content.footer and content.footer.social_instagram else 'https://instagram.com' }}" target="_blank w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
+                        <a href="{{ content.footer.social_instagram.value if content.footer and content.footer.social_instagram else 'https://instagram.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
                             <i class="fab fa-instagram text-accent"></i>
                         </a>
-                        <a href="{{ content.footer.social_linkedin.value if content.footer and content.footer.social_linkedin else 'https://linkedin.com' }}" target="_blank w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
+                        <a href="{{ content.footer.social_linkedin.value if content.footer and content.footer.social_linkedin else 'https://linkedin.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
                             <i class="fab fa-linkedin-in text-accent"></i>
                         </a>
                     </div>
@@ -670,31 +670,31 @@
                     <h4 class="text-lg font-bold mb-6 uppercase tracking-wider text-accent">Navigation</h4>
                     <ul class="space-y-3">
                         <li>
-                            <a href="#accueil text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
+                            <a href="#accueil text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2" class="group">
                                 <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-accent"></i>
                                 <span>Accueil</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#collection text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
+                            <a href="#collection text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2" class="group">
                                 <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-accent"></i>
                                 <span>Collection</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#volets text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
+                            <a href="#volets text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2" class="group">
                                 <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-accent"></i>
                                 <span>Nos Volets</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#forces text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
+                            <a href="#forces text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2" class="group">
                                 <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-accent"></i>
                                 <span>Points Forts</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#contact text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
+                            <a href="#contact text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2" class="group">
                                 <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-accent"></i>
                                 <span>Contact</span>
                             </a>
