@@ -55,13 +55,17 @@ body[data-theme-mode="light"] {
     color: var(--text-primary);
 }
 
+/* Light mode text color overrides - ALL gray text classes */
 body[data-theme-mode="light"] .text-gray-100,
+body[data-theme-mode="light"] .text-gray-200,
+body[data-theme-mode="light"] .text-gray-300,
 body[data-theme-mode="light"] .text-white {
     color: var(--text-primary) !important;
 }
 
 body[data-theme-mode="light"] .text-gray-400,
-body[data-theme-mode="light"] .text-gray-500 {
+body[data-theme-mode="light"] .text-gray-500,
+body[data-theme-mode="light"] .text-gray-600 {
     color: var(--text-secondary) !important;
 }
 
