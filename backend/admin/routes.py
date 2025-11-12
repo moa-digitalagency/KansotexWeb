@@ -277,7 +277,32 @@ def site_settings():
         
         for key in settings_keys:
             value = request.form.get(key, '')
+            
+            if key == 'smtp_port':
+                if value and value.strip():
+                    try:
+                        port_value = int(value)
+                        if port_value < 1 or port_value > 65535:
+                            flash('Le port SMTP doit être entre 1 et 65535. Utilisation de la valeur par défaut 587.', 'warning')
+                            value = '587'
+                    except ValueError:
+                        flash('Le port SMTP doit être un nombre. Utilisation de la valeur par défaut 587.', 'warning')
+                        value = '587'
+                else:
+                    value = '587'
+            
             content_service.update_setting(key, value, 'string')
+        
+        smtp_host = request.form.get('smtp_host', '')
+        contact_recipient = request.form.get('contact_recipient_email', '')
+        smtp_sender = request.form.get('smtp_sender_email', '')
+        
+        if smtp_host and not contact_recipient:
+            flash('Attention: Vous avez configuré SMTP mais aucun email destinataire. Les messages ne seront pas envoyés.', 'warning')
+        
+        import os
+        if smtp_host and not (os.environ.get('SMTP_USERNAME') and os.environ.get('SMTP_PASSWORD')):
+            flash('Attention: Les credentials SMTP (SMTP_USERNAME et SMTP_PASSWORD) ne sont pas configurés dans les Secrets.', 'warning')
         
         db.session.commit()
         flash('Paramètres du site mis à jour avec succès!', 'success')

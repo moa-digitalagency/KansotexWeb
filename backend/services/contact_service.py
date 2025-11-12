@@ -25,7 +25,7 @@ class ContactService:
         try:
             recipient_email = SiteSetting.get_setting('contact_recipient_email')
             smtp_host = SiteSetting.get_setting('smtp_host')
-            smtp_port = SiteSetting.get_setting('smtp_port', '587')
+            smtp_port_str = SiteSetting.get_setting('smtp_port', '587')
             smtp_use_tls = SiteSetting.get_setting('smtp_use_tls', 'true')
             sender_email = SiteSetting.get_setting('smtp_sender_email')
             
@@ -34,7 +34,21 @@ class ContactService:
             
             if not all([recipient_email, smtp_host, smtp_username, smtp_password, sender_email]):
                 print("Configuration SMTP incomplète. Email non envoyé.")
+                print(f"  - recipient_email: {'OK' if recipient_email else 'MANQUANT'}")
+                print(f"  - smtp_host: {'OK' if smtp_host else 'MANQUANT'}")
+                print(f"  - smtp_username: {'OK' if smtp_username else 'MANQUANT'}")
+                print(f"  - smtp_password: {'OK' if smtp_password else 'MANQUANT'}")
+                print(f"  - sender_email: {'OK' if sender_email else 'MANQUANT'}")
                 return False
+            
+            try:
+                smtp_port = int(smtp_port_str)
+                if smtp_port < 1 or smtp_port > 65535:
+                    print(f"Port SMTP invalide: {smtp_port}. Utilisation du port 587.")
+                    smtp_port = 587
+            except (ValueError, TypeError):
+                print(f"Port SMTP non numérique: {smtp_port_str}. Utilisation du port 587.")
+                smtp_port = 587
             
             msg = MIMEMultipart('alternative')
             msg['Subject'] = f"Nouveau message de contact de {name}"
