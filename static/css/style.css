@@ -123,9 +123,9 @@ body {
     background-color: var(--accent-light) !important;
 }
 
-/* Classe pour garder les numéros toujours en or (engagement section) */
-.text-gold-number {
-    color: rgba(212, 175, 55, 0.2) !important;
+/* Classe pour les numéros qui s'adaptent au thème (engagement section) */
+.text-accent-number {
+    color: rgba(var(--accent-rgb), 0.2) !important;
 }
 
 .hover-border-accent:hover {
