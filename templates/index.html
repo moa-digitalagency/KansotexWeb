@@ -151,7 +151,7 @@
     </section>
 
     <!-- Points Forts Section - Moved After Hero -->
-    <section id="forces py-20 px-6" style="background: rgba(15, 15, 15, 0.9);">
+    <section id="forces" class="py-24 px-6" style="background: rgba(15, 15, 15, 0.9);">
         <div class="container mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">{{ content.forces.title.value if content.forces and content.forces.title else 'Nos Points Forts' }}</h2>
@@ -160,12 +160,12 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <!-- Strength 1 -->
-                <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(184, 148, 30, 0.2);">
+                <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(var(--accent-rgb), 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
                         <i class="fas fa-star text-9xl text-accent"></i>
                     </div>
                     <div class="relative">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(184, 148, 30, 0.1);">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(var(--accent-rgb), 0.1);">
                             <i class="fas fa-star text-3xl text-accent"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-accent">{{ content.forces.strength_1_title.value if content.forces and content.forces.strength_1_title else 'Expérience Significative' }}</h3>
@@ -176,12 +176,12 @@
                 </div>
 
                 <!-- Strength 2 -->
-                <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2);">
+                <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(var(--accent-rgb), 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
                         <i class="fas fa-handshake text-9xl text-accent"></i>
                     </div>
                     <div class="relative">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.1);">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(var(--accent-rgb), 0.1);">
                             <i class="fas fa-handshake text-3xl text-accent"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-accent">{{ content.forces.strength_2_title.value if content.forces and content.forces.strength_2_title else 'Compréhension Parfaite' }}</h3>
@@ -192,12 +192,12 @@
                 </div>
 
                 <!-- Strength 3 -->
-                <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2);">
+                <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(var(--accent-rgb), 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
                         <i class="fas fa-cogs text-9xl text-accent"></i>
                     </div>
                     <div class="relative">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.1);">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(var(--accent-rgb), 0.1);">
                             <i class="fas fa-cogs text-3xl text-accent"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-accent">{{ content.forces.strength_3_title.value if content.forces and content.forces.strength_3_title else 'Personnalisation Expert' }}</h3>
@@ -208,12 +208,12 @@
                 </div>
 
                 <!-- Strength 4 -->
-                <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2);">
+                <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(var(--accent-rgb), 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
                         <i class="fas fa-bolt text-9xl text-accent"></i>
                     </div>
                     <div class="relative">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.1);">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(var(--accent-rgb), 0.1);">
                             <i class="fas fa-bolt text-3xl text-accent"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-accent">{{ content.forces.strength_4_title.value if content.forces and content.forces.strength_4_title else 'Rapidité d\'Exécution' }}</h3>
@@ -224,12 +224,12 @@
                 </div>
 
                 <!-- Strength 5 -->
-                <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2);">
+                <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(var(--accent-rgb), 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
                         <i class="fas fa-shipping-fast text-9xl text-accent"></i>
                     </div>
                     <div class="relative">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.1);">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(var(--accent-rgb), 0.1);">
                             <i class="fas fa-shipping-fast text-3xl text-accent"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-accent">{{ content.forces.strength_5_title.value if content.forces and content.forces.strength_5_title else 'Livraison Rapide' }}</h3>
@@ -258,7 +258,7 @@
         </div>
     </section>
     <!-- Notre Collection - Slider 2 Colonnes -->
-    <section id="collection py-20 px-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(15, 15, 15, 0.9) 100%);">
+    <section id="collection" class="py-24 px-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(15, 15, 15, 0.9) 100%);">
         <div class="container mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">
@@ -361,10 +361,10 @@
                 </div>
 
                 <!-- Navigation Arrows -->
-                <button class="collection-two-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.9);">
+                <button class="collection-two-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(var(--accent-rgb), 0.9);">
                     <i class="fas fa-chevron-left text-white"></i>
                 </button>
-                <button class="collection-two-next absolute right-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.9);">
+                <button class="collection-two-next absolute right-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(var(--accent-rgb), 0.9);">
                     <i class="fas fa-chevron-right text-white"></i>
                 </button>
 
@@ -379,7 +379,7 @@
     </section>
 
     <!-- Les Volets Section -->
-    <section id="volets py-20 px-6 relative overflow-hidden">
+    <section id="volets" class="py-24 px-6 relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="{{ (content.volets.background_image|image_url) or url_for('static', filename='images/textile-3.jpg') }}" 
@@ -461,7 +461,7 @@
     </section>
 
     <!-- Notre Engagement Section -->
-    <section id="engagement py-20 px-6 relative overflow-hidden" style="background: rgba(15, 15, 15, 0.8);">
+    <section id="engagement" class="py-24 px-6 relative overflow-hidden" style="background: rgba(15, 15, 15, 0.8);">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="{{ (content.engagement.background_image|image_url) or url_for('static', filename='images/bedding-1.jpg') }}" 
@@ -541,7 +541,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact py-20 px-6" style="background: rgba(15, 15, 15, 0.8);">
+    <section id="contact" class="py-24 px-6" style="background: rgba(15, 15, 15, 0.8);">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">Infos <span class="text-accent">Contact</span></h2>
@@ -653,13 +653,13 @@
                     </div>
                     <div class="flex items-center space-x-4">
                         <span class="text-sm font-semibold text-accent">{{ content.footer.social_label.value if content.footer and content.footer.social_label else 'Suivez-nous:' }}</span>
-                        <a href="{{ content.footer.social_facebook.value if content.footer and content.footer.social_facebook else 'https://facebook.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
+                        <a href="{{ content.footer.social_facebook.value if content.footer and content.footer.social_facebook else 'https://facebook.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(var(--accent-rgb), 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
                             <i class="fab fa-facebook-f text-accent"></i>
                         </a>
-                        <a href="{{ content.footer.social_instagram.value if content.footer and content.footer.social_instagram else 'https://instagram.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
+                        <a href="{{ content.footer.social_instagram.value if content.footer and content.footer.social_instagram else 'https://instagram.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(var(--accent-rgb), 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
                             <i class="fab fa-instagram text-accent"></i>
                         </a>
-                        <a href="{{ content.footer.social_linkedin.value if content.footer and content.footer.social_linkedin else 'https://linkedin.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
+                        <a href="{{ content.footer.social_linkedin.value if content.footer and content.footer.social_linkedin else 'https://linkedin.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(var(--accent-rgb), 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
                             <i class="fab fa-linkedin-in text-accent"></i>
                         </a>
                     </div>
@@ -708,7 +708,7 @@
                     <ul class="space-y-4">
                         <li>
                             <a href="tel:{{ content.footer.contact_phone.value if content.footer and content.footer.contact_phone else '+21250898989' }} flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-300 group">
-                                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(184, 148, 30, 0.1);">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(var(--accent-rgb), 0.1);">
                                     <i class="fas fa-phone text-accent"></i>
                                 </div>
                                 <span>{{ content.footer.contact_phone.value if content.footer and content.footer.contact_phone else '+212 50 898 989' }}</span>
@@ -716,7 +716,7 @@
                         </li>
                         <li>
                             <a href="mailto:{{ content.footer.contact_email.value if content.footer and content.footer.contact_email else 'contact@kansotex.com' }} flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-300 group">
-                                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(184, 148, 30, 0.1);">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(var(--accent-rgb), 0.1);">
                                     <i class="fas fa-envelope text-accent"></i>
                                 </div>
                                 <span>{{ content.footer.contact_email.value if content.footer and content.footer.contact_email else 'contact@kansotex.com' }}</span>
@@ -724,7 +724,7 @@
                         </li>
                         <li>
                             <div class="flex items-center space-x-3 text-gray-400">
-                                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(184, 148, 30, 0.1);">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(var(--accent-rgb), 0.1);">
                                     <i class="fas fa-map-marker-alt text-accent"></i>
                                 </div>
                                 <span>{{ content.footer.contact_address.value if content.footer and content.footer.contact_address else 'Maroc' }}</span>
@@ -735,7 +735,7 @@
             </div>
             
             <!-- Bottom Section -->
-            <div class="border-t pt-6" style="border-color: rgba(184, 148, 30, 0.2);">
+            <div class="border-t pt-6" style="border-color: rgba(var(--accent-rgb), 0.2);">
                 <div class="text-center">
                     <p class="text-gray-500 text-xs">
                         {{ content.footer.copyright.value if content.footer and content.footer.copyright else '&copy; 2025 KANSOTEX. Tous droits réservés.' }}
