@@ -26,10 +26,14 @@ def index(lang=None):
     theme_mode = SiteSetting.get_setting('theme_mode', 'dark')
     allow_user_toggle = SiteSetting.get_setting('allow_user_theme_toggle', 'true')
     
+    # Get recent blog articles for homepage (returns ORM objects)
+    recent_articles_orm = blog_service.get_all_articles(published_only=True, limit=3)
+    
     context = content_provider.get_complete_context('home', lang=lang)
     context['current_lang'] = lang
     context['theme_mode'] = theme_mode
     context['allow_user_toggle'] = allow_user_toggle == 'true'
+    context['recent_articles'] = [article.to_dict(lang=lang) for article in recent_articles_orm]
     return render_template('index.html', **context)
 
 @main_bp.route('/change-language/<lang>')
