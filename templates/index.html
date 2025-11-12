@@ -818,10 +818,11 @@
         </div>
     </footer>
 
-    <!-- Floating Language Switcher -->
-    <div class="fixed bottom-6 left-6 z-50">
+    <!-- Floating Buttons Stack (Language & Theme) -->
+    <div class="floating-buttons-stack">
+        <!-- Language Switcher -->
         <div class="relative group">
-            <button id="lang-switcher" class="w-14 h-14 rounded-full bg-accent-gradient shadow-lg flex items-center justify-center text-white font-bold hover:scale-110 transition-all duration-300">
+            <button id="lang-switcher" class="bg-accent-gradient flex items-center justify-center text-white font-bold transition-all duration-300">
                 <span class="text-sm uppercase">{{ current_lang or 'FR' }}</span>
             </button>
             <div id="lang-menu" class="absolute bottom-full left-0 mb-2 bg-gray-800 rounded-lg shadow-xl overflow-hidden hidden">
@@ -833,6 +834,7 @@
                 </a>
             </div>
         </div>
+        <!-- Theme toggle will be added here by JavaScript if enabled -->
     </div>
 
     <script>

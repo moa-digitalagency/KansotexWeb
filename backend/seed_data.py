@@ -1,12 +1,50 @@
 from datetime import datetime
 from backend.models import db
-from backend.models.content import ContentSection, ContentField, SiteSetting
+from backend.models.content import ContentSection, ContentField, SiteSetting, ImageAsset
 from backend.models.blog import BlogArticle, Testimonial
 
 def init_database_content():
     """Initialize database with default bilingual content - called from main.py"""
     
     print("Seeding complete bilingual content...")
+    
+    # Seed blog images first
+    print("Seeding blog images...")
+    blog_images = [
+        {
+            'file_name': 'hotel-textile.jpg',
+            'original_name': 'hotel-textile.jpg',
+            'alt_text': 'Textiles premium pour hôtellerie de luxe',
+            'width': 1200,
+            'height': 800,
+            'mime_type': 'image/jpeg',
+            'file_size': 150000
+        },
+        {
+            'file_name': 'medical-textile.jpg',
+            'original_name': 'medical-textile.jpg',
+            'alt_text': 'Linge médical de qualité',
+            'width': 1200,
+            'height': 800,
+            'mime_type': 'image/jpeg',
+            'file_size': 145000
+        },
+        {
+            'file_name': 'literie.jpg',
+            'original_name': 'literie.jpg',
+            'alt_text': 'Literie de luxe confortable',
+            'width': 1200,
+            'height': 800,
+            'mime_type': 'image/jpeg',
+            'file_size': 155000
+        }
+    ]
+    
+    for img_data in blog_images:
+        image = ImageAsset(**img_data)
+        db.session.add(image)
+    
+    db.session.flush()  # Get the IDs for the images
     
     sections_data = [
         {
@@ -229,6 +267,11 @@ def init_database_content():
         )
         db.session.add(setting)
     
+    # Get image IDs for blog articles
+    image_hotel = ImageAsset.query.filter_by(file_name='hotel-textile.jpg').first()
+    image_medical = ImageAsset.query.filter_by(file_name='medical-textile.jpg').first()
+    image_literie = ImageAsset.query.filter_by(file_name='literie.jpg').first()
+    
     # Seed blog articles
     print("Seeding blog articles...")
     articles = [
@@ -244,6 +287,7 @@ def init_database_content():
             'category_en': 'Innovation',
             'tags_fr': 'hôtellerie,luxe,innovation,textiles',
             'tags_en': 'hospitality,luxury,innovation,textiles',
+            'featured_image_id': image_hotel.id if image_hotel else None,
             'author_name': 'KANSOTEX Team',
             'meta_title_fr': 'Innovation Textiles Premium Hôtellerie | KANSOTEX',
             'meta_title_en': 'Premium Textile Innovation Hospitality | KANSOTEX',
@@ -264,11 +308,33 @@ def init_database_content():
             'category_en': 'Medical',
             'tags_fr': 'médical,santé,hygiène,qualité',
             'tags_en': 'medical,health,hygiene,quality',
+            'featured_image_id': image_medical.id if image_medical else None,
             'author_name': 'KANSOTEX Team',
             'meta_title_fr': 'Guide Choix Linge Médical | KANSOTEX',
             'meta_title_en': 'Medical Linen Selection Guide | KANSOTEX',
             'meta_description_fr': 'Guide complet pour choisir le linge médical de qualité.',
             'meta_description_en': 'Complete guide to choosing quality medical linen.',
+            'is_published': True,
+            'published_at': datetime.utcnow()
+        },
+        {
+            'slug': 'confort-literie-premium',
+            'title_fr': 'Le Confort Ultime : Guide de la Literie Premium',
+            'title_en': 'Ultimate Comfort: Premium Bedding Guide',
+            'excerpt_fr': 'Découvrez comment choisir la literie premium parfaite pour transformer votre sommeil et celui de vos clients.',
+            'excerpt_en': 'Discover how to choose the perfect premium bedding to transform your sleep and that of your guests.',
+            'content_fr': '<p>La literie premium est bien plus qu\'un simple investissement - c\'est la clé d\'un sommeil réparateur et d\'une expérience client exceptionnelle.</p><h2>Qualité des Matériaux</h2><p>Les meilleurs tissus comme le coton égyptien et le lin européen offrent une durabilité incomparable et un confort absolu.</p><h2>Impact sur la Satisfaction Client</h2><p>Dans l\'hôtellerie, la qualité de la literie est directement liée à la satisfaction des clients et aux avis positifs.</p><h2>Nos Solutions KANSOTEX</h2><p>Nos collections de literie combinent excellence artisanale et innovation textile pour créer une expérience de sommeil unique.</p>',
+            'content_en': '<p>Premium bedding is much more than a simple investment - it\'s the key to restorative sleep and an exceptional customer experience.</p><h2>Material Quality</h2><p>The finest fabrics like Egyptian cotton and European linen offer unparalleled durability and absolute comfort.</p><h2>Impact on Customer Satisfaction</h2><p>In hospitality, bedding quality is directly linked to guest satisfaction and positive reviews.</p><h2>Our KANSOTEX Solutions</h2><p>Our bedding collections combine artisan excellence and textile innovation to create a unique sleep experience.</p>',
+            'category_fr': 'Literie',
+            'category_en': 'Bedding',
+            'tags_fr': 'literie,confort,luxe,sommeil,hôtellerie',
+            'tags_en': 'bedding,comfort,luxury,sleep,hospitality',
+            'featured_image_id': image_literie.id if image_literie else None,
+            'author_name': 'KANSOTEX Team',
+            'meta_title_fr': 'Guide Literie Premium | KANSOTEX',
+            'meta_title_en': 'Premium Bedding Guide | KANSOTEX',
+            'meta_description_fr': 'Découvrez nos conseils pour choisir la literie premium parfaite.',
+            'meta_description_en': 'Discover our tips for choosing the perfect premium bedding.',
             'is_published': True,
             'published_at': datetime.utcnow()
         }

@@ -346,7 +346,14 @@ function setupThemeToggle() {
         toggleBtn.id = 'theme-toggle';
         toggleBtn.setAttribute('aria-label', 'Toggle theme');
         toggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
-        document.body.appendChild(toggleBtn);
+        
+        // Add to floating buttons stack instead of body
+        const floatingStack = document.querySelector('.floating-buttons-stack');
+        if (floatingStack) {
+            floatingStack.appendChild(toggleBtn);
+        } else {
+            document.body.appendChild(toggleBtn);
+        }
     }
     
     // Add click event
