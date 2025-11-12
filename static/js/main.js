@@ -468,13 +468,3 @@ function updateThemeToggleIcon(theme) {
     }
 }
 
-// Add to DOMContentLoaded
-document.addEventListener('DOMContentLoaded', function() {
-    initHeroSlider();
-    initCollectionTwoSlider();
-    initTestimonials();
-    initMobileMenu();
-    initContactForm();
-    initSmoothScroll();
-    initTheme(); // Initialize theme
-});

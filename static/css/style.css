@@ -446,6 +446,17 @@ input:focus, textarea:focus {
     opacity: 1;
 }
 
+/* Mobile: hide second item in each slide to show only 1 column */
+@media (max-width: 767px) {
+    .collection-two-col-slide .grid > div:nth-child(2) {
+        display: none !important;
+    }
+    
+    .collection-two-col-slide .grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
 .collection-two-dot {
     width: 8px;
     height: 8px;
