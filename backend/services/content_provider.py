@@ -15,11 +15,19 @@ class ContentProvider:
             elif lang == 'en' and field.value_en:
                 value = field.value_en
             
+            button_link = field.button_link
+            if lang == 'fr' and field.button_link_fr:
+                button_link = field.button_link_fr
+            elif lang == 'en' and field.button_link_en:
+                button_link = field.button_link_en
+            elif field.button_link:
+                button_link = field.button_link
+            
             content[field.key] = {
                 'value': value,
                 'type': field.field_type,
                 'image': field.image.to_dict() if field.image else None,
-                'button_link': field.button_link
+                'button_link': button_link
             }
         
         return content
