@@ -25,6 +25,7 @@ def index(lang=None):
     # Get theme settings
     theme_mode = SiteSetting.get_setting('theme_mode', 'dark')
     allow_user_toggle = SiteSetting.get_setting('allow_user_theme_toggle', 'true')
+    auto_detect_language = SiteSetting.get_setting('auto_detect_language', 'true')
     
     # Get recent blog articles for homepage (returns ORM objects)
     recent_articles_orm = blog_service.get_all_articles(published_only=True, limit=3)
@@ -33,6 +34,7 @@ def index(lang=None):
     context['current_lang'] = lang
     context['theme_mode'] = theme_mode
     context['allow_user_toggle'] = allow_user_toggle == 'true'
+    context['settings'] = {'auto_detect_language': auto_detect_language}
     context['recent_articles'] = [article.to_dict(lang=lang) for article in recent_articles_orm]
     return render_template('index.html', **context)
 

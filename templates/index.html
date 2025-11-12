@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="bg-black text-gray-100" data-theme="{{ color_theme }}" data-theme-mode-server="{{ theme_mode }}" data-allow-user-toggle="{{ 'true' if allow_user_toggle else 'false' }}" data-theme-mode="{{ theme_mode }}">
+<body class="bg-black text-gray-100" data-theme="{{ color_theme }}" data-theme-mode-server="{{ theme_mode }}" data-allow-user-toggle="{{ 'true' if allow_user_toggle else 'false' }}" data-theme-mode="{{ theme_mode }}" data-current-lang="{{ current_lang or 'fr' }}" data-auto-detect-language="{{ 'true' if settings.auto_detect_language == 'true' else 'false' }}">
     
     <!-- Header / Navigation -->
     <header id="main-header" class="fixed top-0 left-0 right-0 z-50 border-b border-accent-faint transition-all duration-300">

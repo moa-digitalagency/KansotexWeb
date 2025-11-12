@@ -8,6 +8,8 @@ let currentCollectionTwoSlide = 0;
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    initThemeSystem();
+    initLanguageDetection();
     initHeroSlider();
     initCollectionTwoSlider();
     initTestimonials();
@@ -15,6 +17,82 @@ document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
     initSmoothScroll();
 });
+
+// Theme Management System
+function initThemeSystem() {
+    const body = document.body;
+    const serverThemeMode = body.getAttribute('data-theme-mode-server');
+    const allowUserToggle = body.getAttribute('data-allow-user-toggle') === 'true';
+    
+    // Get saved theme from localStorage or use server default
+    let currentThemeMode = localStorage.getItem('theme-mode') || serverThemeMode || 'dark';
+    
+    // Apply the theme
+    body.setAttribute('data-theme-mode', currentThemeMode);
+    
+    // Create theme toggle button if allowed
+    if (allowUserToggle) {
+        createThemeToggleButton(currentThemeMode);
+    }
+}
+
+function createThemeToggleButton(currentMode) {
+    const container = document.querySelector('.floating-buttons-stack');
+    if (!container) return;
+    
+    const themeButton = document.createElement('div');
+    themeButton.className = 'relative group mt-2';
+    themeButton.innerHTML = `
+        <button id="theme-toggle" class="bg-accent-gradient flex items-center justify-center text-white font-bold transition-all duration-300" title="Changer le thème">
+            <i class="fas ${currentMode === 'light' ? 'fa-moon' : 'fa-sun'}"></i>
+        </button>
+    `;
+    
+    container.appendChild(themeButton);
+    
+    // Add click handler
+    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+}
+
+function toggleTheme() {
+    const body = document.body;
+    const currentMode = body.getAttribute('data-theme-mode');
+    const newMode = currentMode === 'dark' ? 'light' : 'dark';
+    
+    // Apply new theme
+    body.setAttribute('data-theme-mode', newMode);
+    
+    // Save to localStorage
+    localStorage.setItem('theme-mode', newMode);
+    
+    // Update button icon
+    const icon = document.querySelector('#theme-toggle i');
+    if (icon) {
+        icon.className = newMode === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+    }
+}
+
+// Language Detection System
+function initLanguageDetection() {
+    const autoDetect = document.body.getAttribute('data-auto-detect-language');
+    
+    // Only auto-detect if enabled and no language preference exists
+    if (autoDetect === 'true' && !sessionStorage.getItem('language-set')) {
+        const browserLang = navigator.language || navigator.userLanguage;
+        const langCode = browserLang.split('-')[0]; // Get 'fr' from 'fr-FR'
+        
+        // Check if browser language is supported
+        if (langCode === 'en' || langCode === 'fr') {
+            const currentLang = document.body.getAttribute('data-current-lang');
+            
+            // Redirect to detected language if different
+            if (currentLang !== langCode) {
+                sessionStorage.setItem('language-set', 'true');
+                window.location.href = `/${langCode}`;
+            }
+        }
+    }
+}
 
 // Initialize Hero Slider
 function initHeroSlider() {
