@@ -44,6 +44,51 @@ body[data-theme="silver"] {
     --button-text: #000000;
 }
 
+/* LIGHT MODE - Mode Clair */
+body[data-theme-mode="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: rgba(249, 250, 251, 0.95);
+    --bg-card: rgba(249, 250, 251, 0.98);
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+}
+
+/* Override text colors for light mode */
+body[data-theme-mode="light"] {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+body[data-theme-mode="light"] .text-gray-100,
+body[data-theme-mode="light"] .text-white {
+    color: var(--text-primary) !important;
+}
+
+body[data-theme-mode="light"] .text-gray-400,
+body[data-theme-mode="light"] .text-gray-500 {
+    color: var(--text-secondary) !important;
+}
+
+body[data-theme-mode="light"] .bg-black {
+    background: var(--bg-primary) !important;
+}
+
+body[data-theme-mode="light"] .bg-gray-800,
+body[data-theme-mode="light"] .bg-gray-900 {
+    background: var(--bg-card) !important;
+    border: 1px solid #e5e7eb;
+}
+
+body[data-theme-mode="light"] #main-header {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom-color: rgba(var(--accent-rgb), 0.2) !important;
+}
+
+body[data-theme-mode="light"] #main-header.scrolled {
+    background: rgba(255, 255, 255, 0.98) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
 * {
     scroll-behavior: smooth;
 }

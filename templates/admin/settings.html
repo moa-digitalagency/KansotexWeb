@@ -75,7 +75,7 @@
     
     <div class="bg-gray-800 rounded-lg p-6">
         <h3 class="text-xl font-bold mb-4 text-accent">
-            <i class="fas fa-palette mr-2"></i>Th&egrave;me de Couleur
+            <i class="fas fa-palette mr-2"></i>Th&egrave;me & Apparence
         </h3>
         
         <div class="space-y-4">
@@ -87,6 +87,44 @@
                     <option value="silver" {% if settings.color_theme == 'silver' %}selected{% endif %}>Argent (Noir, Blanc)</option>
                 </select>
                 <p class="text-xs text-gray-500 mt-1">Choisissez la palette de couleurs principale du site</p>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Mode de th&egrave;me par d&eacute;faut</label>
+                <select name="theme_mode" 
+                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none">
+                    <option value="dark" {% if settings.theme_mode == 'dark' %}selected{% endif %}>Sombre (Dark)</option>
+                    <option value="light" {% if settings.theme_mode == 'light' %}selected{% endif %}>Clair (Light)</option>
+                </select>
+                <p class="text-xs text-gray-500 mt-1">Mode de th&egrave;me appliqu&eacute; par d&eacute;faut lors de la premi&egrave;re visite</p>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Autoriser les visiteurs &agrave; changer le th&egrave;me</label>
+                <select name="allow_user_theme_toggle" 
+                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none">
+                    <option value="true" {% if settings.allow_user_theme_toggle == 'true' %}selected{% endif %}>Oui - Afficher le bouton de changement de th&egrave;me</option>
+                    <option value="false" {% if settings.allow_user_theme_toggle == 'false' %}selected{% endif %}>Non - Masquer le bouton flottant</option>
+                </select>
+                <p class="text-xs text-gray-500 mt-1">Si d&eacute;sactiv&eacute;, le bouton flottant de changement de th&egrave;me sera masqu&eacute;</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4 text-accent">
+            <i class="fas fa-language mr-2"></i>Langue & Localisation
+        </h3>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">D&eacute;tection automatique de la langue</label>
+                <select name="auto_detect_language" 
+                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none">
+                    <option value="true" {% if settings.auto_detect_language == 'true' %}selected{% endif %}>Oui - D&eacute;tecter la langue du navigateur au premier chargement</option>
+                    <option value="false" {% if settings.auto_detect_language == 'false' %}selected{% endif %}>Non - Utiliser fran&ccedil;ais par d&eacute;faut</option>
+                </select>
+                <p class="text-xs text-gray-500 mt-1">Si activ&eacute;, la langue sera automatiquement d&eacute;tect&eacute;e selon les pr&eacute;f&eacute;rences du navigateur</p>
             </div>
         </div>
     </div>

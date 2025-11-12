@@ -272,7 +272,8 @@ def site_settings():
             'site_name', 'site_logo', 'company_address', 'company_phone',
             'company_email', 'company_ice', 'facebook_url', 'instagram_url',
             'linkedin_url', 'twitter_url', 'color_theme', 'contact_recipient_email',
-            'smtp_host', 'smtp_port', 'smtp_use_tls', 'smtp_sender_email'
+            'smtp_host', 'smtp_port', 'smtp_use_tls', 'smtp_sender_email',
+            'theme_mode', 'allow_user_theme_toggle', 'auto_detect_language'
         ]
         
         for key in settings_keys:
@@ -313,13 +314,17 @@ def site_settings():
         'site_name', 'site_logo', 'company_address', 'company_phone',
         'company_email', 'company_ice', 'facebook_url', 'instagram_url',
         'linkedin_url', 'twitter_url', 'color_theme', 'contact_recipient_email',
-        'smtp_host', 'smtp_port', 'smtp_use_tls', 'smtp_sender_email'
+        'smtp_host', 'smtp_port', 'smtp_use_tls', 'smtp_sender_email',
+        'theme_mode', 'allow_user_theme_toggle', 'auto_detect_language'
     ]
     
     default_values = {
         'color_theme': 'gold',
         'smtp_port': '587',
-        'smtp_use_tls': 'true'
+        'smtp_use_tls': 'true',
+        'theme_mode': 'dark',
+        'allow_user_theme_toggle': 'true',
+        'auto_detect_language': 'true'
     }
     
     for key in settings_keys:
