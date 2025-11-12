@@ -344,6 +344,24 @@ input:focus, textarea:focus {
     border-radius: 0.5rem;
 }
 
+/* Mobile Menu Button */
+#mobile-menu-btn {
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    z-index: 60;
+}
+
+#mobile-menu-btn:hover {
+    color: var(--accent-light);
+    transform: scale(1.1);
+}
+
+#mobile-menu-btn:active {
+    transform: scale(0.95);
+}
+
 /* Mobile Menu */
 #mobile-menu {
     background: rgba(10, 10, 10, 0.98);
@@ -543,6 +561,14 @@ body[data-theme-mode="light"] .engagement-card {
 body[data-theme-mode="light"] .testimonial-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.95) 100%);
     border: 1px solid rgba(var(--accent-rgb), 0.3);
+}
+
+body[data-theme-mode="light"] #mobile-menu-btn {
+    color: var(--text-primary) !important;
+}
+
+body[data-theme-mode="light"] #mobile-menu-btn:hover {
+    color: var(--accent-mid) !important;
 }
 
 body[data-theme-mode="light"] #mobile-menu {
