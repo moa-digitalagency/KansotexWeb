@@ -84,7 +84,7 @@ function initTestimonials() {
         card.innerHTML = `
             <p class="text-lg text-gray-300 mb-6 italic leading-relaxed">${testimonial.quote}</p>
             <div class="flex items-center space-x-4">
-                <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold" style="background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);">
+                <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold bg-accent-gradient">
                     ${testimonial.name.charAt(0)}
                 </div>
                 <div>

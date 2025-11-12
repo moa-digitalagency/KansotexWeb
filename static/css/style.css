@@ -30,18 +30,18 @@ body[data-theme="gold"] {
     --button-text: #000000;
 }
 
-/* THEME ARGENT (SILVER) - Blanc et noir uniquement */
+/* THEME ARGENT (SILVER) - Noir et gris foncé uniquement */
 body[data-theme="silver"] {
-    --accent-light: #FFFFFF;
-    --accent-mid: #F5F5F5;
-    --accent-dark: #E0E0E0;
-    --accent-rgb: 255, 255, 255;
-    --border-opacity: 0.3;
+    --accent-light: #1a1a1a;
+    --accent-mid: #2d2d2d;
+    --accent-dark: #0a0a0a;
+    --accent-rgb: 26, 26, 26;
+    --border-opacity: 0.5;
     --hover-border-opacity: 0.8;
-    --shadow-opacity: 0.15;
-    --button-bg: #FFFFFF;
-    --button-hover-bg: #E0E0E0;
-    --button-text: #000000;
+    --shadow-opacity: 0.3;
+    --button-bg: #1a1a1a;
+    --button-hover-bg: #2d2d2d;
+    --button-text: #FFFFFF;
 }
 
 * {

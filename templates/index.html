@@ -131,7 +131,7 @@
                         <span class="text-sm font-medium">{{ content.hero.badge_2_text.value if content.hero and content.hero.badge_2_text else 'Qualité Premium' }}</span>
                     </div>
                 </div>
-                <a href="#forces inline-block px-10 py-4 rounded-lg shadow-xl" class="btn-primary">
+                <a href="#forces" class="inline-block px-10 py-4 rounded-lg shadow-xl btn-primary">
                     {{ content.hero.cta_text.value if content.hero and content.hero.cta_text else 'Découvrir nos atouts' }}
                 </a>
             </div>
@@ -600,7 +600,8 @@
                             <input type="tel" 
                                    id="phone" 
                                    name="phone" 
-                                   placeholder="{{ content.contact.form_phone_placeholder.value if content.contact and content.contact.form_phone_placeholder else 'Votre téléphone' }} w-full px-4 py-3 rounded-lg focus:outline-none transition"
+                                   placeholder="{{ content.contact.form_phone_placeholder.value if content.contact and content.contact.form_phone_placeholder else 'Votre téléphone' }}"
+                                   class="w-full px-4 py-3 rounded-lg focus:outline-none transition"
                                    style="background: #141414; border: 1px solid rgba(100, 100, 100, 0.3);">
                         </div>
                         <div>
@@ -612,12 +613,12 @@
                                       class="w-full px-4 py-3 rounded-lg focus:outline-none transition"
                                       style="background: #141414; border: 1px solid rgba(100, 100, 100, 0.3);"></textarea>
                         </div>
-                        <button type="submit w-full text-black font-bold py-3 px-6 rounded-lg transition transform hover:scale-105"
-                                style="background: #B8941E;">
+                        <button type="submit" 
+                                class="w-full font-bold py-3 px-6 rounded-lg transition transform hover:scale-105 btn-primary">
                             {{ content.contact.form_submit_text.value if content.contact and content.contact.form_submit_text else 'Envoyer le message' }}
                         </button>
                     </form>
-                    <div id="form-message mt-4 text-center hidden"></div>
+                    <div id="form-message" class="mt-4 text-center hidden"></div>
                 </div>
             </div>
         </div>
