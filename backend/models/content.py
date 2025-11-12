@@ -30,9 +30,12 @@ class ContentField(db.Model):
     section_id = db.Column(db.Integer, db.ForeignKey('content_sections.id'), nullable=False)
     key = db.Column(db.String(100), nullable=False)
     value = db.Column(db.Text)
+    value_fr = db.Column(db.Text)
+    value_en = db.Column(db.Text)
     field_type = db.Column(db.String(50), default='text')
     order = db.Column(db.Integer, default=0)
     image_id = db.Column(db.Integer, db.ForeignKey('image_assets.id'), nullable=True)
+    button_link = db.Column(db.String(500))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
@@ -42,16 +45,26 @@ class ContentField(db.Model):
         db.UniqueConstraint('section_id', 'key', name='unique_section_key'),
     )
     
-    def to_dict(self):
-        return {
+    def to_dict(self, lang=None):
+        base_dict = {
             'id': self.id,
             'section_id': self.section_id,
             'key': self.key,
             'value': self.value,
+            'value_fr': self.value_fr,
+            'value_en': self.value_en,
             'field_type': self.field_type,
             'order': self.order,
+            'button_link': self.button_link,
             'image': self.image.to_dict() if self.image else None
         }
+        
+        if lang == 'fr' and self.value_fr:
+            base_dict['value'] = self.value_fr
+        elif lang == 'en' and self.value_en:
+            base_dict['value'] = self.value_en
+        
+        return base_dict
 
 
 class ImageAsset(db.Model):
