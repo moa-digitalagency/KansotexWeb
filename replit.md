@@ -35,6 +35,8 @@ seed_content.py - Script d'initialisation du contenu
 ## Fonctionnalités
 
 ### Site Public
+- **Système de thème dark/light dynamique** avec bouton de changement
+- **Détection automatique de la langue** du navigateur (FR/EN)
 - Hero section avec slider d'images automatique (3 images)
 - Header transparent qui devient opaque en mode sticky avec effet de flou
 - Section "Nos Points Forts" avec les 6 atouts clés de KANSOTEX
@@ -70,6 +72,13 @@ seed_content.py - Script d'initialisation du contenu
   - Conversion automatique en RGB
   - Limite de taille: 10 MB
 - **Cropping d'images** - Recadrage des images selon les formats requis
+- **Système de thème & apparence**
+  - Mode de thème par défaut (dark/light)
+  - Autorisation pour les visiteurs de changer le thème via bouton flottant
+  - Sauvegarde de la préférence dans localStorage
+- **Langue & Localisation**
+  - Détection automatique de la langue du navigateur (FR/EN)
+  - Paramètre activable/désactivable dans les settings
 - **Configuration Email/SMTP** - Paramètres d'envoi d'emails pour le formulaire de contact
   - Email destinataire pour les messages de contact
   - Serveur SMTP (host, port, TLS)
@@ -197,6 +206,20 @@ Toutes les sections suivantes sont maintenant **complètement dynamiques** et é
 ```
 
 ## Dernières Modifications
+- **2025-11-12: Système de thème dark/light dynamique**
+  - Ajout de paramètres dans `/admin/settings` pour configurer le thème:
+    * Mode de thème par défaut (dark/light)
+    * Autorisation pour les visiteurs de changer le thème
+    * Détection automatique de la langue du navigateur
+  - Bouton flottant de changement de thème (avec icône soleil/lune)
+  - Sauvegarde de la préférence utilisateur dans localStorage
+  - CSS responsive pour le mode light avec variables CSS
+  - Masquage automatique du bouton si désactivé dans les settings
+- **2025-11-12: Détection automatique de langue**
+  - Détection du navigator.language au premier chargement
+  - Redirection automatique vers /fr ou /en selon la langue du navigateur
+  - Garde avec sessionStorage pour éviter les boucles de redirection
+  - Paramètre configurable dans les settings admin
 - 2025-11-11: Migration complète du projet dans l'environnement Replit
 - 2025-11-11: Redesign complet avec thème noir et or foncé (#B8941E) premium
 - 2025-11-11: Réorganisation de la structure - templates et static à la racine
