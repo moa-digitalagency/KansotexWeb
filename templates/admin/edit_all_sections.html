@@ -1,0 +1,345 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Gestion des Sections{% endblock %}
+
+{% block extra_css %}
+<style>
+    .section-list {
+        height: calc(100vh - 200px);
+        overflow-y: auto;
+    }
+    
+    .section-item {
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .section-item:hover {
+        background: rgba(184, 148, 30, 0.1);
+    }
+    
+    .section-item.active {
+        background: rgba(184, 148, 30, 0.2);
+        border-left: 3px solid #B8941E;
+    }
+    
+    .bilingual-inputs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    
+    .image-preview-container {
+        position: relative;
+        max-width: 400px;
+    }
+    
+    .image-metadata {
+        font-size: 0.875rem;
+        color: #9ca3af;
+    }
+    
+    .crop-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+    }
+    
+    .crop-modal.active {
+        display: flex;
+    }
+    
+    .crop-container {
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .crop-left {
+        flex: 0 0 70%;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .crop-right {
+        flex: 0 0 30%;
+        padding: 2rem;
+        background: #1f2937;
+        overflow-y: auto;
+    }
+    
+    #crop-image {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="flex gap-6 h-full">
+    <div class="w-1/4 bg-gray-800 rounded-lg p-4">
+        <h3 class="text-lg font-bold mb-4 text-accent">Sections</h3>
+        <div class="section-list space-y-2">
+            {% for section in sections %}
+            <a href="{{ url_for('admin.edit_all_sections', active_slug=section.slug) }}" 
+               class="section-item block p-3 rounded {% if active_section and active_section.slug == section.slug %}active{% endif %}">
+                <h4 class="font-semibold text-sm">{{ section.name }}</h4>
+                <p class="text-xs text-gray-400 truncate">{{ section.description or 'Aucune description' }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="w-3/4">
+        {% if active_section %}
+        <div class="mb-6">
+            <h2 class="text-3xl font-bold mb-2 text-accent">{{ active_section.name }}</h2>
+            <p class="text-gray-400">{{ active_section.description or 'Modifiez le contenu de cette section' }}</p>
+        </div>
+        
+        <form method="POST" enctype="multipart/form-data" class="space-y-6">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <input type="hidden" name="section_slug" value="{{ active_section.slug }}"/>
+            
+            {% if fields %}
+                {% for key, field in fields.items() %}
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <label class="block text-sm font-medium mb-4 text-accent">
+                        {{ key.replace('_', ' ').title() }}
+                    </label>
+                    
+                    {% if field.field_type == 'image' %}
+                        <div class="space-y-4">
+                            {% if field.image %}
+                            <div class="image-preview-container">
+                                <img src="{{ field.image.to_dict().url }}" alt="{{ field.image.alt_text }}" 
+                                     class="w-full rounded border border-gray-600">
+                                <div class="image-metadata mt-2 space-y-1">
+                                    <p><strong>Chemin:</strong> {{ field.image.to_dict().url }}</p>
+                                    <p><strong>Résolution:</strong> {{ field.image.width }}x{{ field.image.height }}px</p>
+                                    <p><strong>Taille:</strong> {{ (field.image.file_size / 1024)|round(2) }} KB</p>
+                                </div>
+                            </div>
+                            {% else %}
+                            <p class="text-gray-400 italic">Aucune image définie</p>
+                            {% endif %}
+                            
+                            <div class="mt-4">
+                                <label class="block text-sm font-medium mb-2">Remplacer l'image</label>
+                                <input type="file" 
+                                       name="{{ key }}_new_image" 
+                                       accept="image/*"
+                                       class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded cursor-pointer"
+                                       data-field-key="{{ key }}"
+                                       onchange="handleImageUpload(this)">
+                                <input type="hidden" name="{{ key }}_image_id" id="{{ key }}_image_id" value="{{ field.image_id or '' }}">
+                                <input type="hidden" name="{{ key }}_type" value="image">
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="bilingual-inputs">
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-2">Français</label>
+                                <textarea name="{{ key }}_fr" 
+                                          rows="4" 
+                                          class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-accent"
+                                          placeholder="Texte en français">{{ field.value_fr or '' }}</textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-2">English</label>
+                                <textarea name="{{ key }}_en" 
+                                          rows="4" 
+                                          class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-accent"
+                                          placeholder="Text in English">{{ field.value_en or '' }}</textarea>
+                            </div>
+                        </div>
+                        
+                        {% if field.button_link is not none or field.button_link_fr is not none or field.button_link_en is not none %}
+                        <div class="mt-4 grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-2">Lien du bouton (Français)</label>
+                                <input type="text" 
+                                       name="{{ key }}_link_fr" 
+                                       value="{{ field.button_link_fr or field.button_link or '' }}"
+                                       class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-accent"
+                                       placeholder="https://...">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-2">Lien du bouton (English)</label>
+                                <input type="text" 
+                                       name="{{ key }}_link_en" 
+                                       value="{{ field.button_link_en or field.button_link or '' }}"
+                                       class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-accent"
+                                       placeholder="https://...">
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        <input type="hidden" name="{{ key }}_type" value="text">
+                    {% endif %}
+                </div>
+                {% endfor %}
+            {% else %}
+            <div class="bg-gray-800 rounded-lg p-6 text-center text-gray-400">
+                <p>Aucun champ configuré pour cette section.</p>
+            </div>
+            {% endif %}
+            
+            <div class="flex space-x-4">
+                <button type="submit" 
+                        class="px-6 py-3 font-bold rounded-lg transition transform hover:scale-105" 
+                        style="background: linear-gradient(135deg, #B8941E 0%, #D4AF37 100%); color: black;">
+                    <i class="fas fa-save mr-2"></i>Enregistrer les modifications
+                </button>
+            </div>
+        </form>
+        {% else %}
+        <div class="bg-gray-800 rounded-lg p-12 text-center">
+            <i class="fas fa-arrow-left text-6xl text-gray-600 mb-4"></i>
+            <p class="text-xl text-gray-400">Sélectionnez une section à gauche pour commencer l'édition</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div id="cropModal" class="crop-modal">
+    <div class="crop-container">
+        <div class="crop-left">
+            <img id="crop-image" src="" alt="Image à recadrer">
+        </div>
+        <div class="crop-right">
+            <h3 class="text-xl font-bold mb-4 text-accent">Recadrer l'image</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm mb-2">Format</label>
+                    <select id="cropAspectRatio" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded">
+                        <option value="free">Libre</option>
+                        <option value="1">1:1 (Carré)</option>
+                        <option value="1.333">4:3</option>
+                        <option value="1.777">16:9</option>
+                        <option value="0.75">3:4 (Portrait)</option>
+                    </select>
+                </div>
+                <div class="flex space-x-2">
+                    <button type="button" onclick="cropImage()" 
+                            class="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 rounded transition">
+                        <i class="fas fa-check mr-2"></i>Valider
+                    </button>
+                    <button type="button" onclick="closeCropModal()" 
+                            class="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 rounded transition">
+                        <i class="fas fa-times mr-2"></i>Annuler
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let cropper = null;
+let currentFieldKey = null;
+
+function handleImageUpload(input) {
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        
+        if (file.size === 0) {
+            alert('Le fichier sélectionné est vide. Veuillez choisir une image valide.');
+            input.value = '';
+            return;
+        }
+        
+        if (!file.type.startsWith('image/')) {
+            alert('Veuillez sélectionner un fichier image valide.');
+            input.value = '';
+            return;
+        }
+        
+        currentFieldKey = input.dataset.fieldKey;
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            const cropImage = document.getElementById('crop-image');
+            cropImage.src = e.target.result;
+            
+            document.getElementById('cropModal').classList.add('active');
+            
+            if (cropper) {
+                cropper.destroy();
+            }
+            
+            cropper = new Cropper(cropImage, {
+                aspectRatio: NaN,
+                viewMode: 1,
+                autoCropArea: 1,
+            });
+        };
+        
+        reader.readAsDataURL(file);
+    }
+}
+
+function closeCropModal() {
+    document.getElementById('cropModal').classList.remove('active');
+    if (cropper) {
+        cropper.destroy();
+        cropper = null;
+    }
+    currentFieldKey = null;
+}
+
+function cropImage() {
+    if (!cropper || !currentFieldKey) return;
+    
+    const canvas = cropper.getCroppedCanvas({
+        maxWidth: 2000,
+        maxHeight: 2000,
+    });
+    
+    canvas.toBlob(function(blob) {
+        const formData = new FormData();
+        formData.append('image', blob, 'cropped-image.jpg');
+        formData.append('csrf_token', '{{ csrf_token() }}');
+        
+        fetch('{{ url_for("admin.upload_cropped_image") }}', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById(currentFieldKey + '_image_id').value = data.image_id;
+                closeCropModal();
+                alert('Image recadrée et uploadée avec succès!');
+            } else {
+                alert('Erreur: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Une erreur est survenue lors de l\'upload');
+        });
+    }, 'image/jpeg', 0.9);
+}
+
+document.getElementById('cropAspectRatio').addEventListener('change', function() {
+    if (!cropper) return;
+    
+    const value = this.value;
+    if (value === 'free') {
+        cropper.setAspectRatio(NaN);
+    } else {
+        cropper.setAspectRatio(parseFloat(value));
+    }
+});
+</script>
+{% endblock %}

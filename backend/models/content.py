@@ -36,6 +36,8 @@ class ContentField(db.Model):
     order = db.Column(db.Integer, default=0)
     image_id = db.Column(db.Integer, db.ForeignKey('image_assets.id'), nullable=True)
     button_link = db.Column(db.String(500))
+    button_link_fr = db.Column(db.String(500))
+    button_link_en = db.Column(db.String(500))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
@@ -56,6 +58,8 @@ class ContentField(db.Model):
             'field_type': self.field_type,
             'order': self.order,
             'button_link': self.button_link,
+            'button_link_fr': self.button_link_fr,
+            'button_link_en': self.button_link_en,
             'image': self.image.to_dict() if self.image else None
         }
         
@@ -63,6 +67,11 @@ class ContentField(db.Model):
             base_dict['value'] = self.value_fr
         elif lang == 'en' and self.value_en:
             base_dict['value'] = self.value_en
+        
+        if lang == 'fr' and self.button_link_fr:
+            base_dict['button_link'] = self.button_link_fr
+        elif lang == 'en' and self.button_link_en:
+            base_dict['button_link'] = self.button_link_en
         
         return base_dict
 

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, session, redirect, url_for
 from backend.models import db
 from backend.models.contact import Contact
 from backend.services.contact_service import ContactService
@@ -9,12 +9,24 @@ contact_service = ContactService()
 
 @main_bp.route('/')
 @main_bp.route('/<lang>')
-def index(lang='fr'):
+def index(lang=None):
+    if lang is None:
+        lang = session.get('language', 'fr')
+    
     if lang not in ['fr', 'en']:
         lang = 'fr'
+    
+    session['language'] = lang
+    
     context = content_provider.get_complete_context('home', lang=lang)
     context['current_lang'] = lang
     return render_template('index.html', **context)
+
+@main_bp.route('/change-language/<lang>')
+def change_language(lang):
+    if lang in ['fr', 'en']:
+        session['language'] = lang
+    return redirect(url_for('main.index'))
 
 @main_bp.route('/api/contact', methods=['POST'])
 def submit_contact():

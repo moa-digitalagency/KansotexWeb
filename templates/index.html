@@ -762,10 +762,10 @@
                 <span class="text-sm uppercase">{{ current_lang or 'FR' }}</span>
             </button>
             <div id="lang-menu" class="absolute bottom-full left-0 mb-2 bg-gray-800 rounded-lg shadow-xl overflow-hidden hidden">
-                <a href="/fr" class="block px-6 py-3 hover:bg-gray-700 transition {% if current_lang == 'fr' %}bg-gray-700{% endif %}">
+                <a href="{{ url_for('main.change_language', lang='fr') }}" class="block px-6 py-3 hover:bg-gray-700 transition {% if current_lang == 'fr' %}bg-gray-700{% endif %}">
                     <span class="font-semibold text-white">Français</span>
                 </a>
-                <a href="/en" class="block px-6 py-3 hover:bg-gray-700 transition {% if current_lang == 'en' %}bg-gray-700{% endif %}">
+                <a href="{{ url_for('main.change_language', lang='en') }}" class="block px-6 py-3 hover:bg-gray-700 transition {% if current_lang == 'en' %}bg-gray-700{% endif %}">
                     <span class="font-semibold text-white">English</span>
                 </a>
             </div>

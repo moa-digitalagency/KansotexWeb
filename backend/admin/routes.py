@@ -114,10 +114,14 @@ def edit_content(section_slug):
                 value_fr = ''
                 value_en = ''
                 button_link = None
+                button_link_fr = None
+                button_link_en = None
             else:
                 value_fr = request.form.get(f'{key}_fr', '')
                 value_en = request.form.get(f'{key}_en', '')
                 button_link = request.form.get(f'{key}_link', '')
+                button_link_fr = request.form.get(f'{key}_link_fr', '')
+                button_link_en = request.form.get(f'{key}_link_en', '')
                 image_id = None
             
             content_service.update_field(
@@ -127,7 +131,9 @@ def edit_content(section_slug):
                 field_type,
                 image_id,
                 value_en=value_en,
-                button_link=button_link
+                button_link=button_link,
+                button_link_fr=button_link_fr,
+                button_link_en=button_link_en
             )
         
         db.session.commit()
@@ -335,3 +341,95 @@ def update_section_api(slug):
     
     db.session.commit()
     return jsonify({'success': True, 'section': build_section_payload(section)})
+
+@admin_bp.route('/sections/edit', methods=['GET', 'POST'])
+@login_required
+def edit_all_sections():
+    sections = content_service.get_all_sections()
+    active_slug = request.args.get('active_slug') or (sections[0].slug if sections else None)
+    
+    active_section = None
+    fields = {}
+    
+    if active_slug:
+        active_section = content_service.get_section_by_slug(active_slug)
+        if active_section:
+            fields = content_service.get_section_fields(active_slug)
+    
+    if request.method == 'POST':
+        section_slug = request.form.get('section_slug')
+        if not section_slug:
+            flash('Section non trouvée', 'error')
+            return redirect(url_for('admin.edit_all_sections'))
+        
+        section = content_service.get_section_by_slug(section_slug)
+        if not section:
+            flash('Section non trouvée', 'error')
+            return redirect(url_for('admin.edit_all_sections'))
+        
+        existing_fields = content_service.get_section_fields(section_slug)
+        
+        for key in existing_fields.keys():
+            field_type = request.form.get(f'{key}_type', 'text')
+            
+            if field_type == 'image':
+                image_id_str = request.form.get(f'{key}_image_id', '')
+                image_id = int(image_id_str) if image_id_str else None
+                value_fr = ''
+                value_en = ''
+                button_link = None
+                button_link_fr = None
+                button_link_en = None
+            else:
+                value_fr = request.form.get(f'{key}_fr', '')
+                value_en = request.form.get(f'{key}_en', '')
+                button_link = request.form.get(f'{key}_link', '')
+                button_link_fr = request.form.get(f'{key}_link_fr', '')
+                button_link_en = request.form.get(f'{key}_link_en', '')
+                image_id = None
+            
+            content_service.update_field(
+                section.id,
+                key,
+                value_fr,
+                field_type,
+                image_id,
+                value_en=value_en,
+                button_link=button_link,
+                button_link_fr=button_link_fr,
+                button_link_en=button_link_en
+            )
+        
+        db.session.commit()
+        flash('Contenu mis à jour avec succès!', 'success')
+        return redirect(url_for('admin.edit_all_sections', active_slug=section_slug))
+    
+    return render_template('admin/edit_all_sections.html', 
+                         sections=sections, 
+                         active_section=active_section, 
+                         fields=fields)
+
+@admin_bp.route('/api/upload-cropped-image', methods=['POST'])
+@login_required
+def upload_cropped_image():
+    try:
+        if 'image' not in request.files:
+            return jsonify({'success': False, 'error': 'Aucune image fournie'}), 400
+        
+        image_file = request.files['image']
+        
+        if image_file.filename == '':
+            return jsonify({'success': False, 'error': 'Nom de fichier vide'}), 400
+        
+        if not image_file.content_type.startswith('image/'):
+            return jsonify({'success': False, 'error': 'Le fichier doit être une image'}), 400
+        
+        saved_image = image_service.save_image(image_file, alt_text='Cropped image')
+        
+        return jsonify({
+            'success': True, 
+            'image_id': saved_image.id,
+            'url': saved_image.to_dict()['url']
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
