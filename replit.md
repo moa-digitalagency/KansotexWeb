@@ -24,8 +24,12 @@ The project is built using a Python Flask backend with a PostgreSQL database, fo
 - **Content Management:** All major sections (Hero, Strengths, Collection, Sectors, Commitment, Contact) are dynamically managed via the admin panel.
 - **Multilingual Support:** Automatic browser language detection (FR/EN) with redirection.
 - **Contact Form:** Functional contact form with database storage and automatic SMTP email sending to administrators, including HTML-formatted emails.
-- **SEO Optimization:** Comprehensive SEO features including canonical URLs, robots meta, structured data (JSON-LD), Open Graph, and Twitter Cards, all configurable via the admin panel.
+- **SEO Optimization:** Comprehensive SEO features including:
+  - Dynamic sitemap.xml route (`/sitemap.xml`) with all pages and blog articles, proper priorities, change frequencies, and last modification dates
+  - Dynamic robots.txt route (`/robots.txt`) that allows public pages, disallows admin/API routes, and references the sitemap
+  - Canonical URLs, robots meta, structured data (JSON-LD), Open Graph, and Twitter Cards, all configurable via the admin panel
 - **Dynamic Images:** All site images (hero slider, collection, sector backgrounds, engagement background, footer background) are dynamically managed and editable through the admin interface, with a custom Jinja filter for URL handling and robust fallbacks.
+- **Accessibility:** Optimized color contrast in light mode for all UI components including strength cards, collection slides, navigation arrows, and contact forms to ensure WCAG compliance.
 
 **Admin Panel:**
 - **Secure Access:** Password-protected access via `/admin`.
