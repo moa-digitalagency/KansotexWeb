@@ -1,0 +1,148 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if testimonial %}Éditer le Témoignage{% else %}Nouveau Témoignage{% endif %}{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h2 class="text-3xl font-bold mb-2 text-accent">{% if testimonial %}Éditer le Témoignage{% else %}Nouveau Témoignage Client{% endif %}</h2>
+    <p class="text-gray-400">{% if testimonial %}Modifiez les informations du témoignage{% else %}Ajoutez un nouveau témoignage client{% endif %}</p>
+</div>
+
+<form method="POST" class="space-y-6">
+    {{ form.hidden_tag() }}
+    
+    <div class="bg-gray-800 rounded-lg p-6 space-y-4">
+        <h3 class="text-xl font-bold text-accent mb-4">Informations du Client</h3>
+        
+        <div>
+            <label class="block text-sm font-medium mb-2">Nom du Client *</label>
+            {{ form.client_name(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded") }}
+            {% if form.client_name.errors %}
+                <p class="text-red-400 text-sm mt-1">{{ form.client_name.errors[0] }}</p>
+            {% endif %}
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Titre/Poste (FR)</label>
+                {{ form.client_title_fr(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded", placeholder="ex: Directeur Général") }}
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Titre/Poste (EN)</label>
+                {{ form.client_title_en(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded", placeholder="ex: General Manager") }}
+            </div>
+        </div>
+        
+        <div>
+            <label class="block text-sm font-medium mb-2">Entreprise</label>
+            {{ form.client_company(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded") }}
+        </div>
+        
+        <div>
+            <label class="block text-sm font-medium mb-2">Photo du Client</label>
+            {{ form.client_photo_id(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded") }}
+            <p class="text-xs text-gray-400 mt-1">Sélectionnez une image depuis la galerie</p>
+        </div>
+    </div>
+    
+    <div class="bg-gray-800 rounded-lg p-6 space-y-4">
+        <h3 class="text-xl font-bold text-accent mb-4">Contenu du Témoignage</h3>
+        
+        <div>
+            <label class="block text-sm font-medium mb-2">Témoignage (FR) *</label>
+            {{ form.content_fr(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded", rows=5) }}
+            {% if form.content_fr.errors %}
+                <p class="text-red-400 text-sm mt-1">{{ form.content_fr.errors[0] }}</p>
+            {% endif %}
+        </div>
+        
+        <div>
+            <label class="block text-sm font-medium mb-2">Témoignage (EN) *</label>
+            {{ form.content_en(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded", rows=5) }}
+            {% if form.content_en.errors %}
+                <p class="text-red-400 text-sm mt-1">{{ form.content_en.errors[0] }}</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="bg-gray-800 rounded-lg p-6 space-y-4">
+        <h3 class="text-xl font-bold text-accent mb-4">Paramètres</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Note (étoiles)</label>
+                {{ form.rating(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded") }}
+                <p class="text-xs text-gray-400 mt-1">De 1 à 5 étoiles</p>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Ordre d'affichage</label>
+                {{ form.display_order(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded") }}
+                <p class="text-xs text-gray-400 mt-1">Plus le nombre est petit, plus le témoignage apparaît en premier</p>
+            </div>
+        </div>
+        
+        <div class="space-y-2">
+            <div class="flex items-center">
+                {{ form.is_published(class="mr-2") }}
+                <label class="text-sm font-medium">Publier ce témoignage</label>
+            </div>
+            
+            <div class="flex items-center">
+                {{ form.is_featured(class="mr-2") }}
+                <label class="text-sm font-medium">Marquer comme vedette</label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bg-gray-800 rounded-lg p-6 space-y-4">
+        <h3 class="text-xl font-bold text-accent mb-4">SEO (Optionnel)</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Meta Titre (FR)</label>
+                {{ form.meta_title_fr(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded") }}
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Meta Titre (EN)</label>
+                {{ form.meta_title_en(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded") }}
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Meta Description (FR)</label>
+                {{ form.meta_description_fr(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded", rows=2) }}
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Meta Description (EN)</label>
+                {{ form.meta_description_en(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded", rows=2) }}
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Mots-clés (FR)</label>
+                {{ form.meta_keywords_fr(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded") }}
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Mots-clés (EN)</label>
+                {{ form.meta_keywords_en(class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded") }}
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex items-center space-x-4">
+        <button type="submit" class="px-8 py-3 font-bold rounded-lg transition transform hover:scale-105" style="background: linear-gradient(135deg, #B8941E 0%, #D4AF37 100%); color: black;">
+            <i class="fas fa-save mr-2"></i>{% if testimonial %}Mettre à jour{% else %}Créer le témoignage{% endif %}
+        </button>
+        <a href="{{ url_for('admin.testimonials_list') }}" class="px-8 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg transition">
+            Annuler
+        </a>
+    </div>
+</form>
+{% endblock %}
