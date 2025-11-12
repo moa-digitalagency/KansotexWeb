@@ -122,6 +122,32 @@ class SiteSetting(db.Model):
             'setting_type': self.setting_type,
             'description': self.description
         }
+    
+    @staticmethod
+    def get_setting(key, default=None):
+        """Get a setting value by key"""
+        setting = SiteSetting.query.filter_by(key=key).first()
+        return setting.value if setting else default
+    
+    @staticmethod
+    def set_setting(key, value, setting_type='string', description=None):
+        """Set or update a setting value"""
+        setting = SiteSetting.query.filter_by(key=key).first()
+        if setting:
+            setting.value = value
+            setting.setting_type = setting_type
+            if description:
+                setting.description = description
+        else:
+            setting = SiteSetting(
+                key=key,
+                value=value,
+                setting_type=setting_type,
+                description=description
+            )
+            db.session.add(setting)
+        db.session.commit()
+        return setting
 
 
 class AdminSession(db.Model):
