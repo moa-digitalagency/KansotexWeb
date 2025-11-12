@@ -4,10 +4,10 @@
 
 {% block content %}
 <div class="mb-8">
-    <a href="{{ url_for('admin.dashboard') }}" class="text-sm mb-2 inline-block" style="color: #B8941E;">
+    <a href="{{ url_for('admin.dashboard') }}" class="text-sm mb-2 inline-block text-accent">
         <i class="fas fa-arrow-left mr-2"></i>Retour au tableau de bord
     </a>
-    <h2 class="text-3xl font-bold mb-2" style="color: #B8941E;">{{ section.name }}</h2>
+    <h2 class="text-3xl font-bold mb-2 text-accent">{{ section.name }}</h2>
     <p class="text-gray-400">{{ section.description or 'Modifiez le contenu de cette section' }}</p>
 </div>
 
@@ -35,7 +35,7 @@
                 <input type="hidden" name="{{ key }}_type" value="image">
             </div>
             {% else %}
-            <textarea name="{{ key }}" rows="4" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none focus:border-yellow-500">{{ field.value or '' }}</textarea>
+            <textarea name="{{ key }}" rows="4" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded focus:outline-none ring-accent">{{ field.value or '' }}</textarea>
             <input type="hidden" name="{{ key }}_type" value="text">
             {% endif %}
         </div>

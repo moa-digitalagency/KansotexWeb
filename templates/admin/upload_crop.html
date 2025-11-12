@@ -4,13 +4,13 @@
 
 {% block content %}
 <div class="mb-8">
-    <h2 class="text-3xl font-bold mb-2" style="color: #B8941E;">Upload et Crop d'Image</h2>
+    <h2 class="text-3xl font-bold mb-2 text-accent">Upload et Crop d'Image</h2>
     <p class="text-gray-400">Téléchargez une image et découpez-la aux dimensions souhaitées</p>
 </div>
 
 <!-- Dimension presets -->
 <div class="bg-gray-800 rounded-lg p-6 mb-6">
-    <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+    <h3 class="text-xl font-bold mb-4 text-accent">
         <i class="fas fa-ruler-combined mr-2"></i>Dimensions Pré-définies
     </h3>
     
@@ -50,13 +50,13 @@
     </div>
     
     <div class="mt-4 p-4 bg-gray-700 rounded">
-        <p class="text-sm">Ratio actuel: <span id="current-ratio" style="color: #B8941E;" class="font-bold">Sélectionnez un format</span></p>
+        <p class="text-sm">Ratio actuel: <span id="current-ratio" class="text-accent font-bold">Sélectionnez un format</span></p>
     </div>
 </div>
 
 <!-- Upload Form -->
 <div class="bg-gray-800 rounded-lg p-6 mb-6">
-    <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+    <h3 class="text-xl font-bold mb-4 text-accent">
         <i class="fas fa-upload mr-2"></i>Télécharger une Image
     </h3>
     
@@ -68,7 +68,7 @@
             <input type="file" 
                    id="image-input" 
                    accept="image/*"
-                   class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none">
+                   class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none">
         </div>
         
         <div class="mb-4">
@@ -76,7 +76,7 @@
             <input type="text" 
                    id="alt-text" 
                    name="alt_text"
-                   class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                   class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                    placeholder="Description de l'image pour l'accessibilité">
         </div>
     </form>
@@ -84,7 +84,7 @@
 
 <!-- Crop Area -->
 <div id="crop-container" class="bg-gray-800 rounded-lg p-6 mb-6" style="display: none;">
-    <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+    <h3 class="text-xl font-bold mb-4 text-accent">
         <i class="fas fa-crop-alt mr-2"></i>Recadrer l'Image
     </h3>
     
@@ -101,7 +101,7 @@
         <button type="button" 
                 onclick="saveCroppedImage()"
                 class="px-6 py-2 rounded transition"
-                style="background: #B8941E; color: black; font-weight: bold;">
+                class="bg-accent-gradient">
             <i class="fas fa-check mr-2"></i>Enregistrer l'Image
         </button>
     </div>
@@ -123,9 +123,9 @@ function setAspectRatio(ratio, name) {
     
     // Highlight selected preset
     document.querySelectorAll('.preset-btn').forEach(btn => {
-        btn.classList.remove('ring-2', 'ring-yellow-600');
+        btn.classList.remove('ring-2', 'ring-accent');
     });
-    event.target.closest('.preset-btn').classList.add('ring-2', 'ring-yellow-600');
+    event.target.closest('.preset-btn').classList.add('ring-2', 'ring-accent');
     
     // Update cropper if active
     if (cropper) {

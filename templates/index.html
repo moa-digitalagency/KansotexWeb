@@ -77,12 +77,12 @@
             </div>
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3 text-sm font-semibold">
-                <a href="#accueil" class="block hover:text-yellow-500 transition uppercase">Accueil</a>
-                <a href="#collection" class="block hover:text-yellow-500 transition uppercase">Collection</a>
-                <a href="#volets" class="block hover:text-yellow-500 transition uppercase">Nos Volets</a>
-                <a href="#forces" class="block hover:text-yellow-500 transition uppercase">Points Forts</a>
-                <a href="#engagement" class="block hover:text-yellow-500 transition uppercase">Engagement</a>
-                <a href="#contact" class="block hover:text-yellow-500 transition uppercase">Contact</a>
+                <a href="#accueil" class="block hover-text-accent transition uppercase">Accueil</a>
+                <a href="#collection" class="block hover-text-accent transition uppercase">Collection</a>
+                <a href="#volets" class="block hover-text-accent transition uppercase">Nos Volets</a>
+                <a href="#forces" class="block hover-text-accent transition uppercase">Points Forts</a>
+                <a href="#engagement" class="block hover-text-accent transition uppercase">Engagement</a>
+                <a href="#contact" class="block hover-text-accent transition uppercase">Contact</a>
             </div>
         </nav>
     </header>
@@ -578,11 +578,11 @@
                         </div>
                         <div class="flex items-center space-x-3">
                             <i class="fas fa-phone text-xl w-6" class="text-accent"></i>
-                            <a href="tel:{{ content.contact.contact_phone.value if content.contact and content.contact.contact_phone else '+21250898989' }}" class="hover:text-yellow-500 transition">{{ content.contact.contact_phone.value if content.contact and content.contact.contact_phone else '+212 50 898 989' }}</a>
+                            <a href="tel:{{ content.contact.contact_phone.value if content.contact and content.contact.contact_phone else '+21250898989' }}" class="hover-text-accent transition">{{ content.contact.contact_phone.value if content.contact and content.contact.contact_phone else '+212 50 898 989' }}</a>
                         </div>
                         <div class="flex items-center space-x-3">
                             <i class="fas fa-envelope text-xl w-6" class="text-accent"></i>
-                            <a href="mailto:{{ content.contact.contact_email.value if content.contact and content.contact.contact_email else 'contact@kansotex.com' }}" class="hover:text-yellow-500 transition">{{ content.contact.contact_email.value if content.contact and content.contact.contact_email else 'contact@kansotex.com' }}</a>
+                            <a href="mailto:{{ content.contact.contact_email.value if content.contact and content.contact.contact_email else 'contact@kansotex.com' }}" class="hover-text-accent transition">{{ content.contact.contact_email.value if content.contact and content.contact.contact_email else 'contact@kansotex.com' }}</a>
                         </div>
                         <div class="flex items-center space-x-3">
                             <i class="fas fa-map-marker-alt text-xl w-6" class="text-accent"></i>
@@ -653,7 +653,7 @@
         </div>
         
         <!-- Gradient Overlay -->
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-600 to-transparent opacity-50"></div>
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-accent opacity-50"></div>
         
         <!-- Footer Content -->
         <div class="container mx-auto relative z-10 max-w-6xl">

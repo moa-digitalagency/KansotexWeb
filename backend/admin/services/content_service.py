@@ -1,6 +1,28 @@
 from backend.models import db
 from backend.models.content import ContentSection, ContentField, SiteSetting
 
+def build_section_payload(section):
+    """Serialize section data for API responses"""
+    if not section:
+        return None
+    
+    fields = {}
+    for field in section.fields:
+        fields[field.key] = {
+            'id': field.id,
+            'type': field.field_type,
+            'value': field.value or '',
+            'image': field.image.to_dict() if field.image else None
+        }
+    
+    return {
+        'id': section.id,
+        'slug': section.slug,
+        'name': section.name,
+        'description': section.description,
+        'fields': fields
+    }
+
 class ContentService:
     @staticmethod
     def get_all_sections():

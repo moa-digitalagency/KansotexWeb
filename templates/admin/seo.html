@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="mb-8">
-    <h2 class="text-3xl font-bold mb-2" style="color: #B8941E;">Paramètres SEO</h2>
+    <h2 class="text-3xl font-bold mb-2 text-accent">Paramètres SEO</h2>
     <p class="text-gray-400">Optimisez le référencement de votre site web</p>
 </div>
 
@@ -13,7 +13,7 @@
     
     <!-- Méta Tags Basiques -->
     <div class="bg-gray-800 rounded-lg p-6">
-        <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+        <h3 class="text-xl font-bold mb-4 text-accent">
             <i class="fas fa-search mr-2"></i>Méta Tags Basiques
         </h3>
         
@@ -23,7 +23,7 @@
                 <input type="text" 
                        name="meta_title" 
                        value="{{ seo_settings.meta_title }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="KANSOTEX - Expert en Textiles de Qualité Premium">
                 <p class="text-xs text-gray-500 mt-1">Longueur recommandée: 50-60 caractères</p>
             </div>
@@ -32,7 +32,7 @@
                 <label class="block text-sm font-medium mb-2">Description (Meta Description)</label>
                 <textarea name="meta_description" 
                           rows="3"
-                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                           placeholder="Expert en textiles de qualité premium depuis 2005...">{{ seo_settings.meta_description }}</textarea>
                 <p class="text-xs text-gray-500 mt-1">Longueur recommandée: 150-160 caractères</p>
             </div>
@@ -41,7 +41,7 @@
                 <label class="block text-sm font-medium mb-2">Mots-clés (Meta Keywords)</label>
                 <textarea name="meta_keywords" 
                           rows="2"
-                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                           placeholder="textiles premium, linge hôtelier, textiles médicaux...">{{ seo_settings.meta_keywords }}</textarea>
                 <p class="text-xs text-gray-500 mt-1">Séparez les mots-clés par des virgules</p>
             </div>
@@ -51,7 +51,7 @@
                 <input type="text" 
                        name="meta_author" 
                        value="{{ seo_settings.meta_author }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="KANSOTEX">
             </div>
             
@@ -60,7 +60,7 @@
                 <input type="text" 
                        name="canonical_url" 
                        value="{{ seo_settings.canonical_url }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="https://www.kansotex.com">
                 <p class="text-xs text-gray-500 mt-1">URL principale de votre site (évite le contenu dupliqué)</p>
             </div>
@@ -68,7 +68,7 @@
             <div>
                 <label class="block text-sm font-medium mb-2">Robots Meta Tag</label>
                 <select name="meta_robots" 
-                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none">
+                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none">
                     <option value="index, follow" {% if seo_settings.meta_robots == 'index, follow' %}selected{% endif %}>Index, Follow (Recommandé)</option>
                     <option value="noindex, follow" {% if seo_settings.meta_robots == 'noindex, follow' %}selected{% endif %}>No Index, Follow</option>
                     <option value="index, nofollow" {% if seo_settings.meta_robots == 'index, nofollow' %}selected{% endif %}>Index, No Follow</option>
@@ -82,7 +82,7 @@
                 <input type="text" 
                        name="favicon_url" 
                        value="{{ seo_settings.favicon_url }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="/static/images/favicon.ico">
                 <p class="text-xs text-gray-500 mt-1">Icône affichée dans l'onglet du navigateur (format .ico, .png ou .svg)</p>
             </div>
@@ -91,7 +91,7 @@
     
     <!-- Données Structurées (JSON-LD) -->
     <div class="bg-gray-800 rounded-lg p-6">
-        <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+        <h3 class="text-xl font-bold mb-4 text-accent">
             <i class="fas fa-code mr-2"></i>Données Structurées (JSON-LD)
         </h3>
         
@@ -99,7 +99,7 @@
             <div>
                 <label class="block text-sm font-medium mb-2">Type d'Organisation</label>
                 <select name="schema_type" 
-                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none">
+                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none">
                     <option value="Organization" {% if seo_settings.schema_type == 'Organization' %}selected{% endif %}>Organization</option>
                     <option value="LocalBusiness" {% if seo_settings.schema_type == 'LocalBusiness' %}selected{% endif %}>Local Business</option>
                     <option value="Corporation" {% if seo_settings.schema_type == 'Corporation' %}selected{% endif %}>Corporation</option>
@@ -111,7 +111,7 @@
                 <input type="text" 
                        name="schema_name" 
                        value="{{ seo_settings.schema_name }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="KANSOTEX">
             </div>
             
@@ -119,7 +119,7 @@
                 <label class="block text-sm font-medium mb-2">Description de l'Entreprise</label>
                 <textarea name="schema_description" 
                           rows="2"
-                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                           placeholder="Expert en textiles de qualité premium depuis 2005">{{ seo_settings.schema_description }}</textarea>
             </div>
             
@@ -128,7 +128,7 @@
                 <input type="text" 
                        name="schema_logo" 
                        value="{{ seo_settings.schema_logo }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="/static/images/logo.png">
             </div>
             
@@ -137,7 +137,7 @@
                 <input type="text" 
                        name="schema_url" 
                        value="{{ seo_settings.schema_url }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="https://www.kansotex.com">
             </div>
         </div>
@@ -145,7 +145,7 @@
     
     <!-- Open Graph (Facebook) -->
     <div class="bg-gray-800 rounded-lg p-6">
-        <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+        <h3 class="text-xl font-bold mb-4 text-accent">
             <i class="fab fa-facebook mr-2"></i>Open Graph (Facebook)
         </h3>
         
@@ -155,7 +155,7 @@
                 <input type="text" 
                        name="og_title" 
                        value="{{ seo_settings.og_title }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="KANSOTEX - Expert en Textiles">
             </div>
             
@@ -163,7 +163,7 @@
                 <label class="block text-sm font-medium mb-2">Description OG</label>
                 <textarea name="og_description" 
                           rows="3"
-                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                           placeholder="Découvrez notre collection...">{{ seo_settings.og_description }}</textarea>
             </div>
             
@@ -172,7 +172,7 @@
                 <input type="text" 
                        name="og_image" 
                        value="{{ seo_settings.og_image }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="https://votre-site.com/image-og.jpg">
                 <p class="text-xs text-gray-500 mt-1">Taille recommandée: 1200x630 pixels</p>
             </div>
@@ -180,7 +180,7 @@
             <div>
                 <label class="block text-sm font-medium mb-2">Type OG</label>
                 <select name="og_type" 
-                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none">
+                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none">
                     <option value="website" {% if seo_settings.og_type == 'website' %}selected{% endif %}>Website</option>
                     <option value="article" {% if seo_settings.og_type == 'article' %}selected{% endif %}>Article</option>
                     <option value="business.business" {% if seo_settings.og_type == 'business.business' %}selected{% endif %}>Business</option>
@@ -191,7 +191,7 @@
     
     <!-- Twitter Card -->
     <div class="bg-gray-800 rounded-lg p-6">
-        <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+        <h3 class="text-xl font-bold mb-4 text-accent">
             <i class="fab fa-twitter mr-2"></i>Twitter Card
         </h3>
         
@@ -199,7 +199,7 @@
             <div>
                 <label class="block text-sm font-medium mb-2">Type de carte</label>
                 <select name="twitter_card" 
-                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none">
+                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none">
                     <option value="summary" {% if seo_settings.twitter_card == 'summary' %}selected{% endif %}>Summary</option>
                     <option value="summary_large_image" {% if seo_settings.twitter_card == 'summary_large_image' %}selected{% endif %}>Summary Large Image</option>
                 </select>
@@ -210,7 +210,7 @@
                 <input type="text" 
                        name="twitter_title" 
                        value="{{ seo_settings.twitter_title }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="KANSOTEX - Expert en Textiles">
             </div>
             
@@ -218,7 +218,7 @@
                 <label class="block text-sm font-medium mb-2">Description Twitter</label>
                 <textarea name="twitter_description" 
                           rows="3"
-                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                           placeholder="Découvrez notre collection...">{{ seo_settings.twitter_description }}</textarea>
             </div>
             
@@ -227,7 +227,7 @@
                 <input type="text" 
                        name="twitter_image" 
                        value="{{ seo_settings.twitter_image }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="https://votre-site.com/image-twitter.jpg">
                 <p class="text-xs text-gray-500 mt-1">Taille recommandée: 1200x628 pixels</p>
             </div>
@@ -237,7 +237,7 @@
                 <input type="text" 
                        name="twitter_site" 
                        value="{{ seo_settings.twitter_site }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="@kansotex">
             </div>
         </div>
@@ -250,7 +250,7 @@
         </a>
         <button type="submit" 
                 class="px-6 py-2 rounded transition"
-                style="background: #B8941E; color: black; font-weight: bold;">
+                class="bg-accent-gradient">
             <i class="fas fa-save mr-2"></i>Enregistrer les paramètres SEO
         </button>
     </div>

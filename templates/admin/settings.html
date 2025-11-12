@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="mb-8">
-    <h2 class="text-3xl font-bold mb-2" style="color: #B8941E;">Param&egrave;tres du Site</h2>
+    <h2 class="text-3xl font-bold mb-2 text-accent">Param&egrave;tres du Site</h2>
     <p class="text-gray-400">Configurez les informations g&eacute;n&eacute;rales de votre site</p>
 </div>
 
@@ -12,7 +12,7 @@
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     
     <div class="bg-gray-800 rounded-lg p-6">
-        <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+        <h3 class="text-xl font-bold mb-4 text-accent">
             <i class="fas fa-building mr-2"></i>Informations de l'Entreprise
         </h3>
         
@@ -22,7 +22,7 @@
                 <input type="text" 
                        name="site_name" 
                        value="{{ settings.site_name }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="KANSOTEX">
             </div>
             
@@ -31,7 +31,7 @@
                 <input type="text" 
                        name="site_logo" 
                        value="{{ settings.site_logo }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="/static/images/logo.png">
                 <p class="text-xs text-gray-500 mt-1">URL ou chemin vers le logo du site</p>
             </div>
@@ -40,7 +40,7 @@
                 <label class="block text-sm font-medium mb-2">Adresse de l'entreprise</label>
                 <textarea name="company_address" 
                           rows="2"
-                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                           placeholder="Votre adresse compl&egrave;te">{{ settings.company_address }}</textarea>
             </div>
             
@@ -49,7 +49,7 @@
                 <input type="text" 
                        name="company_phone" 
                        value="{{ settings.company_phone }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="+212 50 898 989">
             </div>
             
@@ -58,7 +58,7 @@
                 <input type="email" 
                        name="company_email" 
                        value="{{ settings.company_email }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="contact@kansotex.com">
             </div>
             
@@ -67,14 +67,14 @@
                 <input type="text" 
                        name="company_ice" 
                        value="{{ settings.company_ice }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="002323065B06">
             </div>
         </div>
     </div>
     
     <div class="bg-gray-800 rounded-lg p-6">
-        <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+        <h3 class="text-xl font-bold mb-4 text-accent">
             <i class="fas fa-palette mr-2"></i>Th&egrave;me de Couleur
         </h3>
         
@@ -82,7 +82,7 @@
             <div>
                 <label class="block text-sm font-medium mb-2">Palette de couleurs du site</label>
                 <select name="color_theme" 
-                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none">
+                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none">
                     <option value="gold" {% if settings.color_theme == 'gold' %}selected{% endif %}>Or (Noir, Or, Blanc)</option>
                     <option value="silver" {% if settings.color_theme == 'silver' %}selected{% endif %}>Argent (Noir, Blanc)</option>
                 </select>
@@ -92,7 +92,7 @@
     </div>
     
     <div class="bg-gray-800 rounded-lg p-6">
-        <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+        <h3 class="text-xl font-bold mb-4 text-accent">
             <i class="fas fa-share-alt mr-2"></i>R&eacute;seaux Sociaux
         </h3>
         
@@ -104,7 +104,7 @@
                 <input type="url" 
                        name="facebook_url" 
                        value="{{ settings.facebook_url }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="https://facebook.com/votre-page">
             </div>
             
@@ -115,7 +115,7 @@
                 <input type="url" 
                        name="instagram_url" 
                        value="{{ settings.instagram_url }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="https://instagram.com/votre-compte">
             </div>
             
@@ -126,7 +126,7 @@
                 <input type="url" 
                        name="linkedin_url" 
                        value="{{ settings.linkedin_url }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="https://linkedin.com/company/votre-entreprise">
             </div>
             
@@ -137,7 +137,7 @@
                 <input type="url" 
                        name="twitter_url" 
                        value="{{ settings.twitter_url }}"
-                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
                        placeholder="https://twitter.com/votre-compte">
             </div>
         </div>
@@ -149,8 +149,7 @@
             Annuler
         </a>
         <button type="submit" 
-                class="px-6 py-2 rounded transition"
-                style="background: #B8941E; color: black; font-weight: bold;">
+                class="px-6 py-2 rounded transition bg-accent-gradient">
             <i class="fas fa-save mr-2"></i>Enregistrer les param&egrave;tres
         </button>
     </div>

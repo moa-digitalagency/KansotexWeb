@@ -5,7 +5,7 @@ from functools import wraps
 from flask import render_template, request, redirect, url_for, flash, jsonify, session
 from backend.admin import admin_bp
 from backend.admin.forms import LoginForm, ContentFieldForm, ImageUploadForm, ImageCropForm
-from backend.admin.services.content_service import content_service
+from backend.admin.services.content_service import content_service, build_section_payload
 from backend.admin.services.image_service import image_service
 from backend.models import db
 from backend.models.content import AdminSession
@@ -277,3 +277,49 @@ def site_settings():
         settings[key] = content_service.get_setting(key, 'gold' if key == 'color_theme' else '')
     
     return render_template('admin/settings.html', settings=settings)
+
+@admin_bp.route('/sections', methods=['GET'])
+@login_required
+def edit_sections():
+    sections = content_service.get_all_sections()
+    return render_template('admin/edit_sections.html', sections=sections)
+
+@admin_bp.route('/api/section/<slug>', methods=['GET'])
+@login_required
+def get_section_api(slug):
+    section = content_service.get_section_by_slug(slug)
+    if not section:
+        return jsonify({'error': 'Section not found'}), 404
+    
+    return jsonify(build_section_payload(section))
+
+@admin_bp.route('/api/section/<slug>', methods=['POST'])
+@login_required
+def update_section_api(slug):
+    section = content_service.get_section_by_slug(slug)
+    if not section:
+        return jsonify({'error': 'Section not found'}), 404
+    
+    existing_fields = content_service.get_section_fields(slug)
+    
+    for key in existing_fields.keys():
+        field_type = request.form.get(f'{key}_type', 'text')
+        
+        if field_type == 'image':
+            image_id_str = request.form.get(f'{key}_image_id', '')
+            image_id = int(image_id_str) if image_id_str else None
+            value = ''
+        else:
+            value = request.form.get(key, '')
+            image_id = None
+        
+        content_service.update_field(
+            section.id,
+            key,
+            value,
+            field_type,
+            image_id
+        )
+    
+    db.session.commit()
+    return jsonify({'success': True, 'section': build_section_payload(section)})

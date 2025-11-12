@@ -111,6 +111,11 @@ body {
     border-color: rgba(var(--accent-rgb), 0.3) !important;
 }
 
+/* For gradients */
+.bg-gradient-accent {
+    background: linear-gradient(to right, transparent, rgba(var(--accent-rgb), 0.5), transparent) !important;
+}
+
 .card {
     background: var(--bg-secondary);
     border: 1px solid rgba(var(--accent-rgb), var(--border-opacity));

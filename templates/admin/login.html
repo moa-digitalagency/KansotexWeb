@@ -10,7 +10,7 @@
     <div class="min-h-screen flex items-center justify-center px-4">
         <div class="max-w-md w-full">
             <div class="text-center mb-8">
-                <h1 class="text-4xl font-bold mb-2" style="color: #B8941E;">KANSOTEX</h1>
+                <h1 class="text-4xl font-bold mb-2 text-accent">KANSOTEX</h1>
                 <p class="text-gray-400">Administration</p>
             </div>
             
@@ -26,13 +26,13 @@
                 {% endif %}
             {% endwith %}
             
-            <div class="bg-gray-800 rounded-lg p-8 shadow-xl" style="border: 1px solid #B8941E;">
+            <div class="bg-gray-800 rounded-lg p-8 shadow-xl border-accent">
                 <form method="POST">
                     {{ form.hidden_tag() }}
                     
                     <div class="mb-6">
                         <label for="password" class="block text-sm font-medium mb-2">Mot de passe</label>
-                        {{ form.password(class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500", id="password", placeholder="Entrez votre mot de passe") }}
+                        {{ form.password(class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none ring-accent", id="password", placeholder="Entrez votre mot de passe") }}
                         {% if form.password.errors %}
                             <p class="text-red-400 text-sm mt-1">{{ form.password.errors[0] }}</p>
                         {% endif %}
