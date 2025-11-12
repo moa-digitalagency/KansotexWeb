@@ -479,7 +479,7 @@
         <div class="container mx-auto relative z-10 max-w-6xl">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">
-                    Notre <span class="text-accent">Engagement</span>
+                    {{ content.engagement.title.value if content.engagement and content.engagement.title else (t.nav.engagement[current_lang] if current_lang == 'en' else 'Notre Engagement') }}
                 </h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">
                     {{ content.engagement.description.value if content.engagement and content.engagement.description else 'Des valeurs fortes au service de votre satisfaction' }}
@@ -553,8 +553,12 @@
     <section id="contact" class="py-24 px-6" style="background: rgba(15, 15, 15, 0.8);">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">Infos <span class="text-accent">Contact</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Contactez-nous pour tous vos besoins en textiles premium</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">
+                    {{ content.contact.title.value if content.contact and content.contact.title else (t.footer.contact_title[current_lang] if current_lang == 'en' else 'Infos Contact') }}
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    {{ content.contact.description.value if content.contact and content.contact.description else ('Contact us for all your premium textile needs' if current_lang == 'en' else 'Contactez-nous pour tous vos besoins en textiles premium') }}
+                </p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Contact Info -->
