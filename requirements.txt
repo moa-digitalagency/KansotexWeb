@@ -22,3 +22,4 @@ Flask-WTF
 Pillow
 psycopg2-binary
 python-dotenv
+gunicorn
