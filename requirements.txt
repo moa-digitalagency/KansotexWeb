@@ -35,3 +35,12 @@ gunicorn
 Pillow
 psycopg2-binary
 python-dotenv
+Flask
+Flask-CORS
+Flask-Login
+Flask-SQLAlchemy
+Flask-WTF
+gunicorn
+Pillow
+psycopg2-binary
+python-dotenv
