@@ -50,7 +50,11 @@ seed_content.py - Script d'initialisation du contenu
   - Contenu dynamique chargé depuis la base de données
   - Images d'arrière-plan subtiles (3 piliers)
 - Carousel de témoignages clients interactif
-- Formulaire de contact fonctionnel avec stockage en base de données
+- Formulaire de contact fonctionnel avec:
+  - Stockage en base de données
+  - **Envoi d'emails automatique via SMTP** aux administrateurs
+  - Emails HTML formatés avec toutes les informations du contact
+  - Gestion robuste des erreurs avec logs détaillés
 - **Footer modernisé** avec layout 4 colonnes, icônes sociales, ligne de dégradé doré
 - Design responsive en thème noir et or foncé (#B8941E) premium
 - Animations et transitions fluides
@@ -66,6 +70,13 @@ seed_content.py - Script d'initialisation du contenu
   - Conversion automatique en RGB
   - Limite de taille: 10 MB
 - **Cropping d'images** - Recadrage des images selon les formats requis
+- **Configuration Email/SMTP** - Paramètres d'envoi d'emails pour le formulaire de contact
+  - Email destinataire pour les messages de contact
+  - Serveur SMTP (host, port, TLS)
+  - Email expéditeur
+  - Validation automatique du port SMTP (1-65535, défaut 587)
+  - Avertissements si la configuration est incomplète
+  - Credentials SMTP stockés de manière sécurisée dans les Secrets
 - **Tableau de bord** avec statistiques et accès rapide
 - **Sessions sécurisées** avec expiration automatique (8 heures)
 - **Interface responsive** adaptée aux écrans desktop et mobile
@@ -131,6 +142,8 @@ Le serveur Flask écoute sur `0.0.0.0:5000` pour permettre l'accès via le proxy
 - **DATABASE_URL** - URL de connexion PostgreSQL (requis)
 - **SESSION_SECRET** - Clé secrète pour les sessions Flask (requis)
 - **ADMIN_PASSWORD** - Mot de passe du panneau d'administration (requis)
+- **SMTP_USERNAME** - Nom d'utilisateur SMTP pour l'envoi d'emails (optionnel, requis si SMTP configuré)
+- **SMTP_PASSWORD** - Mot de passe SMTP pour l'envoi d'emails (optionnel, requis si SMTP configuré)
 
 ## Accès au Panneau d'Administration
 1. Accéder à `/admin/login`
@@ -234,3 +247,13 @@ Toutes les sections suivantes sont maintenant **complètement dynamiques** et é
     * Twitter Card (1200x675)
   - Crop en temps réel avec aperçu avant upload
   - Optimisation automatique des images croppées (qualité 85%, conversion RGB)
+- **2025-11-12: Configuration Email/SMTP pour le formulaire de contact**
+  - Nouveaux paramètres de site éditables dans `/admin/settings`:
+    * Email destinataire pour les messages de contact
+    * Serveur SMTP (host, port, TLS, email expéditeur)
+  - Credentials SMTP sécurisés via variables d'environnement (SMTP_USERNAME, SMTP_PASSWORD)
+  - Service d'envoi d'email automatique lors de la soumission du formulaire
+  - Emails HTML formatés avec design professionnel
+  - Validation robuste du port SMTP avec valeur par défaut (587)
+  - Messages d'avertissement si la configuration SMTP est incomplète
+  - Logs détaillés pour faciliter le débogage des problèmes d'envoi
