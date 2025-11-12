@@ -36,6 +36,12 @@ class TestimonialService:
             client_photo_id=data.get('client_photo_id'),
             content_fr=data.get('content_fr'),
             content_en=data.get('content_en'),
+            meta_title_fr=data.get('meta_title_fr'),
+            meta_title_en=data.get('meta_title_en'),
+            meta_description_fr=data.get('meta_description_fr'),
+            meta_description_en=data.get('meta_description_en'),
+            meta_keywords_fr=data.get('meta_keywords_fr'),
+            meta_keywords_en=data.get('meta_keywords_en'),
             rating=data.get('rating', 5),
             is_featured=data.get('is_featured', False),
             is_published=data.get('is_published', True),
@@ -56,6 +62,8 @@ class TestimonialService:
         # Update fields
         for field in ['client_name', 'client_title_fr', 'client_title_en', 
                       'client_company', 'client_photo_id', 'content_fr', 'content_en',
+                      'meta_title_fr', 'meta_title_en', 'meta_description_fr', 
+                      'meta_description_en', 'meta_keywords_fr', 'meta_keywords_en',
                       'rating', 'is_featured', 'is_published', 'display_order']:
             if field in data:
                 setattr(testimonial, field, data[field])

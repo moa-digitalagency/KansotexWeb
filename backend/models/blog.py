@@ -129,6 +129,14 @@ class Testimonial(db.Model):
     content_fr = db.Column(db.Text, nullable=False)
     content_en = db.Column(db.Text, nullable=False)
     
+    # SEO fields (bilingual)
+    meta_title_fr = db.Column(db.String(200))
+    meta_title_en = db.Column(db.String(200))
+    meta_description_fr = db.Column(db.Text)
+    meta_description_en = db.Column(db.Text)
+    meta_keywords_fr = db.Column(db.Text)
+    meta_keywords_en = db.Column(db.Text)
+    
     # Rating (1-5 stars)
     rating = db.Column(db.Integer, default=5)
     
@@ -156,7 +164,10 @@ class Testimonial(db.Model):
             'rating': self.rating,
             'is_featured': self.is_featured,
             'display_order': self.display_order,
-            'created_at': self.created_at.isoformat()
+            'created_at': self.created_at.isoformat(),
+            'meta_title': self.meta_title_fr if lang == 'fr' else self.meta_title_en,
+            'meta_description': self.meta_description_fr if lang == 'fr' else self.meta_description_en,
+            'meta_keywords': self.meta_keywords_fr if lang == 'fr' else self.meta_keywords_en
         }
     
     def to_dict_admin(self):
@@ -175,7 +186,13 @@ class Testimonial(db.Model):
             'is_published': self.is_published,
             'display_order': self.display_order,
             'created_at': self.created_at.isoformat(),
-            'updated_at': self.updated_at.isoformat()
+            'updated_at': self.updated_at.isoformat(),
+            'meta_title_fr': self.meta_title_fr,
+            'meta_title_en': self.meta_title_en,
+            'meta_description_fr': self.meta_description_fr,
+            'meta_description_en': self.meta_description_en,
+            'meta_keywords_fr': self.meta_keywords_fr,
+            'meta_keywords_en': self.meta_keywords_en
         }
 
 

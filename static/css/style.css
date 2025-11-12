@@ -545,8 +545,8 @@ body[data-theme-mode="light"] .strength-card:hover {
 }
 
 /* Language toggle (move up when theme toggle is present) */
-body.theme-toggle-enabled #lang-toggle {
-    bottom: 7rem;
+body.theme-toggle-enabled #lang-switcher {
+    bottom: 7rem !important;
 }
 
 /* Smooth transition for theme changes */

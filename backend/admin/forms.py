@@ -71,6 +71,14 @@ class TestimonialForm(FlaskForm):
     content_fr = TextAreaField('Témoignage (FR)', validators=[DataRequired()])
     content_en = TextAreaField('Testimonial (EN)', validators=[DataRequired()])
     
+    # SEO fields (bilingual)
+    meta_title_fr = StringField('Meta Title (FR)', validators=[Optional(), Length(max=200)])
+    meta_title_en = StringField('Meta Title (EN)', validators=[Optional(), Length(max=200)])
+    meta_description_fr = TextAreaField('Meta Description (FR)', validators=[Optional()])
+    meta_description_en = TextAreaField('Meta Description (EN)', validators=[Optional()])
+    meta_keywords_fr = StringField('Meta Keywords (FR)', validators=[Optional()])
+    meta_keywords_en = StringField('Meta Keywords (EN)', validators=[Optional()])
+    
     # Other fields
     client_photo_id = IntegerField('Client Photo ID', validators=[Optional()])
     rating = IntegerField('Rating (1-5)', validators=[Optional(), NumberRange(min=1, max=5)])
