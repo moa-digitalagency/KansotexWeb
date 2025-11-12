@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 from flask_wtf.csrf import CSRFProtect
 from config import Config
@@ -6,6 +6,7 @@ from backend.models import db
 from backend.routes.main_routes import main_bp
 from backend.admin import admin_bp
 from backend.services.content_provider import ContentProvider
+from backend.utils.translations import TRANSLATIONS, get_translation
 
 def create_app():
     app = Flask(__name__, 
@@ -20,6 +21,17 @@ def create_app():
     
     # Register custom Jinja filters
     app.jinja_env.filters['image_url'] = ContentProvider.get_image_url
+    
+    # Make translations available in all templates
+    @app.context_processor
+    def inject_translations():
+        """Inject translations and current language into all templates"""
+        current_lang = getattr(request, 'current_lang', 'fr')
+        return {
+            't': TRANSLATIONS,
+            'current_lang': current_lang,
+            'get_translation': get_translation
+        }
     
     app.register_blueprint(main_bp)
     app.register_blueprint(admin_bp)
