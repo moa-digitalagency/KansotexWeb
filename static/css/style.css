@@ -30,18 +30,18 @@ body[data-theme="gold"] {
     --button-text: #000000;
 }
 
-/* THEME ARGENT (SILVER) - Noir et gris foncé uniquement */
+/* THEME ARGENT (SILVER) - Blanc et gris argenté pour fond dark */
 body[data-theme="silver"] {
-    --accent-light: #1a1a1a;
-    --accent-mid: #2d2d2d;
-    --accent-dark: #0a0a0a;
-    --accent-rgb: 26, 26, 26;
-    --border-opacity: 0.5;
-    --hover-border-opacity: 0.8;
-    --shadow-opacity: 0.3;
-    --button-bg: #1a1a1a;
-    --button-hover-bg: #2d2d2d;
-    --button-text: #FFFFFF;
+    --accent-light: #E8E8E8;
+    --accent-mid: #C0C0C0;
+    --accent-dark: #A8A8A8;
+    --accent-rgb: 232, 232, 232;
+    --border-opacity: 0.4;
+    --hover-border-opacity: 0.7;
+    --shadow-opacity: 0.25;
+    --button-bg: #E8E8E8;
+    --button-hover-bg: #FFFFFF;
+    --button-text: #000000;
 }
 
 * {
