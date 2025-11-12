@@ -428,3 +428,160 @@ input:focus, textarea:focus {
         font-size: 1rem !important;
     }
 }
+
+/* ===== LIGHT THEME STYLES ===== */
+
+/* Light theme variables */
+body[data-theme-mode="light"] {
+    --bg-primary: #f8f9fa;
+    --bg-secondary: rgba(255, 255, 255, 0.9);
+    --bg-card: rgba(255, 255, 255, 0.95);
+    --text-primary: #1a1a1a;
+    --text-secondary: #6b7280;
+}
+
+/* Light theme with gold accent */
+body[data-theme-mode="light"][data-theme="gold"] {
+    --accent-light: #9A7B15;
+    --accent-mid: #B8941E;
+    --accent-dark: #D4AF37;
+    --accent-rgb: 154, 123, 21;
+    --border-opacity: 0.3;
+    --hover-border-opacity: 0.6;
+    --shadow-opacity: 0.15;
+    --button-bg: #B8941E;
+    --button-hover-bg: #D4AF37;
+    --button-text: #ffffff;
+}
+
+/* Light theme with silver accent */
+body[data-theme-mode="light"][data-theme="silver"] {
+    --accent-light: #6b7280;
+    --accent-mid: #9ca3af;
+    --accent-dark: #d1d5db;
+    --accent-rgb: 107, 114, 128;
+    --border-opacity: 0.3;
+    --hover-border-opacity: 0.6;
+    --shadow-opacity: 0.15;
+    --button-bg: #4b5563;
+    --button-hover-bg: #6b7280;
+    --button-text: #ffffff;
+}
+
+/* Light theme specific overrides */
+body[data-theme-mode="light"] #main-header {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-primary);
+}
+
+body[data-theme-mode="light"] #main-header.header-sticky {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+body[data-theme-mode="light"] .card {
+    background: var(--bg-card);
+    border: 1px solid rgba(var(--accent-rgb), var(--border-opacity));
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme-mode="light"] .card:hover {
+    border-color: rgba(var(--accent-rgb), var(--hover-border-opacity));
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+body[data-theme-mode="light"] .engagement-card {
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(248, 249, 250, 0.9) 100%);
+    border: 1px solid rgba(var(--accent-rgb), 0.3);
+}
+
+body[data-theme-mode="light"] .testimonial-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.95) 100%);
+    border: 1px solid rgba(var(--accent-rgb), 0.3);
+}
+
+body[data-theme-mode="light"] #mobile-menu {
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(var(--accent-rgb), 0.2);
+}
+
+body[data-theme-mode="light"] .strength-card {
+    background: var(--bg-card);
+}
+
+body[data-theme-mode="light"] .strength-card:hover {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Theme toggle button styles */
+#theme-toggle {
+    position: fixed;
+    left: 2rem;
+    bottom: 2rem;
+    z-index: 1000;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(var(--accent-rgb), 0.9);
+    border: 2px solid rgba(var(--accent-rgb), 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.4);
+}
+
+#theme-toggle i {
+    font-size: 1.5rem;
+    color: var(--button-text);
+}
+
+/* Language toggle (move up when theme toggle is present) */
+body.theme-toggle-enabled #lang-toggle {
+    bottom: 7rem;
+}
+
+/* Smooth transition for theme changes */
+body * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Light theme input styles */
+body[data-theme-mode="light"] input,
+body[data-theme-mode="light"] textarea {
+    background: #ffffff !important;
+    color: var(--text-primary) !important;
+    border: 1px solid rgba(var(--accent-rgb), 0.3) !important;
+}
+
+body[data-theme-mode="light"] input:focus,
+body[data-theme-mode="light"] textarea:focus {
+    border-color: rgba(var(--accent-rgb), 0.6) !important;
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1) !important;
+}
+
+/* Light theme for hero overlay */
+body[data-theme-mode="light"] .hero-slide .bg-opacity-60 {
+    background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+@media (max-width: 768px) {
+    #theme-toggle {
+        left: 1rem;
+        bottom: 1rem;
+        width: 48px;
+        height: 48px;
+    }
+    
+    #theme-toggle i {
+        font-size: 1.25rem;
+    }
+}

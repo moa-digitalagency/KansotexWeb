@@ -1,24 +1,7 @@
 // KANSOTEX - Main JavaScript
 
-// Testimonials Data
-const testimonials = [
-    {
-        quote: "Kansotex a révolutionné le confort dans notre établissement médical. Leurs produits sont à la fois luxueux et pratiques.",
-        name: "Dr. Sophia Leroy",
-        position: "Chef de Service, Clinique SantéPlus"
-    },
-    {
-        quote: "En tant qu'architecte d'intérieur, je recommande Kansotex pour leur excellence et leur style unique. Un vrai partenaire de confiance.",
-        name: "Claire Dubois",
-        position: "Architecte d'Intérieur, Design & Espaces"
-    },
-    {
-        quote: "La qualité des textiles Kansotex a transformé l'expérience de nos clients. Leur durabilité est impressionnante.",
-        name: "Julien Moreau",
-        position: "Directeur Général, Hôtel Élégance"
-    }
-];
-
+// Testimonials Data - loaded from API
+let testimonials = [];
 let currentTestimonial = 0;
 let currentHeroSlide = 0;
 let currentCollectionTwoSlide = 0;
@@ -70,45 +53,65 @@ function showHeroSlide(index) {
 }
 
 // Initialize Testimonials Carousel
-function initTestimonials() {
+async function initTestimonials() {
     const container = document.getElementById('testimonials-container');
     const dotsContainer = document.getElementById('testimonial-dots');
     
     if (!container || !dotsContainer) return;
     
-    // Create testimonial cards
-    testimonials.forEach((testimonial, index) => {
-        const card = document.createElement('div');
-        card.className = `testimonial-card ${index === 0 ? 'active' : ''}`;
-        card.style.display = index === 0 ? 'block' : 'none';
-        card.innerHTML = `
-            <p class="text-lg text-gray-300 mb-6 italic leading-relaxed">${testimonial.quote}</p>
-            <div class="flex items-center space-x-4">
-                <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold bg-accent-gradient">
-                    ${testimonial.name.charAt(0)}
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg">${testimonial.name}</h4>
-                    <p class="text-gray-400 text-sm">${testimonial.position}</p>
-                </div>
-            </div>
-        `;
-        container.appendChild(card);
-    });
-    
-    // Create dots
-    testimonials.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.className = `dot ${index === 0 ? 'active' : ''}`;
-        dot.addEventListener('click', () => showTestimonial(index));
-        dotsContainer.appendChild(dot);
-    });
-    
-    // Auto-rotate testimonials every 5 seconds
-    setInterval(() => {
-        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-        showTestimonial(currentTestimonial);
-    }, 5000);
+    try {
+        // Fetch testimonials from API
+        const response = await fetch('/api/testimonials?lang=' + (document.body.getAttribute('data-current-lang') || 'fr'));
+        const data = await response.json();
+        
+        if (data.success && data.testimonials && data.testimonials.length > 0) {
+            testimonials = data.testimonials;
+            
+            // Create testimonial cards
+            testimonials.forEach((testimonial, index) => {
+                const card = document.createElement('div');
+                card.className = `testimonial-card ${index === 0 ? 'active' : ''}`;
+                card.style.display = index === 0 ? 'block' : 'none';
+                card.innerHTML = `
+                    <p class="text-lg text-gray-300 mb-6 italic leading-relaxed">${testimonial.content}</p>
+                    <div class="flex items-center space-x-4">
+                        ${testimonial.client_photo ? 
+                            `<img src="${testimonial.client_photo.url}" alt="${testimonial.client_name}" class="w-16 h-16 rounded-full object-cover">` :
+                            `<div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold bg-accent-gradient">
+                                ${testimonial.client_name.charAt(0)}
+                            </div>`
+                        }
+                        <div>
+                            <h4 class="font-bold text-lg">${testimonial.client_name}</h4>
+                            <p class="text-gray-400 text-sm">${testimonial.client_title || ''} ${testimonial.client_company ? ', ' + testimonial.client_company : ''}</p>
+                        </div>
+                    </div>
+                    ${testimonial.rating ? `<div class="flex items-center mt-4 text-accent">
+                        ${'<i class="fas fa-star"></i>'.repeat(testimonial.rating)}
+                    </div>` : ''}
+                `;
+                container.appendChild(card);
+            });
+            
+            // Create dots
+            testimonials.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = `dot ${index === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => showTestimonial(index));
+                dotsContainer.appendChild(dot);
+            });
+            
+            // Auto-rotate testimonials every 5 seconds
+            if (testimonials.length > 1) {
+                setInterval(() => {
+                    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                    showTestimonial(currentTestimonial);
+                }, 5000);
+            }
+        }
+    } catch (error) {
+        console.error('Error loading testimonials:', error);
+    }
 }
 
 // Show specific testimonial
@@ -283,4 +286,110 @@ window.addEventListener('scroll', function() {
         header.classList.remove('header-sticky');
         header.style.boxShadow = 'none';
     }
+});
+
+// ===== THEME TOGGLE FUNCTIONALITY =====
+
+// Initialize theme on page load
+function initTheme() {
+    const serverThemeMode = document.body.getAttribute('data-theme-mode-server') || 'dark';
+    const allowUserToggle = document.body.getAttribute('data-allow-user-toggle') === 'true';
+    
+    // Check if user has a saved preference
+    const savedTheme = localStorage.getItem('userThemePreference');
+    
+    let themeToApply = serverThemeMode;
+    
+    // If auto mode is enabled on server, check browser preference
+    if (serverThemeMode === 'auto') {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        themeToApply = prefersDark ? 'dark' : 'light';
+    }
+    
+    // If user has a saved preference and toggle is allowed, use it
+    if (savedTheme && allowUserToggle) {
+        themeToApply = savedTheme;
+    }
+    
+    applyTheme(themeToApply);
+    
+    // Setup theme toggle button if allowed
+    if (allowUserToggle) {
+        setupThemeToggle();
+    }
+    
+    // Listen for system theme changes (auto mode)
+    if (serverThemeMode === 'auto' && !savedTheme) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('userThemePreference')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    }
+}
+
+// Apply theme
+function applyTheme(theme) {
+    document.body.setAttribute('data-theme-mode', theme);
+    updateThemeToggleIcon(theme);
+}
+
+// Setup theme toggle button
+function setupThemeToggle() {
+    // Add theme toggle class to body
+    document.body.classList.add('theme-toggle-enabled');
+    
+    // Create theme toggle button if it doesn't exist
+    let toggleBtn = document.getElementById('theme-toggle');
+    if (!toggleBtn) {
+        toggleBtn = document.createElement('button');
+        toggleBtn.id = 'theme-toggle';
+        toggleBtn.setAttribute('aria-label', 'Toggle theme');
+        toggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+        document.body.appendChild(toggleBtn);
+    }
+    
+    // Add click event
+    toggleBtn.addEventListener('click', toggleTheme);
+    
+    // Update initial icon
+    const currentTheme = document.body.getAttribute('data-theme-mode') || 'dark';
+    updateThemeToggleIcon(currentTheme);
+}
+
+// Toggle theme
+function toggleTheme() {
+    const currentTheme = document.body.getAttribute('data-theme-mode') || 'dark';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    applyTheme(newTheme);
+    localStorage.setItem('userThemePreference', newTheme);
+}
+
+// Update theme toggle icon
+function updateThemeToggleIcon(theme) {
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (!toggleBtn) return;
+    
+    const icon = toggleBtn.querySelector('i');
+    if (!icon) return;
+    
+    if (theme === 'dark') {
+        icon.className = 'fas fa-sun';
+        toggleBtn.setAttribute('title', 'Passer au thème clair');
+    } else {
+        icon.className = 'fas fa-moon';
+        toggleBtn.setAttribute('title', 'Passer au thème sombre');
+    }
+}
+
+// Add to DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    initHeroSlider();
+    initCollectionTwoSlider();
+    initTestimonials();
+    initMobileMenu();
+    initContactForm();
+    initSmoothScroll();
+    initTheme(); // Initialize theme
 });

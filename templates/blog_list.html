@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="{{ current_lang }}" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if current_lang == 'en' %}Our Recent Activities | KANSOTEX{% else %}Nos Récentes Activités | KANSOTEX{% endif %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-black text-gray-100" data-theme="{{ color_theme }}" data-theme-mode-server="{{ theme_mode }}" data-allow-user-toggle="{{ 'true' if allow_user_toggle else 'false' }}" data-theme-mode="{{ theme_mode }}">
+    
+    <!-- Header / Navigation -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 border-b border-accent-faint transition-all duration-300 bg-black bg-opacity-95">
+        <nav class="container mx-auto px-6 py-4 max-w-6xl">
+            <div class="flex items-center justify-between">
+                <a href="/{{ current_lang }}" class="text-2xl font-bold text-accent">KANSOTEX</a>
+                <a href="/{{ current_lang }}" class="text-sm font-semibold text-gray-300 hover-text-accent transition">
+                    <i class="fas fa-arrow-left mr-2"></i>{% if current_lang == 'en' %}Back to Home{% else %}Retour à l'Accueil{% endif %}
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Blog Header -->
+    <section class="pt-32 pb-12 px-6">
+        <div class="container mx-auto max-w-6xl text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4">
+                <span class="gradient-text">{% if current_lang == 'en' %}Our Recent Activities{% else %}Nos Récentes Activités{% endif %}</span>
+            </h1>
+            <p class="text-xl text-gray-400">{% if current_lang == 'en' %}Discover our latest news and insights{% else %}Découvrez nos dernières actualités et conseils{% endif %}</p>
+        </div>
+    </section>
+
+    <!-- Blog Articles Grid -->
+    <section class="py-12 px-6">
+        <div class="container mx-auto max-w-6xl">
+            {% if articles %}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for article in articles %}
+                <article class="card group cursor-pointer" onclick="window.location.href='/{{ current_lang }}/blog/{{ article.slug }}'">
+                    {% if article.featured_image %}
+                    <div class="relative overflow-hidden rounded-lg mb-4 h-48">
+                        <img src="{{ article.featured_image.url }}" alt="{{ article.title }}" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                    </div>
+                    {% endif %}
+                    
+                    <div class="flex items-center gap-2 mb-3">
+                        {% if article.category %}
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-accent-subtle text-accent">{{ article.category }}</span>
+                        {% endif %}
+                        {% if article.published_at %}
+                        <span class="text-xs text-gray-400">{{ article.published_at[:10] }}</span>
+                        {% endif %}
+                    </div>
+                    
+                    <h2 class="text-2xl font-bold mb-3 group-hover:text-accent transition">{{ article.title }}</h2>
+                    
+                    {% if article.excerpt %}
+                    <p class="text-gray-400 mb-4 line-clamp-3">{{ article.excerpt }}</p>
+                    {% endif %}
+                    
+                    <div class="flex items-center justify-between">
+                        <span class="text-accent font-semibold">{% if current_lang == 'en' %}Read More{% else %}Lire Plus{% endif %} →</span>
+                        {% if article.view_count %}
+                        <span class="text-sm text-gray-500"><i class="fas fa-eye mr-1"></i>{{ article.view_count }}</span>
+                        {% endif %}
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center py-12">
+                <i class="fas fa-newspaper text-6xl text-gray-600 mb-4"></i>
+                <p class="text-xl text-gray-400">{% if current_lang == 'en' %}No articles yet. Check back soon!{% else %}Aucun article pour le moment. Revenez bientôt!{% endif %}</p>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,8 +1,12 @@
 from flask import Blueprint, render_template, request, jsonify, session, redirect, url_for
 from backend.models import db
 from backend.models.contact import Contact
+from backend.models.content import SiteSetting
+from backend.models.blog import BlogArticle, Testimonial
 from backend.services.contact_service import ContactService
 from backend.services.content_provider import content_provider
+from backend.admin.services.blog_service import blog_service
+from backend.admin.services.testimonial_service import testimonial_service
 
 main_bp = Blueprint('main', __name__)
 contact_service = ContactService()
@@ -18,8 +22,14 @@ def index(lang=None):
     
     session['language'] = lang
     
+    # Get theme settings
+    theme_mode = SiteSetting.get_setting('theme_mode', 'dark')
+    allow_user_toggle = SiteSetting.get_setting('allow_user_theme_toggle', 'true')
+    
     context = content_provider.get_complete_context('home', lang=lang)
     context['current_lang'] = lang
+    context['theme_mode'] = theme_mode
+    context['allow_user_toggle'] = allow_user_toggle == 'true'
     return render_template('index.html', **context)
 
 @main_bp.route('/change-language/<lang>')
@@ -59,3 +69,99 @@ def submit_contact():
         return jsonify({
             'error': 'Une erreur est survenue lors de l\'envoi de votre message. Veuillez réessayer plus tard.'
         }), 500
+
+# ===== BLOG ROUTES =====
+
+@main_bp.route('/<lang>/blog')
+@main_bp.route('/blog')
+def blog_list(lang=None):
+    """Display blog articles list"""
+    if lang is None:
+        lang = session.get('language', 'fr')
+    
+    if lang not in ['fr', 'en']:
+        lang = 'fr'
+    
+    session['language'] = lang
+    
+    # Get published articles
+    articles = blog_service.get_all_articles(published_only=True, limit=20)
+    
+    # Get theme settings
+    theme_mode = SiteSetting.get_setting('theme_mode', 'dark')
+    allow_user_toggle = SiteSetting.get_setting('allow_user_theme_toggle', 'true')
+    
+    # Get context for navbar, footer, etc.
+    context = content_provider.get_complete_context('home', lang=lang)
+    context['current_lang'] = lang
+    context['articles'] = [article.to_dict(lang=lang) for article in articles]
+    context['theme_mode'] = theme_mode
+    context['allow_user_toggle'] = allow_user_toggle == 'true'
+    
+    return render_template('blog_list.html', **context)
+
+@main_bp.route('/<lang>/blog/<slug>')
+@main_bp.route('/blog/<slug>')
+def blog_article(slug, lang=None):
+    """Display a single blog article"""
+    if lang is None:
+        lang = session.get('language', 'fr')
+    
+    if lang not in ['fr', 'en']:
+        lang = 'fr'
+    
+    session['language'] = lang
+    
+    # Get article
+    article = blog_service.get_article_by_slug(slug)
+    
+    if not article or not article.is_published:
+        return render_template('404.html'), 404
+    
+    # Increment view count
+    blog_service.increment_view_count(article.id)
+    
+    # Get related articles
+    related_articles = blog_service.get_related_articles(article, limit=3)
+    
+    # Get theme settings
+    theme_mode = SiteSetting.get_setting('theme_mode', 'dark')
+    allow_user_toggle = SiteSetting.get_setting('allow_user_theme_toggle', 'true')
+    
+    # Get context for navbar, footer, etc.
+    context = content_provider.get_complete_context('home', lang=lang)
+    context['current_lang'] = lang
+    context['article'] = article.to_dict(lang=lang)
+    context['related_articles'] = [a.to_dict(lang=lang) for a in related_articles]
+    context['theme_mode'] = theme_mode
+    context['allow_user_toggle'] = allow_user_toggle == 'true'
+    
+    # SEO meta for the article
+    context['seo'] = {
+        'meta_title': article.meta_title_fr if lang == 'fr' else article.meta_title_en,
+        'meta_description': article.meta_description_fr if lang == 'fr' else article.meta_description_en,
+        'meta_keywords': article.meta_keywords_fr if lang == 'fr' else article.meta_keywords_en,
+        'og_title': article.meta_title_fr if lang == 'fr' else article.meta_title_en,
+        'og_description': article.meta_description_fr if lang == 'fr' else article.meta_description_en,
+        'og_image': article.featured_image.to_dict()['url'] if article.featured_image else None
+    }
+    
+    return render_template('blog_article.html', **context)
+
+
+# ===== TESTIMONIALS API =====
+
+@main_bp.route('/api/testimonials')
+def get_testimonials():
+    """Get testimonials for display on homepage"""
+    lang = request.args.get('lang', session.get('language', 'fr'))
+    
+    if lang not in ['fr', 'en']:
+        lang = 'fr'
+    
+    testimonials = testimonial_service.get_all_testimonials(published_only=True)
+    
+    return jsonify({
+        'success': True,
+        'testimonials': [t.to_dict(lang=lang) for t in testimonials]
+    })

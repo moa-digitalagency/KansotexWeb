@@ -1,5 +1,7 @@
+from datetime import datetime
 from backend.models import db
 from backend.models.content import ContentSection, ContentField, SiteSetting
+from backend.models.blog import BlogArticle, Testimonial
 
 def init_database_content():
     """Initialize database with default bilingual content - called from main.py"""
@@ -214,6 +216,8 @@ def init_database_content():
         ('twitter_description', 'Expert en textiles de qualité premium depuis 2005', 'string', 'Description Twitter'),
         ('twitter_image', '/static/images/twitter-image.jpg', 'string', 'Image Twitter'),
         ('color_theme', 'gold', 'string', 'Thème de couleur du site (gold/blue)'),
+        ('theme_mode', 'dark', 'string', 'Mode de thème par défaut (dark/light/auto)'),
+        ('allow_user_theme_toggle', 'true', 'boolean', 'Permettre à l\'utilisateur de basculer le thème'),
     ]
     
     for key, value, setting_type, description in settings_data:
@@ -225,5 +229,100 @@ def init_database_content():
         )
         db.session.add(setting)
     
+    # Seed blog articles
+    print("Seeding blog articles...")
+    articles = [
+        {
+            'slug': 'innovation-textiles-premium',
+            'title_fr': 'L\'Innovation dans les Textiles Premium pour l\'Hôtellerie',
+            'title_en': 'Innovation in Premium Textiles for Hospitality',
+            'excerpt_fr': 'Découvrez comment les dernières innovations en textile transforment l\'expérience hôtelière de luxe.',
+            'excerpt_en': 'Discover how the latest textile innovations are transforming the luxury hotel experience.',
+            'content_fr': '<p>L\'industrie hôtelière de luxe connaît une révolution grâce aux innovations dans le domaine des textiles premium. Chez KANSOTEX, nous sommes à la pointe de cette transformation.</p><h2>Les Nouvelles Technologies Textiles</h2><p>Les fibres intelligentes et les tissus durables redéfinissent le confort et l\'expérience client dans les hôtels 5 étoiles.</p><p>Nos textiles premium combinent durabilité exceptionnelle et confort suprême, offrant à vos clients une expérience inoubliable.</p>',
+            'content_en': '<p>The luxury hospitality industry is experiencing a revolution thanks to innovations in premium textiles. At KANSOTEX, we are at the forefront of this transformation.</p><h2>New Textile Technologies</h2><p>Smart fibers and sustainable fabrics are redefining comfort and customer experience in 5-star hotels.</p><p>Our premium textiles combine exceptional durability and supreme comfort, offering your guests an unforgettable experience.</p>',
+            'category_fr': 'Innovation',
+            'category_en': 'Innovation',
+            'tags_fr': 'hôtellerie,luxe,innovation,textiles',
+            'tags_en': 'hospitality,luxury,innovation,textiles',
+            'author_name': 'KANSOTEX Team',
+            'meta_title_fr': 'Innovation Textiles Premium Hôtellerie | KANSOTEX',
+            'meta_title_en': 'Premium Textile Innovation Hospitality | KANSOTEX',
+            'meta_description_fr': 'Découvrez les innovations textiles qui transforment l\'hôtellerie de luxe.',
+            'meta_description_en': 'Discover textile innovations transforming luxury hospitality.',
+            'is_published': True,
+            'published_at': datetime.utcnow()
+        },
+        {
+            'slug': 'guide-choix-linge-medical',
+            'title_fr': 'Guide Complet pour le Choix du Linge Médical de Qualité',
+            'title_en': 'Complete Guide to Choosing Quality Medical Linen',
+            'excerpt_fr': 'Tout ce que vous devez savoir pour choisir le linge médical adapté à votre établissement de santé.',
+            'excerpt_en': 'Everything you need to know to choose the right medical linen for your healthcare facility.',
+            'content_fr': '<p>Le choix du linge médical est crucial pour garantir l\'hygiène et le confort des patients.</p><h2>Normes et Certifications</h2><p>Les textiles médicaux doivent respecter des normes strictes de qualité et d\'hygiène.</p><h2>Durabilité et Résistance</h2><p>Notre linge médical est conçu pour résister aux lavages intensifs tout en maintenant sa douceur.</p>',
+            'content_en': '<p>Choosing medical linen is crucial to ensure patient hygiene and comfort.</p><h2>Standards and Certifications</h2><p>Medical textiles must comply with strict quality and hygiene standards.</p><h2>Durability and Resistance</h2><p>Our medical linen is designed to withstand intensive washing while maintaining its softness.</p>',
+            'category_fr': 'Médical',
+            'category_en': 'Medical',
+            'tags_fr': 'médical,santé,hygiène,qualité',
+            'tags_en': 'medical,health,hygiene,quality',
+            'author_name': 'KANSOTEX Team',
+            'meta_title_fr': 'Guide Choix Linge Médical | KANSOTEX',
+            'meta_title_en': 'Medical Linen Selection Guide | KANSOTEX',
+            'meta_description_fr': 'Guide complet pour choisir le linge médical de qualité.',
+            'meta_description_en': 'Complete guide to choosing quality medical linen.',
+            'is_published': True,
+            'published_at': datetime.utcnow()
+        }
+    ]
+    
+    for article_data in articles:
+        article = BlogArticle(**article_data)
+        db.session.add(article)
+    
+    # Seed testimonials
+    print("Seeding testimonials...")
+    testimonials_data = [
+        {
+            'client_name': 'Dr. Sophia Leroy',
+            'client_title_fr': 'Chef de Service',
+            'client_title_en': 'Head of Department',
+            'client_company': 'Clinique SantéPlus',
+            'content_fr': 'KANSOTEX a révolutionné le confort dans notre établissement médical. Leurs produits sont à la fois luxueux et pratiques, répondant parfaitement aux normes d\'hygiène strictes.',
+            'content_en': 'KANSOTEX has revolutionized comfort in our medical facility. Their products are both luxurious and practical, perfectly meeting strict hygiene standards.',
+            'rating': 5,
+            'is_featured': True,
+            'is_published': True,
+            'display_order': 1
+        },
+        {
+            'client_name': 'Julien Moreau',
+            'client_title_fr': 'Directeur Général',
+            'client_title_en': 'General Manager',
+            'client_company': 'Hôtel Élégance',
+            'content_fr': 'La qualité des textiles KANSOTEX a transformé l\'expérience de nos clients. Leur durabilité est impressionnante et le service est impeccable.',
+            'content_en': 'The quality of KANSOTEX textiles has transformed our guests\' experience. Their durability is impressive and the service is impeccable.',
+            'rating': 5,
+            'is_featured': True,
+            'is_published': True,
+            'display_order': 2
+        },
+        {
+            'client_name': 'Claire Dubois',
+            'client_title_fr': 'Architecte d\'Intérieur',
+            'client_title_en': 'Interior Designer',
+            'client_company': 'Design & Espaces',
+            'content_fr': 'En tant qu\'architecte d\'intérieur, je recommande KANSOTEX pour leur excellence et leur style unique. Un vrai partenaire de confiance pour tous mes projets haut de gamme.',
+            'content_en': 'As an interior designer, I recommend KANSOTEX for their excellence and unique style. A true trusted partner for all my high-end projects.',
+            'rating': 5,
+            'is_featured': True,
+            'is_published': True,
+            'display_order': 3
+        }
+    ]
+    
+    for testimonial_data in testimonials_data:
+        testimonial = Testimonial(**testimonial_data)
+        db.session.add(testimonial)
+    
     db.session.commit()
     print("✓ Complete content seeded successfully!")
+    print("✓ Blog articles and testimonials seeded!")
