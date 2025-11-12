@@ -29,6 +29,17 @@ def create_app():
             db.create_all()
         except Exception as e:
             print(f"Database tables may already exist: {e}")
+        
+        # Auto-seed database if empty
+        from backend.models.content import ContentSection
+        if ContentSection.query.count() == 0:
+            print("Database is empty, seeding with initial content...")
+            try:
+                from backend.seed_data import init_database_content
+                init_database_content()
+                print("Database seeded successfully!")
+            except Exception as e:
+                print(f"Error seeding database: {e}")
     
     return app
 
