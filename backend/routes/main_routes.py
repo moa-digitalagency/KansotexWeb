@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request, jsonify, session, redirect, url_for
+from flask import Blueprint, render_template, request, jsonify, session, redirect, url_for, Response, make_response
+from datetime import datetime
 from backend.models import db
 from backend.models.contact import Contact
 from backend.models.content import SiteSetting
@@ -171,3 +172,90 @@ def get_testimonials():
         'success': True,
         'testimonials': [t.to_dict(lang=lang) for t in testimonials]
     })
+
+
+# ===== SEO ROUTES =====
+
+@main_bp.route('/sitemap.xml')
+def sitemap():
+    """Generate dynamic sitemap for search engines"""
+    pages = []
+    
+    base_url = request.url_root.rstrip('/')
+    today = datetime.now().strftime('%Y-%m-%d')
+    
+    static_pages = [
+        {'loc': base_url + '/', 'priority': '1.0', 'changefreq': 'daily'},
+        {'loc': base_url + '/fr', 'priority': '1.0', 'changefreq': 'daily'},
+        {'loc': base_url + '/en', 'priority': '1.0', 'changefreq': 'daily'},
+        {'loc': base_url + '/blog', 'priority': '0.9', 'changefreq': 'daily'},
+        {'loc': base_url + '/fr/blog', 'priority': '0.9', 'changefreq': 'daily'},
+        {'loc': base_url + '/en/blog', 'priority': '0.9', 'changefreq': 'daily'},
+    ]
+    
+    for page in static_pages:
+        pages.append(page)
+    
+    articles = blog_service.get_all_articles(published_only=True)
+    for article in articles:
+        pages.append({
+            'loc': base_url + f'/blog/{article.slug}',
+            'priority': '0.8',
+            'changefreq': 'weekly',
+            'lastmod': article.updated_at.strftime('%Y-%m-%d') if article.updated_at else today
+        })
+        pages.append({
+            'loc': base_url + f'/fr/blog/{article.slug}',
+            'priority': '0.8',
+            'changefreq': 'weekly',
+            'lastmod': article.updated_at.strftime('%Y-%m-%d') if article.updated_at else today
+        })
+        pages.append({
+            'loc': base_url + f'/en/blog/{article.slug}',
+            'priority': '0.8',
+            'changefreq': 'weekly',
+            'lastmod': article.updated_at.strftime('%Y-%m-%d') if article.updated_at else today
+        })
+    
+    sitemap_xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    sitemap_xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    
+    for page in pages:
+        sitemap_xml += '  <url>\n'
+        sitemap_xml += f'    <loc>{page["loc"]}</loc>\n'
+        if 'lastmod' in page:
+            sitemap_xml += f'    <lastmod>{page["lastmod"]}</lastmod>\n'
+        sitemap_xml += f'    <changefreq>{page["changefreq"]}</changefreq>\n'
+        sitemap_xml += f'    <priority>{page["priority"]}</priority>\n'
+        sitemap_xml += '  </url>\n'
+    
+    sitemap_xml += '</urlset>'
+    
+    response = make_response(sitemap_xml)
+    response.headers['Content-Type'] = 'application/xml'
+    return response
+
+@main_bp.route('/robots.txt')
+def robots():
+    """Generate robots.txt for search engine crawlers"""
+    base_url = request.url_root.rstrip('/')
+    
+    robots_txt = f"""User-agent: *
+Allow: /
+Allow: /fr
+Allow: /en
+Allow: /blog
+Allow: /fr/blog
+Allow: /en/blog
+Allow: /static/
+
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /api/
+
+Sitemap: {base_url}/sitemap.xml
+"""
+    
+    response = make_response(robots_txt)
+    response.headers['Content-Type'] = 'text/plain'
+    return response
