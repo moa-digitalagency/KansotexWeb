@@ -726,6 +726,30 @@ body[data-theme-mode="light"] .p-8.rounded-lg.border {
     border-color: rgba(var(--accent-rgb), 0.3) !important;
 }
 
+/* ===== DARK THEME STYLES FOR COLLECTION ===== */
+
+/* Dark mode collection cards - darker overlays and backgrounds */
+body[data-theme-mode="dark"] .collection-two-col-slide .bg-gradient-to-t {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6), transparent) !important;
+}
+
+body[data-theme-mode="dark"] .collection-two-col-slide .absolute.bottom-0 {
+    background: rgba(20, 20, 20, 0.92) !important;
+}
+
+body[data-theme-mode="dark"] .collection-two-col-slide h3 {
+    color: #ffffff !important;
+}
+
+body[data-theme-mode="dark"] .collection-two-col-slide p {
+    color: #d1d5db !important;
+}
+
+body[data-theme-mode="dark"] .collection-two-col-slide span.bg-gray-900 {
+    background: #ffffff !important;
+    color: #111827 !important;
+}
+
 /* Floating buttons container - stacks vertically on left side */
 .floating-buttons-stack {
     position: fixed;
