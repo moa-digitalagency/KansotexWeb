@@ -43,30 +43,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="bg-black text-gray-100">
+<body class="bg-black text-gray-100" data-theme="{{ color_theme }}">
     
     <!-- Header / Navigation -->
-    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 border-b border-yellow-600/30 transition-all duration-300">
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 border-b border-accent-faint transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 max-w-6xl">
             <div class="flex items-center justify-between">
-                <div class="text-2xl font-bold" style="color: #B8941E;">KANSOTEX</div>
+                <div class="text-2xl font-bold text-accent">KANSOTEX</div>
                 <div class="flex items-center space-x-8">
                     <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide">
-                    <a href="#accueil" class="hover:text-yellow-500 transition uppercase">Accueil</a>
-                    <a href="#collection" class="hover:text-yellow-500 transition uppercase">Collection</a>
-                    <a href="#volets" class="hover:text-yellow-500 transition uppercase">Nos Volets</a>
-                    <a href="#forces" class="hover:text-yellow-500 transition uppercase">Points Forts</a>
-                    <a href="#engagement" class="hover:text-yellow-500 transition uppercase">Engagement</a>
-                    <a href="#contact" class="hover:text-yellow-500 transition uppercase">Contact</a>
+                    <a href="#accueil" class="hover-text-accent transition uppercase">Accueil</a>
+                    <a href="#collection" class="hover-text-accent transition uppercase">Collection</a>
+                    <a href="#volets" class="hover-text-accent transition uppercase">Nos Volets</a>
+                    <a href="#forces" class="hover-text-accent transition uppercase">Points Forts</a>
+                    <a href="#engagement" class="hover-text-accent transition uppercase">Engagement</a>
+                    <a href="#contact" class="hover-text-accent transition uppercase">Contact</a>
                     </div>
-                    <div class="hidden lg:flex items-center space-x-4 border-l border-yellow-600/30 pl-6">
-                        <a href="{{ content.footer.social_facebook.value if content.footer and content.footer.social_facebook else 'https://facebook.com' }}" target="_blank" class="hover:text-yellow-500 transition">
+                    <div class="hidden lg:flex items-center space-x-4 border-l border-accent-faint pl-6">
+                        <a href="{{ content.footer.social_facebook.value if content.footer and content.footer.social_facebook else 'https://facebook.com' }}" target="_blank" class="hover-text-accent transition">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="{{ content.footer.social_instagram.value if content.footer and content.footer.social_instagram else 'https://instagram.com' }}" target="_blank" class="hover:text-yellow-500 transition">
+                        <a href="{{ content.footer.social_instagram.value if content.footer and content.footer.social_instagram else 'https://instagram.com' }}" target="_blank" class="hover-text-accent transition">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="{{ content.footer.social_linkedin.value if content.footer and content.footer.social_linkedin else 'https://linkedin.com' }}" target="_blank" class="hover:text-yellow-500 transition">
+                        <a href="{{ content.footer.social_linkedin.value if content.footer and content.footer.social_linkedin else 'https://linkedin.com' }}" target="_blank" class="hover-text-accent transition">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
@@ -118,7 +118,7 @@
         <div class="container mx-auto relative z-10 text-center px-6">
             <div class="max-w-4xl mx-auto">
                 <div class="inline-block px-6 py-2 rounded-full mb-6" style="background: rgba(184, 148, 30, 0.15); border: 1px solid rgba(184, 148, 30, 0.3);">
-                    <span class="text-sm font-semibold tracking-wider" style="color: #B8941E;">{{ content.hero.tagline.value if content.hero and content.hero.tagline else 'EXCELLENCE DEPUIS 2005' }}</span>
+                    <span class="text-sm font-semibold tracking-wider" class="text-accent">{{ content.hero.tagline.value if content.hero and content.hero.tagline else 'EXCELLENCE DEPUIS 2005' }}</span>
                 </div>
                 <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tight leading-tight">
                     <span class="gradient-text">{{ content.hero.title.value if content.hero and content.hero.title else 'KANSOTEX' }}</span>
@@ -126,15 +126,15 @@
                 <p class="text-xl md:text-2xl mb-8 text-gray-300 font-light max-w-2xl mx-auto">{{ content.hero.subtitle.value if content.hero and content.hero.subtitle else 'Expert en Textiles de Qualité Premium' }}</p>
                 <div class="flex justify-center items-center space-x-3 mb-10">
                     <div class="flex items-center space-x-2 px-4 py-2 rounded-lg" style="background: rgba(184, 148, 30, 0.1);">
-                        <i class="fas fa-{{ content.hero.badge_1_icon.value if content.hero and content.hero.badge_1_icon else 'star' }} text-sm" style="color: #B8941E;"></i>
+                        <i class="fas fa-{{ content.hero.badge_1_icon.value if content.hero and content.hero.badge_1_icon else 'star' }} text-sm" class="text-accent"></i>
                         <span class="text-sm font-medium">{{ content.hero.badge_1_text.value if content.hero and content.hero.badge_1_text else '+20 ans d\'expertise' }}</span>
                     </div>
                     <div class="flex items-center space-x-2 px-4 py-2 rounded-lg" style="background: rgba(184, 148, 30, 0.1);">
-                        <i class="fas fa-{{ content.hero.badge_2_icon.value if content.hero and content.hero.badge_2_icon else 'award' }} text-sm" style="color: #B8941E;"></i>
+                        <i class="fas fa-{{ content.hero.badge_2_icon.value if content.hero and content.hero.badge_2_icon else 'award' }} text-sm" class="text-accent"></i>
                         <span class="text-sm font-medium">{{ content.hero.badge_2_text.value if content.hero and content.hero.badge_2_text else 'Qualité Premium' }}</span>
                     </div>
                 </div>
-                <a href="#forces" class="inline-block px-10 py-4 text-black font-bold rounded-lg transition transform hover:scale-105 shadow-xl" style="background: linear-gradient(135deg, #B8941E 0%, #D4AF37 100%);">
+                <a href="#forces" class="inline-block px-10 py-4 text-black font-bold rounded-lg transition transform hover:scale-105 shadow-xl" class="bg-accent-gradient">
                     {{ content.hero.cta_text.value if content.hero and content.hero.cta_text else 'Découvrir nos atouts' }}
                 </a>
             </div>
@@ -142,7 +142,7 @@
         
         <!-- Scroll Indicator -->
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i class="fas fa-chevron-down text-2xl" style="color: #B8941E;"></i>
+            <i class="fas fa-chevron-down text-2xl" class="text-accent"></i>
         </div>
         
         <!-- Slider Navigation Dots -->
@@ -165,13 +165,13 @@
                 <!-- Strength 1 -->
                 <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(184, 148, 30, 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
-                        <i class="fas fa-star text-9xl" style="color: #B8941E;"></i>
+                        <i class="fas fa-star text-9xl" class="text-accent"></i>
                     </div>
                     <div class="relative">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(184, 148, 30, 0.1);">
-                            <i class="fas fa-star text-3xl" style="color: #B8941E;"></i>
+                            <i class="fas fa-star text-3xl" class="text-accent"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3" style="color: #B8941E;">{{ content.forces.strength_1_title.value if content.forces and content.forces.strength_1_title else 'Expérience Significative' }}</h3>
+                        <h3 class="text-xl font-bold mb-3" class="text-accent">{{ content.forces.strength_1_title.value if content.forces and content.forces.strength_1_title else 'Expérience Significative' }}</h3>
                         <p class="text-gray-400 leading-relaxed">
                             {{ content.forces.strength_1_text.value if content.forces and content.forces.strength_1_text else 'Une expérience significative dans l\'accompagnement des professionnels désireux de se distinguer grâce à un travail de qualité alliant un choix méticuleux des tissus.' }}
                         </p>
@@ -181,13 +181,13 @@
                 <!-- Strength 2 -->
                 <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
-                        <i class="fas fa-handshake text-9xl" style="color: #B8941E;"></i>
+                        <i class="fas fa-handshake text-9xl" class="text-accent"></i>
                     </div>
                     <div class="relative">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.1);">
-                            <i class="fas fa-handshake text-3xl" style="color: #B8941E;"></i>
+                            <i class="fas fa-handshake text-3xl" class="text-accent"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3" style="color: #B8941E;">{{ content.forces.strength_2_title.value if content.forces and content.forces.strength_2_title else 'Compréhension Parfaite' }}</h3>
+                        <h3 class="text-xl font-bold mb-3" class="text-accent">{{ content.forces.strength_2_title.value if content.forces and content.forces.strength_2_title else 'Compréhension Parfaite' }}</h3>
                         <p class="text-gray-400 leading-relaxed">
                             {{ content.forces.strength_2_text.value if content.forces and content.forces.strength_2_text else 'Une parfaite compréhension des besoins des professionnels et des particuliers, ce qui nous permet de donner vie à vos projets.' }}
                         </p>
@@ -197,13 +197,13 @@
                 <!-- Strength 3 -->
                 <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
-                        <i class="fas fa-cogs text-9xl" style="color: #B8941E;"></i>
+                        <i class="fas fa-cogs text-9xl" class="text-accent"></i>
                     </div>
                     <div class="relative">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.1);">
-                            <i class="fas fa-cogs text-3xl" style="color: #B8941E;"></i>
+                            <i class="fas fa-cogs text-3xl" class="text-accent"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3" style="color: #B8941E;">{{ content.forces.strength_3_title.value if content.forces and content.forces.strength_3_title else 'Personnalisation Expert' }}</h3>
+                        <h3 class="text-xl font-bold mb-3" class="text-accent">{{ content.forces.strength_3_title.value if content.forces and content.forces.strength_3_title else 'Personnalisation Expert' }}</h3>
                         <p class="text-gray-400 leading-relaxed">
                             {{ content.forces.strength_3_text.value if content.forces and content.forces.strength_3_text else 'Personnalisation de vos commandes en tenant compte de votre cahier de charge et des normes techniques grâce à notre atelier.' }}
                         </p>
@@ -213,13 +213,13 @@
                 <!-- Strength 4 -->
                 <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
-                        <i class="fas fa-bolt text-9xl" style="color: #B8941E;"></i>
+                        <i class="fas fa-bolt text-9xl" class="text-accent"></i>
                     </div>
                     <div class="relative">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.1);">
-                            <i class="fas fa-bolt text-3xl" style="color: #B8941E;"></i>
+                            <i class="fas fa-bolt text-3xl" class="text-accent"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3" style="color: #B8941E;">{{ content.forces.strength_4_title.value if content.forces and content.forces.strength_4_title else 'Rapidité d\'Exécution' }}</h3>
+                        <h3 class="text-xl font-bold mb-3" class="text-accent">{{ content.forces.strength_4_title.value if content.forces and content.forces.strength_4_title else 'Rapidité d\'Exécution' }}</h3>
                         <p class="text-gray-400 leading-relaxed">
                             {{ content.forces.strength_4_text.value if content.forces and content.forces.strength_4_text else 'Une rapidité dans l\'exécution des commandes pour répondre à vos besoins dans les meilleurs délais.' }}
                         </p>
@@ -229,13 +229,13 @@
                 <!-- Strength 5 -->
                 <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
-                        <i class="fas fa-shipping-fast text-9xl" style="color: #B8941E;"></i>
+                        <i class="fas fa-shipping-fast text-9xl" class="text-accent"></i>
                     </div>
                     <div class="relative">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.1);">
-                            <i class="fas fa-shipping-fast text-3xl" style="color: #B8941E;"></i>
+                            <i class="fas fa-shipping-fast text-3xl" class="text-accent"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3" style="color: #B8941E;">{{ content.forces.strength_5_title.value if content.forces and content.forces.strength_5_title else 'Livraison Rapide' }}</h3>
+                        <h3 class="text-xl font-bold mb-3" class="text-accent">{{ content.forces.strength_5_title.value if content.forces and content.forces.strength_5_title else 'Livraison Rapide' }}</h3>
                         <p class="text-gray-400 leading-relaxed">
                             {{ content.forces.strength_5_text.value if content.forces and content.forces.strength_5_text else 'Livraison partout au Maroc dans un délai de 24h pour assurer votre satisfaction.' }}
                         </p>
@@ -245,11 +245,11 @@
                 <!-- Strength 6 - About merged in -->
                 <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%); border: 1px solid rgba(212, 175, 55, 0.4);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
-                        <i class="fas fa-award text-9xl" style="color: #B8941E;"></i>
+                        <i class="fas fa-award text-9xl" class="text-accent"></i>
                     </div>
                     <div class="relative">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.2);">
-                            <i class="fas fa-award text-3xl" style="color: #B8941E;"></i>
+                            <i class="fas fa-award text-3xl" class="text-accent"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">{{ content.forces.strength_6_title.value if content.forces and content.forces.strength_6_title else '+20 Ans d\'Excellence' }}</h3>
                         <p class="text-gray-300 leading-relaxed">
@@ -285,7 +285,7 @@
                                      class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">{{ content.collection.slide_1_category.value if content.collection and content.collection.slide_1_category else 'COLLECTION EXCLUSIVE' }}</span>
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" class="bg-accent-subtle text-accent">{{ content.collection.slide_1_category.value if content.collection and content.collection.slide_1_category else 'COLLECTION EXCLUSIVE' }}</span>
                                     <h3 class="text-2xl font-bold text-white mb-2">{{ content.collection.slide_1_title.value if content.collection and content.collection.slide_1_title else 'Tissus de Luxe' }}</h3>
                                     <p class="text-gray-300 text-sm">{{ content.collection.slide_1_description.value if content.collection and content.collection.slide_1_description else 'Qualité exceptionnelle pour vos projets premium' }}</p>
                                 </div>
@@ -298,7 +298,7 @@
                                      class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">{{ content.collection.slide_2_category.value if content.collection and content.collection.slide_2_category else 'DESIGN MODERNE' }}</span>
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" class="bg-accent-subtle text-accent">{{ content.collection.slide_2_category.value if content.collection and content.collection.slide_2_category else 'DESIGN MODERNE' }}</span>
                                     <h3 class="text-2xl font-bold text-white mb-2">{{ content.collection.slide_2_title.value if content.collection and content.collection.slide_2_title else 'Collection Premium' }}</h3>
                                     <p class="text-gray-300 text-sm">{{ content.collection.slide_2_description.value if content.collection and content.collection.slide_2_description else 'Design moderne et élégant pour vos espaces' }}</p>
                                 </div>
@@ -316,7 +316,7 @@
                                      class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">{{ content.collection.slide_3_category.value if content.collection and content.collection.slide_3_category else 'HÔTELLERIE DE LUXE' }}</span>
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" class="bg-accent-subtle text-accent">{{ content.collection.slide_3_category.value if content.collection and content.collection.slide_3_category else 'HÔTELLERIE DE LUXE' }}</span>
                                     <h3 class="text-2xl font-bold text-white mb-2">{{ content.collection.slide_3_title.value if content.collection and content.collection.slide_3_title else 'Literie Hôtelière' }}</h3>
                                     <p class="text-gray-300 text-sm">{{ content.collection.slide_3_description.value if content.collection and content.collection.slide_3_description else 'Confort 5 étoiles pour une expérience exceptionnelle' }}</p>
                                 </div>
@@ -329,7 +329,7 @@
                                      class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">{{ content.collection.slide_4_category.value if content.collection and content.collection.slide_4_category else 'QUALITÉ SUPÉRIEURE' }}</span>
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" class="bg-accent-subtle text-accent">{{ content.collection.slide_4_category.value if content.collection and content.collection.slide_4_category else 'QUALITÉ SUPÉRIEURE' }}</span>
                                     <h3 class="text-2xl font-bold text-white mb-2">{{ content.collection.slide_4_title.value if content.collection and content.collection.slide_4_title else 'Serviettes de Luxe' }}</h3>
                                     <p class="text-gray-300 text-sm">{{ content.collection.slide_4_description.value if content.collection and content.collection.slide_4_description else 'Absorption parfaite et douceur exceptionnelle' }}</p>
                                 </div>
@@ -347,7 +347,7 @@
                                      class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">{{ content.collection.slide_5_category.value if content.collection and content.collection.slide_5_category else 'EXCELLENCE' }}</span>
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" class="bg-accent-subtle text-accent">{{ content.collection.slide_5_category.value if content.collection and content.collection.slide_5_category else 'EXCELLENCE' }}</span>
                                     <h3 class="text-2xl font-bold text-white mb-2">{{ content.collection.slide_5_title.value if content.collection and content.collection.slide_5_title else 'Excellence Textile' }}</h3>
                                     <p class="text-gray-300 text-sm">{{ content.collection.slide_5_description.value if content.collection and content.collection.slide_5_description else 'Douceur suprême et durabilité exceptionnelle' }}</p>
                                 </div>
@@ -360,7 +360,7 @@
                                      class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" style="background: rgba(184, 148, 30, 0.2); color: #B8941E;">{{ content.collection.slide_6_category.value if content.collection and content.collection.slide_6_category else 'CONFORT MAISON' }}</span>
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" class="bg-accent-subtle text-accent">{{ content.collection.slide_6_category.value if content.collection and content.collection.slide_6_category else 'CONFORT MAISON' }}</span>
                                     <h3 class="text-2xl font-bold text-white mb-2">{{ content.collection.slide_6_title.value if content.collection and content.collection.slide_6_title else 'Textile Maison' }}</h3>
                                     <p class="text-gray-300 text-sm">{{ content.collection.slide_6_description.value if content.collection and content.collection.slide_6_description else 'Élégance et confort pour votre intérieur' }}</p>
                                 </div>
@@ -487,7 +487,7 @@
         <div class="container mx-auto relative z-10 max-w-6xl">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">
-                    Notre <span style="color: #B8941E;">Engagement</span>
+                    Notre <span class="text-accent">Engagement</span>
                 </h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">
                     {{ content.engagement.description.value if content.engagement and content.engagement.description else 'Des valeurs fortes au service de votre satisfaction' }}
@@ -496,7 +496,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Pillar 1 -->
                 <div class="engagement-card">
-                    <div class="text-5xl mb-6" style="color: #B8941E;">
+                    <div class="text-5xl mb-6" class="text-accent">
                         <i class="fas fa-gem"></i>
                     </div>
                     <div class="text-6xl font-bold mb-4" style="color: rgba(212, 175, 55, 0.2);">01</div>
@@ -510,7 +510,7 @@
 
                 <!-- Pillar 2 -->
                 <div class="engagement-card">
-                    <div class="text-5xl mb-6" style="color: #B8941E;">
+                    <div class="text-5xl mb-6" class="text-accent">
                         <i class="fas fa-check-circle"></i>
                     </div>
                     <div class="text-6xl font-bold mb-4" style="color: rgba(212, 175, 55, 0.2);">02</div>
@@ -524,7 +524,7 @@
 
                 <!-- Pillar 3 -->
                 <div class="engagement-card">
-                    <div class="text-5xl mb-6" style="color: #B8941E;">
+                    <div class="text-5xl mb-6" class="text-accent">
                         <i class="fas fa-lightbulb"></i>
                     </div>
                     <div class="text-6xl font-bold mb-4" style="color: rgba(212, 175, 55, 0.2);">03</div>
@@ -543,7 +543,7 @@
     <section id="temoignages" class="py-20 px-6">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">{{ content.testimonials.title.value if content.testimonials and content.testimonials.title else 'Témoignages' }} <span style="color: #B8941E;">Clients</span></h2>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">{{ content.testimonials.title.value if content.testimonials and content.testimonials.title else 'Témoignages' }} <span class="text-accent">Clients</span></h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">{{ content.testimonials.description.value if content.testimonials and content.testimonials.description else 'Ce que nos clients disent de nous' }}</p>
             </div>
             <div class="max-w-4xl mx-auto">
@@ -561,31 +561,31 @@
     <section id="contact" class="py-20 px-6" style="background: rgba(15, 15, 15, 0.8);">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">Infos <span style="color: #B8941E;">Contact</span></h2>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">Infos <span class="text-accent">Contact</span></h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">Contactez-nous pour tous vos besoins en textiles premium</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Contact Info -->
                 <div>
-                    <h3 class="text-2xl font-bold mb-6" style="color: #B8941E;">{{ content.contact.company_name.value if content.contact and content.contact.company_name else 'KANSOTEX' }}</h3>
+                    <h3 class="text-2xl font-bold mb-6" class="text-accent">{{ content.contact.company_name.value if content.contact and content.contact.company_name else 'KANSOTEX' }}</h3>
                     <p class="text-gray-400 mb-6">
                         {{ content.contact.company_description.value if content.contact and content.contact.company_description else 'Expert en textiles de qualité premium, nous vous accompagnons depuis plus de 20 ans dans vos projets hôteliers, médicaux et résidentiels.' }}
                     </p>
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-building text-xl w-6" style="color: #B8941E;"></i>
+                            <i class="fas fa-building text-xl w-6" class="text-accent"></i>
                             <span><strong>ICE:</strong> {{ content.contact.contact_ice.value if content.contact and content.contact.contact_ice else '002323065B06' }}</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-phone text-xl w-6" style="color: #B8941E;"></i>
+                            <i class="fas fa-phone text-xl w-6" class="text-accent"></i>
                             <a href="tel:{{ content.contact.contact_phone.value if content.contact and content.contact.contact_phone else '+21250898989' }}" class="hover:text-yellow-500 transition">{{ content.contact.contact_phone.value if content.contact and content.contact.contact_phone else '+212 50 898 989' }}</a>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-envelope text-xl w-6" style="color: #B8941E;"></i>
+                            <i class="fas fa-envelope text-xl w-6" class="text-accent"></i>
                             <a href="mailto:{{ content.contact.contact_email.value if content.contact and content.contact.contact_email else 'contact@kansotex.com' }}" class="hover:text-yellow-500 transition">{{ content.contact.contact_email.value if content.contact and content.contact.contact_email else 'contact@kansotex.com' }}</a>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-map-marker-alt text-xl w-6" style="color: #B8941E;"></i>
+                            <i class="fas fa-map-marker-alt text-xl w-6" class="text-accent"></i>
                             <span>{{ content.contact.contact_address.value if content.contact and content.contact.contact_address else 'Maroc' }}</span>
                         </div>
                     </div>
@@ -668,54 +668,54 @@
                         {{ content.footer.company_description.value if content.footer and content.footer.company_description else 'Expert en textiles de qualité premium depuis plus de 20 ans. Nous vous accompagnons dans vos projets hôteliers, médicaux et résidentiels avec passion et excellence.' }}
                     </p>
                     <div class="flex items-center space-x-2 text-gray-400 mb-6">
-                        <i class="fas fa-award" style="color: #B8941E;"></i>
+                        <i class="fas fa-award" class="text-accent"></i>
                         <span class="text-sm">{{ content.footer.company_tagline.value if content.footer and content.footer.company_tagline else '+20 ans d\'excellence | ICE: 002323065B06' }}</span>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <span class="text-sm font-semibold" style="color: #B8941E;">{{ content.footer.social_label.value if content.footer and content.footer.social_label else 'Suivez-nous:' }}</span>
+                        <span class="text-sm font-semibold" class="text-accent">{{ content.footer.social_label.value if content.footer and content.footer.social_label else 'Suivez-nous:' }}</span>
                         <a href="{{ content.footer.social_facebook.value if content.footer and content.footer.social_facebook else 'https://facebook.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
-                            <i class="fab fa-facebook-f" style="color: #B8941E;"></i>
+                            <i class="fab fa-facebook-f" class="text-accent"></i>
                         </a>
                         <a href="{{ content.footer.social_instagram.value if content.footer and content.footer.social_instagram else 'https://instagram.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
-                            <i class="fab fa-instagram" style="color: #B8941E;"></i>
+                            <i class="fab fa-instagram" class="text-accent"></i>
                         </a>
                         <a href="{{ content.footer.social_linkedin.value if content.footer and content.footer.social_linkedin else 'https://linkedin.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
-                            <i class="fab fa-linkedin-in" style="color: #B8941E;"></i>
+                            <i class="fab fa-linkedin-in" class="text-accent"></i>
                         </a>
                     </div>
                 </div>
                 
                 <!-- Links Column -->
                 <div>
-                    <h4 class="text-lg font-bold mb-6 uppercase tracking-wider" style="color: #B8941E;">Navigation</h4>
+                    <h4 class="text-lg font-bold mb-6 uppercase tracking-wider" class="text-accent">Navigation</h4>
                     <ul class="space-y-3">
                         <li>
                             <a href="#accueil" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" style="color: #B8941E;"></i>
+                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" class="text-accent"></i>
                                 <span>Accueil</span>
                             </a>
                         </li>
                         <li>
                             <a href="#collection" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" style="color: #B8941E;"></i>
+                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" class="text-accent"></i>
                                 <span>Collection</span>
                             </a>
                         </li>
                         <li>
                             <a href="#volets" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" style="color: #B8941E;"></i>
+                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" class="text-accent"></i>
                                 <span>Nos Volets</span>
                             </a>
                         </li>
                         <li>
                             <a href="#forces" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" style="color: #B8941E;"></i>
+                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" class="text-accent"></i>
                                 <span>Points Forts</span>
                             </a>
                         </li>
                         <li>
                             <a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" style="color: #B8941E;"></i>
+                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" class="text-accent"></i>
                                 <span>Contact</span>
                             </a>
                         </li>
@@ -724,12 +724,12 @@
                 
                 <!-- Contact Column -->
                 <div>
-                    <h4 class="text-lg font-bold mb-6 uppercase tracking-wider" style="color: #B8941E;">{{ content.footer.contact_title.value if content.footer and content.footer.contact_title else 'Contact' }}</h4>
+                    <h4 class="text-lg font-bold mb-6 uppercase tracking-wider" class="text-accent">{{ content.footer.contact_title.value if content.footer and content.footer.contact_title else 'Contact' }}</h4>
                     <ul class="space-y-4">
                         <li>
                             <a href="tel:{{ content.footer.contact_phone.value if content.footer and content.footer.contact_phone else '+21250898989' }}" class="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-300 group">
                                 <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(184, 148, 30, 0.1);">
-                                    <i class="fas fa-phone" style="color: #B8941E;"></i>
+                                    <i class="fas fa-phone" class="text-accent"></i>
                                 </div>
                                 <span>{{ content.footer.contact_phone.value if content.footer and content.footer.contact_phone else '+212 50 898 989' }}</span>
                             </a>
@@ -737,7 +737,7 @@
                         <li>
                             <a href="mailto:{{ content.footer.contact_email.value if content.footer and content.footer.contact_email else 'contact@kansotex.com' }}" class="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-300 group">
                                 <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(184, 148, 30, 0.1);">
-                                    <i class="fas fa-envelope" style="color: #B8941E;"></i>
+                                    <i class="fas fa-envelope" class="text-accent"></i>
                                 </div>
                                 <span>{{ content.footer.contact_email.value if content.footer and content.footer.contact_email else 'contact@kansotex.com' }}</span>
                             </a>
@@ -745,7 +745,7 @@
                         <li>
                             <div class="flex items-center space-x-3 text-gray-400">
                                 <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(184, 148, 30, 0.1);">
-                                    <i class="fas fa-map-marker-alt" style="color: #B8941E;"></i>
+                                    <i class="fas fa-map-marker-alt" class="text-accent"></i>
                                 </div>
                                 <span>{{ content.footer.contact_address.value if content.footer and content.footer.contact_address else 'Maroc' }}</span>
                             </div>

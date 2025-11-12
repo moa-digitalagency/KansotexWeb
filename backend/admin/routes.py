@@ -255,7 +255,7 @@ def site_settings():
         settings_keys = [
             'site_name', 'site_logo', 'company_address', 'company_phone',
             'company_email', 'company_ice', 'facebook_url', 'instagram_url',
-            'linkedin_url', 'twitter_url'
+            'linkedin_url', 'twitter_url', 'color_theme'
         ]
         
         for key in settings_keys:
@@ -270,10 +270,10 @@ def site_settings():
     settings_keys = [
         'site_name', 'site_logo', 'company_address', 'company_phone',
         'company_email', 'company_ice', 'facebook_url', 'instagram_url',
-        'linkedin_url', 'twitter_url'
+        'linkedin_url', 'twitter_url', 'color_theme'
     ]
     
     for key in settings_keys:
-        settings[key] = content_service.get_setting(key, '')
+        settings[key] = content_service.get_setting(key, 'gold' if key == 'color_theme' else '')
     
     return render_template('admin/settings.html', settings=settings)

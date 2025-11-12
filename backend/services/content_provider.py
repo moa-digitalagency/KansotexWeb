@@ -73,7 +73,8 @@ class ContentProvider:
         return {
             'content': ContentProvider.get_all_content(),
             'settings': ContentProvider.get_site_settings(),
-            'seo': ContentProvider.get_seo_meta(page_slug)
+            'seo': ContentProvider.get_seo_meta(page_slug),
+            'color_theme': ContentProvider.get_setting_value('color_theme', 'gold')
         }
 
     @staticmethod

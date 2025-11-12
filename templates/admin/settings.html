@@ -75,6 +75,24 @@
     
     <div class="bg-gray-800 rounded-lg p-6">
         <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
+            <i class="fas fa-palette mr-2"></i>Th&egrave;me de Couleur
+        </h3>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Palette de couleurs du site</label>
+                <select name="color_theme" 
+                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 focus:border-yellow-600 focus:outline-none">
+                    <option value="gold" {% if settings.color_theme == 'gold' %}selected{% endif %}>Or (Noir, Or, Blanc)</option>
+                    <option value="silver" {% if settings.color_theme == 'silver' %}selected{% endif %}>Argent (Noir, Blanc)</option>
+                </select>
+                <p class="text-xs text-gray-500 mt-1">Choisissez la palette de couleurs principale du site</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4" style="color: #B8941E;">
             <i class="fas fa-share-alt mr-2"></i>R&eacute;seaux Sociaux
         </h3>
         
