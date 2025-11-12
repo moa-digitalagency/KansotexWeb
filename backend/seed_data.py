@@ -253,7 +253,7 @@ def init_database_content():
         ('twitter_title', 'KANSOTEX - Expert en Textiles Premium', 'string', 'Titre Twitter'),
         ('twitter_description', 'Expert en textiles de qualité premium depuis 2005', 'string', 'Description Twitter'),
         ('twitter_image', '/static/images/twitter-image.jpg', 'string', 'Image Twitter'),
-        ('color_theme', 'gold', 'string', 'Thème de couleur du site (gold/blue)'),
+        ('color_theme', 'silver', 'string', 'Thème de couleur du site (gold/silver)'),
         ('theme_mode', 'dark', 'string', 'Mode de thème par défaut (dark/light/auto)'),
         ('allow_user_theme_toggle', 'true', 'boolean', 'Permettre à l\'utilisateur de basculer le thème'),
     ]

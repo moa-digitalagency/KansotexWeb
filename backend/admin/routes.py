@@ -319,7 +319,7 @@ def site_settings():
     ]
     
     default_values = {
-        'color_theme': 'gold',
+        'color_theme': 'silver',
         'smtp_port': '587',
         'smtp_use_tls': 'true',
         'theme_mode': 'dark',

@@ -6,14 +6,14 @@
     --bg-card: rgba(20, 20, 20, 0.9);
     --text-primary: #ffffff;
     --text-secondary: #9ca3af;
-    /* Default to gold theme as fallback */
-    --accent-light: #B8941E;
-    --accent-mid: #D4AF37;
-    --accent-dark: #B8860B;
-    --accent-rgb: 184, 148, 30;
-    --border-opacity: 0.2;
-    --hover-border-opacity: 0.6;
-    --shadow-opacity: 0.15;
+    /* Default to silver theme as fallback */
+    --accent-light: #E8E8E8;
+    --accent-mid: #C0C0C0;
+    --accent-dark: #A8A8A8;
+    --accent-rgb: 232, 232, 232;
+    --border-opacity: 0.4;
+    --hover-border-opacity: 0.7;
+    --shadow-opacity: 0.25;
 }
 
 /* THEME OR (GOLD) - Dark gold avec éclat */
@@ -47,14 +47,10 @@ body[data-theme="silver"] {
 /* LIGHT MODE - Mode Clair */
 body[data-theme-mode="light"] {
     --bg-primary: #ffffff;
-    --bg-secondary: rgba(249, 250, 251, 0.95);
-    --bg-card: rgba(249, 250, 251, 0.98);
+    --bg-secondary: rgba(255, 255, 255, 0.95);
+    --bg-card: #ffffff;
     --text-primary: #111827;
-    --text-secondary: #6b7280;
-}
-
-/* Override text colors for light mode */
-body[data-theme-mode="light"] {
+    --text-secondary: #4b5563;
     background: var(--bg-primary);
     color: var(--text-primary);
 }
@@ -484,15 +480,6 @@ input:focus, textarea:focus {
 
 /* ===== LIGHT THEME STYLES ===== */
 
-/* Light theme variables */
-body[data-theme-mode="light"] {
-    --bg-primary: #ffffff;
-    --bg-secondary: rgba(255, 255, 255, 0.95);
-    --bg-card: #ffffff;
-    --text-primary: #111827;
-    --text-secondary: #4b5563;
-}
-
 /* Light theme with gold accent */
 body[data-theme-mode="light"][data-theme="gold"] {
     --accent-light: #9A7B15;
@@ -566,6 +553,76 @@ body[data-theme-mode="light"] .strength-card {
 body[data-theme-mode="light"] .strength-card:hover {
     background: rgba(255, 255, 255, 1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Additional comprehensive light mode overrides */
+body[data-theme-mode="light"] .volet-card {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+}
+
+body[data-theme-mode="light"] .volet-card h3,
+body[data-theme-mode="light"] .volet-card p {
+    color: var(--text-primary) !important;
+}
+
+body[data-theme-mode="light"] .collection-slide {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.95) 100%) !important;
+}
+
+body[data-theme-mode="light"] .collection-slide h3,
+body[data-theme-mode="light"] .collection-slide p,
+body[data-theme-mode="light"] .collection-slide span {
+    color: var(--text-primary) !important;
+}
+
+body[data-theme-mode="light"] nav a {
+    color: var(--text-primary) !important;
+}
+
+body[data-theme-mode="light"] nav a:hover {
+    color: var(--accent-mid) !important;
+}
+
+body[data-theme-mode="light"] .nav-arrow,
+body[data-theme-mode="light"] .slider-dot {
+    background: rgba(var(--accent-rgb), 0.3) !important;
+    border: 2px solid rgba(var(--accent-rgb), 0.5) !important;
+}
+
+body[data-theme-mode="light"] .nav-arrow:hover,
+body[data-theme-mode="light"] .slider-dot:hover,
+body[data-theme-mode="light"] .slider-dot.active {
+    background: rgba(var(--accent-rgb), 0.6) !important;
+}
+
+body[data-theme-mode="light"] footer {
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.98) 0%, rgba(241, 245, 249, 0.98) 100%) !important;
+    color: var(--text-primary) !important;
+}
+
+body[data-theme-mode="light"] footer h3,
+body[data-theme-mode="light"] footer p,
+body[data-theme-mode="light"] footer a {
+    color: var(--text-primary) !important;
+}
+
+body[data-theme-mode="light"] footer a:hover {
+    color: var(--accent-mid) !important;
+}
+
+body[data-theme-mode="light"] .text-gray-300,
+body[data-theme-mode="light"] .text-gray-200 {
+    color: var(--text-secondary) !important;
+}
+
+body[data-theme-mode="light"] section {
+    background: var(--bg-primary) !important;
+}
+
+body[data-theme-mode="light"] .bg-gradient-to-b,
+body[data-theme-mode="light"] .bg-gradient-to-r {
+    background: var(--bg-primary) !important;
 }
 
 /* Floating buttons container - stacks vertically on left side */
