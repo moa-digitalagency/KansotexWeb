@@ -433,11 +433,11 @@ input:focus, textarea:focus {
 
 /* Light theme variables */
 body[data-theme-mode="light"] {
-    --bg-primary: #f8f9fa;
-    --bg-secondary: rgba(255, 255, 255, 0.9);
-    --bg-card: rgba(255, 255, 255, 0.95);
-    --text-primary: #1a1a1a;
-    --text-secondary: #6b7280;
+    --bg-primary: #ffffff;
+    --bg-secondary: rgba(255, 255, 255, 0.95);
+    --bg-card: #ffffff;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
 }
 
 /* Light theme with gold accent */
@@ -456,15 +456,15 @@ body[data-theme-mode="light"][data-theme="gold"] {
 
 /* Light theme with silver accent */
 body[data-theme-mode="light"][data-theme="silver"] {
-    --accent-light: #6b7280;
-    --accent-mid: #9ca3af;
-    --accent-dark: #d1d5db;
-    --accent-rgb: 107, 114, 128;
-    --border-opacity: 0.3;
-    --hover-border-opacity: 0.6;
-    --shadow-opacity: 0.15;
-    --button-bg: #4b5563;
-    --button-hover-bg: #6b7280;
+    --accent-light: #475569;
+    --accent-mid: #64748b;
+    --accent-dark: #94a3b8;
+    --accent-rgb: 71, 85, 105;
+    --border-opacity: 0.4;
+    --hover-border-opacity: 0.7;
+    --shadow-opacity: 0.2;
+    --button-bg: #334155;
+    --button-hover-bg: #475569;
     --button-text: #ffffff;
 }
 

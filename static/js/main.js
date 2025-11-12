@@ -125,7 +125,7 @@ function showTestimonial(index) {
             setTimeout(() => card.classList.add('active'), 10);
         } else {
             card.classList.remove('active');
-            setTimeout(() => card.style.display = 'none', 500);
+            card.style.display = 'none';
         }
     });
     
