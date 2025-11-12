@@ -73,8 +73,8 @@ async function initTestimonials() {
                 card.className = `testimonial-card ${index === 0 ? 'active' : ''}`;
                 card.style.display = index === 0 ? 'block' : 'none';
                 card.innerHTML = `
-                    <p class="text-lg text-gray-300 mb-6 italic leading-relaxed">${testimonial.content}</p>
-                    <div class="flex items-center space-x-4">
+                    <p class="text-lg text-gray-300 mb-6 italic leading-relaxed text-center">${testimonial.content}</p>
+                    <div class="flex items-center justify-center space-x-4">
                         ${testimonial.client_photo ? 
                             `<img src="${testimonial.client_photo.url}" alt="${testimonial.client_name}" class="w-16 h-16 rounded-full object-cover">` :
                             `<div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold bg-accent-gradient">
@@ -86,7 +86,7 @@ async function initTestimonials() {
                             <p class="text-gray-400 text-sm">${testimonial.client_title || ''} ${testimonial.client_company ? ', ' + testimonial.client_company : ''}</p>
                         </div>
                     </div>
-                    ${testimonial.rating ? `<div class="flex items-center mt-4 text-accent">
+                    ${testimonial.rating ? `<div class="flex items-center justify-center mt-4 text-accent">
                         ${'<i class="fas fa-star"></i>'.repeat(testimonial.rating)}
                     </div>` : ''}
                 `;
