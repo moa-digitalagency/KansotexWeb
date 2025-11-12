@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,70 +46,67 @@
 <body class="bg-black text-gray-100" data-theme="{{ color_theme }}">
     
     <!-- Header / Navigation -->
-    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 border-b border-accent-faint transition-all duration-300">
+    <header id="main-header fixed top-0 left-0 right-0 z-50 border-b border-accent-faint transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 max-w-6xl">
             <div class="flex items-center justify-between">
                 <div class="text-2xl font-bold text-accent">KANSOTEX</div>
                 <div class="flex items-center space-x-8">
                     <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide">
-                    <a href="#accueil" class="hover-text-accent transition uppercase">Accueil</a>
-                    <a href="#collection" class="hover-text-accent transition uppercase">Collection</a>
-                    <a href="#volets" class="hover-text-accent transition uppercase">Nos Volets</a>
-                    <a href="#forces" class="hover-text-accent transition uppercase">Points Forts</a>
-                    <a href="#engagement" class="hover-text-accent transition uppercase">Engagement</a>
-                    <a href="#contact" class="hover-text-accent transition uppercase">Contact</a>
+                    <a href="#accueil hover-text-accent transition uppercase">Accueil</a>
+                    <a href="#collection hover-text-accent transition uppercase">Collection</a>
+                    <a href="#volets hover-text-accent transition uppercase">Nos Volets</a>
+                    <a href="#forces hover-text-accent transition uppercase">Points Forts</a>
+                    <a href="#engagement hover-text-accent transition uppercase">Engagement</a>
+                    <a href="#contact hover-text-accent transition uppercase">Contact</a>
                     </div>
                     <div class="hidden lg:flex items-center space-x-4 border-l border-accent-faint pl-6">
-                        <a href="{{ content.footer.social_facebook.value if content.footer and content.footer.social_facebook else 'https://facebook.com' }}" target="_blank" class="hover-text-accent transition">
+                        <a href="{{ content.footer.social_facebook.value if content.footer and content.footer.social_facebook else 'https://facebook.com' }}" target="_blank hover-text-accent transition">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="{{ content.footer.social_instagram.value if content.footer and content.footer.social_instagram else 'https://instagram.com' }}" target="_blank" class="hover-text-accent transition">
+                        <a href="{{ content.footer.social_instagram.value if content.footer and content.footer.social_instagram else 'https://instagram.com' }}" target="_blank hover-text-accent transition">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="{{ content.footer.social_linkedin.value if content.footer and content.footer.social_linkedin else 'https://linkedin.com' }}" target="_blank" class="hover-text-accent transition">
+                        <a href="{{ content.footer.social_linkedin.value if content.footer and content.footer.social_linkedin else 'https://linkedin.com' }}" target="_blank hover-text-accent transition">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
                 </div>
-                <button id="mobile-menu-btn" class="md:hidden text-2xl">
+                <button id="mobile-menu-btn md:hidden text-2xl">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3 text-sm font-semibold">
-                <a href="#accueil" class="block hover-text-accent transition uppercase">Accueil</a>
-                <a href="#collection" class="block hover-text-accent transition uppercase">Collection</a>
-                <a href="#volets" class="block hover-text-accent transition uppercase">Nos Volets</a>
-                <a href="#forces" class="block hover-text-accent transition uppercase">Points Forts</a>
-                <a href="#engagement" class="block hover-text-accent transition uppercase">Engagement</a>
-                <a href="#contact" class="block hover-text-accent transition uppercase">Contact</a>
+            <div id="mobile-menu hidden md:hidden mt-4 pb-4 space-y-3 text-sm font-semibold">
+                <a href="#accueil block hover-text-accent transition uppercase">Accueil</a>
+                <a href="#collection block hover-text-accent transition uppercase">Collection</a>
+                <a href="#volets block hover-text-accent transition uppercase">Nos Volets</a>
+                <a href="#forces block hover-text-accent transition uppercase">Points Forts</a>
+                <a href="#engagement block hover-text-accent transition uppercase">Engagement</a>
+                <a href="#contact block hover-text-accent transition uppercase">Contact</a>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section with Full-Screen Image Slider -->
-    <section id="accueil" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="accueil relative h-screen flex items-center justify-center overflow-hidden">
         <!-- Background Image Slider -->
         <div class="absolute inset-0 hero-slider-container">
             <!-- Slide 1 -->
             <div class="hero-slide active">
                 <img src="{{ (content.hero.slider_image_1|image_url) or url_for('static', filename='images/hotel-textile.jpg') }}" 
-                     alt="KANSOTEX Textiles Hôtelier" 
-                     class="w-full h-full object-cover">
+                     alt="KANSOTEX Textiles Hôtelier w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-60"></div>
             </div>
             <!-- Slide 2 -->
             <div class="hero-slide">
                 <img src="{{ (content.hero.slider_image_2|image_url) or url_for('static', filename='images/medical-textile.jpg') }}" 
-                     alt="KANSOTEX Textiles Médical" 
-                     class="w-full h-full object-cover">
+                     alt="KANSOTEX Textiles Médical w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-60"></div>
             </div>
             <!-- Slide 3 -->
             <div class="hero-slide">
                 <img src="{{ (content.hero.slider_image_3|image_url) or url_for('static', filename='images/literie.jpg') }}" 
-                     alt="KANSOTEX Literie Premium" 
-                     class="w-full h-full object-cover">
+                     alt="KANSOTEX Literie Premium w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black bg-opacity-60"></div>
             </div>
         </div>
@@ -117,24 +114,24 @@
         <!-- Hero Content -->
         <div class="container mx-auto relative z-10 text-center px-6">
             <div class="max-w-4xl mx-auto">
-                <div class="inline-block px-6 py-2 rounded-full mb-6" style="background: rgba(184, 148, 30, 0.15); border: 1px solid rgba(184, 148, 30, 0.3);">
-                    <span class="text-sm font-semibold tracking-wider" class="text-accent">{{ content.hero.tagline.value if content.hero and content.hero.tagline else 'EXCELLENCE DEPUIS 2005' }}</span>
+                <div class="inline-block px-6 py-2 rounded-full mb-6 border border-accent-subtle bg-accent-subtle">
+                    <span class="text-sm font-semibold tracking-wider text-accent">{{ content.hero.tagline.value if content.hero and content.hero.tagline else 'EXCELLENCE DEPUIS 2005' }}</span>
                 </div>
                 <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tight leading-tight">
                     <span class="gradient-text">{{ content.hero.title.value if content.hero and content.hero.title else 'KANSOTEX' }}</span>
                 </h1>
                 <p class="text-xl md:text-2xl mb-8 text-gray-300 font-light max-w-2xl mx-auto">{{ content.hero.subtitle.value if content.hero and content.hero.subtitle else 'Expert en Textiles de Qualité Premium' }}</p>
                 <div class="flex justify-center items-center space-x-3 mb-10">
-                    <div class="flex items-center space-x-2 px-4 py-2 rounded-lg" style="background: rgba(184, 148, 30, 0.1);">
-                        <i class="fas fa-{{ content.hero.badge_1_icon.value if content.hero and content.hero.badge_1_icon else 'star' }} text-sm" class="text-accent"></i>
+                    <div class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-accent-subtle">
+                        <i class="fas fa-{{ content.hero.badge_1_icon.value if content.hero and content.hero.badge_1_icon else 'star' }} text-sm text-accent"></i>
                         <span class="text-sm font-medium">{{ content.hero.badge_1_text.value if content.hero and content.hero.badge_1_text else '+20 ans d\'expertise' }}</span>
                     </div>
-                    <div class="flex items-center space-x-2 px-4 py-2 rounded-lg" style="background: rgba(184, 148, 30, 0.1);">
-                        <i class="fas fa-{{ content.hero.badge_2_icon.value if content.hero and content.hero.badge_2_icon else 'award' }} text-sm" class="text-accent"></i>
+                    <div class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-accent-subtle">
+                        <i class="fas fa-{{ content.hero.badge_2_icon.value if content.hero and content.hero.badge_2_icon else 'award' }} text-sm text-accent"></i>
                         <span class="text-sm font-medium">{{ content.hero.badge_2_text.value if content.hero and content.hero.badge_2_text else 'Qualité Premium' }}</span>
                     </div>
                 </div>
-                <a href="#forces" class="inline-block px-10 py-4 text-black font-bold rounded-lg transition transform hover:scale-105 shadow-xl" class="bg-accent-gradient">
+                <a href="#forces inline-block px-10 py-4 rounded-lg shadow-xl btn-primary">
                     {{ content.hero.cta_text.value if content.hero and content.hero.cta_text else 'Découvrir nos atouts' }}
                 </a>
             </div>
@@ -142,7 +139,7 @@
         
         <!-- Scroll Indicator -->
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i class="fas fa-chevron-down text-2xl" class="text-accent"></i>
+            <i class="fas fa-chevron-down text-2xl text-accent"></i>
         </div>
         
         <!-- Slider Navigation Dots -->
@@ -154,7 +151,7 @@
     </section>
 
     <!-- Points Forts Section - Moved After Hero -->
-    <section id="forces" class="py-20 px-6" style="background: rgba(15, 15, 15, 0.9);">
+    <section id="forces py-20 px-6" style="background: rgba(15, 15, 15, 0.9);">
         <div class="container mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">{{ content.forces.title.value if content.forces and content.forces.title else 'Nos Points Forts' }}</h2>
@@ -165,13 +162,13 @@
                 <!-- Strength 1 -->
                 <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(184, 148, 30, 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
-                        <i class="fas fa-star text-9xl" class="text-accent"></i>
+                        <i class="fas fa-star text-9xl text-accent"></i>
                     </div>
                     <div class="relative">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(184, 148, 30, 0.1);">
-                            <i class="fas fa-star text-3xl" class="text-accent"></i>
+                            <i class="fas fa-star text-3xl text-accent"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3" class="text-accent">{{ content.forces.strength_1_title.value if content.forces and content.forces.strength_1_title else 'Expérience Significative' }}</h3>
+                        <h3 class="text-xl font-bold mb-3 text-accent">{{ content.forces.strength_1_title.value if content.forces and content.forces.strength_1_title else 'Expérience Significative' }}</h3>
                         <p class="text-gray-400 leading-relaxed">
                             {{ content.forces.strength_1_text.value if content.forces and content.forces.strength_1_text else 'Une expérience significative dans l\'accompagnement des professionnels désireux de se distinguer grâce à un travail de qualité alliant un choix méticuleux des tissus.' }}
                         </p>
@@ -181,13 +178,13 @@
                 <!-- Strength 2 -->
                 <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
-                        <i class="fas fa-handshake text-9xl" class="text-accent"></i>
+                        <i class="fas fa-handshake text-9xl text-accent"></i>
                     </div>
                     <div class="relative">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.1);">
-                            <i class="fas fa-handshake text-3xl" class="text-accent"></i>
+                            <i class="fas fa-handshake text-3xl text-accent"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3" class="text-accent">{{ content.forces.strength_2_title.value if content.forces and content.forces.strength_2_title else 'Compréhension Parfaite' }}</h3>
+                        <h3 class="text-xl font-bold mb-3 text-accent">{{ content.forces.strength_2_title.value if content.forces and content.forces.strength_2_title else 'Compréhension Parfaite' }}</h3>
                         <p class="text-gray-400 leading-relaxed">
                             {{ content.forces.strength_2_text.value if content.forces and content.forces.strength_2_text else 'Une parfaite compréhension des besoins des professionnels et des particuliers, ce qui nous permet de donner vie à vos projets.' }}
                         </p>
@@ -197,13 +194,13 @@
                 <!-- Strength 3 -->
                 <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
-                        <i class="fas fa-cogs text-9xl" class="text-accent"></i>
+                        <i class="fas fa-cogs text-9xl text-accent"></i>
                     </div>
                     <div class="relative">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.1);">
-                            <i class="fas fa-cogs text-3xl" class="text-accent"></i>
+                            <i class="fas fa-cogs text-3xl text-accent"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3" class="text-accent">{{ content.forces.strength_3_title.value if content.forces and content.forces.strength_3_title else 'Personnalisation Expert' }}</h3>
+                        <h3 class="text-xl font-bold mb-3 text-accent">{{ content.forces.strength_3_title.value if content.forces and content.forces.strength_3_title else 'Personnalisation Expert' }}</h3>
                         <p class="text-gray-400 leading-relaxed">
                             {{ content.forces.strength_3_text.value if content.forces and content.forces.strength_3_text else 'Personnalisation de vos commandes en tenant compte de votre cahier de charge et des normes techniques grâce à notre atelier.' }}
                         </p>
@@ -213,13 +210,13 @@
                 <!-- Strength 4 -->
                 <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
-                        <i class="fas fa-bolt text-9xl" class="text-accent"></i>
+                        <i class="fas fa-bolt text-9xl text-accent"></i>
                     </div>
                     <div class="relative">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.1);">
-                            <i class="fas fa-bolt text-3xl" class="text-accent"></i>
+                            <i class="fas fa-bolt text-3xl text-accent"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3" class="text-accent">{{ content.forces.strength_4_title.value if content.forces and content.forces.strength_4_title else 'Rapidité d\'Exécution' }}</h3>
+                        <h3 class="text-xl font-bold mb-3 text-accent">{{ content.forces.strength_4_title.value if content.forces and content.forces.strength_4_title else 'Rapidité d\'Exécution' }}</h3>
                         <p class="text-gray-400 leading-relaxed">
                             {{ content.forces.strength_4_text.value if content.forces and content.forces.strength_4_text else 'Une rapidité dans l\'exécution des commandes pour répondre à vos besoins dans les meilleurs délais.' }}
                         </p>
@@ -229,13 +226,13 @@
                 <!-- Strength 5 -->
                 <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 1px solid rgba(212, 175, 55, 0.2);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
-                        <i class="fas fa-shipping-fast text-9xl" class="text-accent"></i>
+                        <i class="fas fa-shipping-fast text-9xl text-accent"></i>
                     </div>
                     <div class="relative">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.1);">
-                            <i class="fas fa-shipping-fast text-3xl" class="text-accent"></i>
+                            <i class="fas fa-shipping-fast text-3xl text-accent"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-3" class="text-accent">{{ content.forces.strength_5_title.value if content.forces and content.forces.strength_5_title else 'Livraison Rapide' }}</h3>
+                        <h3 class="text-xl font-bold mb-3 text-accent">{{ content.forces.strength_5_title.value if content.forces and content.forces.strength_5_title else 'Livraison Rapide' }}</h3>
                         <p class="text-gray-400 leading-relaxed">
                             {{ content.forces.strength_5_text.value if content.forces and content.forces.strength_5_text else 'Livraison partout au Maroc dans un délai de 24h pour assurer votre satisfaction.' }}
                         </p>
@@ -245,11 +242,11 @@
                 <!-- Strength 6 - About merged in -->
                 <div class="group relative overflow-hidden rounded-lg p-8 transition-all duration-300 hover:transform hover:scale-105" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%); border: 1px solid rgba(212, 175, 55, 0.4);">
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
-                        <i class="fas fa-award text-9xl" class="text-accent"></i>
+                        <i class="fas fa-award text-9xl text-accent"></i>
                     </div>
                     <div class="relative">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-6" style="background: rgba(212, 175, 55, 0.2);">
-                            <i class="fas fa-award text-3xl" class="text-accent"></i>
+                            <i class="fas fa-award text-3xl text-accent"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">{{ content.forces.strength_6_title.value if content.forces and content.forces.strength_6_title else '+20 Ans d\'Excellence' }}</h3>
                         <p class="text-gray-300 leading-relaxed">
@@ -261,7 +258,7 @@
         </div>
     </section>
     <!-- Notre Collection - Slider 2 Colonnes -->
-    <section id="collection" class="py-20 px-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(15, 15, 15, 0.9) 100%);">
+    <section id="collection py-20 px-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(15, 15, 15, 0.9) 100%);">
         <div class="container mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">
@@ -281,11 +278,10 @@
                             <!-- Item 1 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
                                 <img src="{{ (content.collection.slide_1_image|image_url) or url_for('static', filename='images/textile-1.jpg') }}" 
-                                     alt="Textile Premium" 
-                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                     alt="Textile Premium w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" class="bg-accent-subtle text-accent">{{ content.collection.slide_1_category.value if content.collection and content.collection.slide_1_category else 'COLLECTION EXCLUSIVE' }}</span>
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 bg-accent-subtle text-accent">{{ content.collection.slide_1_category.value if content.collection and content.collection.slide_1_category else 'COLLECTION EXCLUSIVE' }}</span>
                                     <h3 class="text-2xl font-bold text-white mb-2">{{ content.collection.slide_1_title.value if content.collection and content.collection.slide_1_title else 'Tissus de Luxe' }}</h3>
                                     <p class="text-gray-300 text-sm">{{ content.collection.slide_1_description.value if content.collection and content.collection.slide_1_description else 'Qualité exceptionnelle pour vos projets premium' }}</p>
                                 </div>
@@ -294,11 +290,10 @@
                             <!-- Item 2 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
                                 <img src="{{ (content.collection.slide_2_image|image_url) or url_for('static', filename='images/textile-2.jpg') }}" 
-                                     alt="Collection Premium" 
-                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                     alt="Collection Premium w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" class="bg-accent-subtle text-accent">{{ content.collection.slide_2_category.value if content.collection and content.collection.slide_2_category else 'DESIGN MODERNE' }}</span>
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 bg-accent-subtle text-accent">{{ content.collection.slide_2_category.value if content.collection and content.collection.slide_2_category else 'DESIGN MODERNE' }}</span>
                                     <h3 class="text-2xl font-bold text-white mb-2">{{ content.collection.slide_2_title.value if content.collection and content.collection.slide_2_title else 'Collection Premium' }}</h3>
                                     <p class="text-gray-300 text-sm">{{ content.collection.slide_2_description.value if content.collection and content.collection.slide_2_description else 'Design moderne et élégant pour vos espaces' }}</p>
                                 </div>
@@ -312,11 +307,10 @@
                             <!-- Item 3 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
                                 <img src="{{ (content.collection.slide_3_image|image_url) or url_for('static', filename='images/bedding-1.jpg') }}" 
-                                     alt="Literie Hôtelière" 
-                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                     alt="Literie Hôtelière w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" class="bg-accent-subtle text-accent">{{ content.collection.slide_3_category.value if content.collection and content.collection.slide_3_category else 'HÔTELLERIE DE LUXE' }}</span>
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 bg-accent-subtle text-accent">{{ content.collection.slide_3_category.value if content.collection and content.collection.slide_3_category else 'HÔTELLERIE DE LUXE' }}</span>
                                     <h3 class="text-2xl font-bold text-white mb-2">{{ content.collection.slide_3_title.value if content.collection and content.collection.slide_3_title else 'Literie Hôtelière' }}</h3>
                                     <p class="text-gray-300 text-sm">{{ content.collection.slide_3_description.value if content.collection and content.collection.slide_3_description else 'Confort 5 étoiles pour une expérience exceptionnelle' }}</p>
                                 </div>
@@ -325,11 +319,10 @@
                             <!-- Item 4 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
                                 <img src="{{ (content.collection.slide_4_image|image_url) or url_for('static', filename='images/serviettes.jpg') }}" 
-                                     alt="Serviettes de Luxe" 
-                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                     alt="Serviettes de Luxe w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" class="bg-accent-subtle text-accent">{{ content.collection.slide_4_category.value if content.collection and content.collection.slide_4_category else 'QUALITÉ SUPÉRIEURE' }}</span>
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 bg-accent-subtle text-accent">{{ content.collection.slide_4_category.value if content.collection and content.collection.slide_4_category else 'QUALITÉ SUPÉRIEURE' }}</span>
                                     <h3 class="text-2xl font-bold text-white mb-2">{{ content.collection.slide_4_title.value if content.collection and content.collection.slide_4_title else 'Serviettes de Luxe' }}</h3>
                                     <p class="text-gray-300 text-sm">{{ content.collection.slide_4_description.value if content.collection and content.collection.slide_4_description else 'Absorption parfaite et douceur exceptionnelle' }}</p>
                                 </div>
@@ -343,11 +336,10 @@
                             <!-- Item 5 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
                                 <img src="{{ (content.collection.slide_5_image|image_url) or url_for('static', filename='images/bedding-2.jpg') }}" 
-                                     alt="Literie Excellence" 
-                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                     alt="Literie Excellence w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" class="bg-accent-subtle text-accent">{{ content.collection.slide_5_category.value if content.collection and content.collection.slide_5_category else 'EXCELLENCE' }}</span>
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 bg-accent-subtle text-accent">{{ content.collection.slide_5_category.value if content.collection and content.collection.slide_5_category else 'EXCELLENCE' }}</span>
                                     <h3 class="text-2xl font-bold text-white mb-2">{{ content.collection.slide_5_title.value if content.collection and content.collection.slide_5_title else 'Excellence Textile' }}</h3>
                                     <p class="text-gray-300 text-sm">{{ content.collection.slide_5_description.value if content.collection and content.collection.slide_5_description else 'Douceur suprême et durabilité exceptionnelle' }}</p>
                                 </div>
@@ -356,11 +348,10 @@
                             <!-- Item 6 -->
                             <div class="group relative overflow-hidden rounded-lg" style="height: 400px;">
                                 <img src="{{ (content.collection.slide_6_image|image_url) or url_for('static', filename='images/home-textile.jpg') }}" 
-                                     alt="Textile Maison" 
-                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                                     alt="Textile Maison w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
                                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2" class="bg-accent-subtle text-accent">{{ content.collection.slide_6_category.value if content.collection and content.collection.slide_6_category else 'CONFORT MAISON' }}</span>
+                                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 bg-accent-subtle text-accent">{{ content.collection.slide_6_category.value if content.collection and content.collection.slide_6_category else 'CONFORT MAISON' }}</span>
                                     <h3 class="text-2xl font-bold text-white mb-2">{{ content.collection.slide_6_title.value if content.collection and content.collection.slide_6_title else 'Textile Maison' }}</h3>
                                     <p class="text-gray-300 text-sm">{{ content.collection.slide_6_description.value if content.collection and content.collection.slide_6_description else 'Élégance et confort pour votre intérieur' }}</p>
                                 </div>
@@ -388,12 +379,11 @@
     </section>
 
     <!-- Les Volets Section -->
-    <section id="volets" class="py-20 px-6 relative overflow-hidden">
+    <section id="volets py-20 px-6 relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="{{ (content.volets.background_image|image_url) or url_for('static', filename='images/textile-3.jpg') }}" 
-                 alt="Background" 
-                 class="w-full h-full object-cover opacity-5">
+                 alt="Background w-full h-full object-cover opacity-5">
         </div>
         <div class="container mx-auto relative z-10 max-w-6xl">
             <div class="text-center mb-12">
@@ -405,8 +395,7 @@
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
                         <img src="{{ (content.volets.volet_1_image|image_url) or url_for('static', filename='images/home-textile.jpg') }}" 
-                             alt="Home textile" 
-                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                             alt="Home textile w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">{{ content.volets.volet_1_title.value if content.volets and content.volets.volet_1_title else 'Home Textile' }}</h3>
@@ -417,8 +406,7 @@
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
                         <img src="{{ (content.volets.volet_2_image|image_url) or url_for('static', filename='images/hotel-textile.jpg') }}" 
-                             alt="Hotel textile" 
-                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                             alt="Hotel textile w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">{{ content.volets.volet_2_title.value if content.volets and content.volets.volet_2_title else 'Hotel Textile' }}</h3>
@@ -429,8 +417,7 @@
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
                         <img src="{{ (content.volets.volet_3_image|image_url) or url_for('static', filename='images/medical-textile.jpg') }}" 
-                             alt="Medical textile" 
-                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                             alt="Medical textile w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">{{ content.volets.volet_3_title.value if content.volets and content.volets.volet_3_title else 'Medical Textile' }}</h3>
@@ -441,8 +428,7 @@
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
                         <img src="{{ (content.volets.volet_4_image|image_url) or url_for('static', filename='images/literie.jpg') }}" 
-                             alt="Literie" 
-                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                             alt="Literie w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">{{ content.volets.volet_4_title.value if content.volets and content.volets.volet_4_title else 'Literie et Linge de Maison' }}</h3>
@@ -453,8 +439,7 @@
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
                         <img src="{{ (content.volets.volet_5_image|image_url) or url_for('static', filename='images/serviettes.jpg') }}" 
-                             alt="Serviettes" 
-                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                             alt="Serviettes w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">{{ content.volets.volet_5_title.value if content.volets and content.volets.volet_5_title else 'Serviettes et Sorties de Bain' }}</h3>
@@ -465,8 +450,7 @@
                 <div class="card group">
                     <div class="relative overflow-hidden rounded-lg mb-4 h-64">
                         <img src="{{ (content.volets.volet_6_image|image_url) or url_for('static', filename='images/textile-3.jpg') }}" 
-                             alt="Textile Professionnel" 
-                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                             alt="Textile Professionnel w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">{{ content.volets.volet_6_title.value if content.volets and content.volets.volet_6_title else 'Textile Professionnel' }}</h3>
@@ -477,12 +461,11 @@
     </section>
 
     <!-- Notre Engagement Section -->
-    <section id="engagement" class="py-20 px-6 relative overflow-hidden" style="background: rgba(15, 15, 15, 0.8);">
+    <section id="engagement py-20 px-6 relative overflow-hidden" style="background: rgba(15, 15, 15, 0.8);">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="{{ (content.engagement.background_image|image_url) or url_for('static', filename='images/bedding-1.jpg') }}" 
-                 alt="Background" 
-                 class="w-full h-full object-cover opacity-5">
+                 alt="Background w-full h-full object-cover opacity-5">
         </div>
         <div class="container mx-auto relative z-10 max-w-6xl">
             <div class="text-center mb-12">
@@ -496,7 +479,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Pillar 1 -->
                 <div class="engagement-card">
-                    <div class="text-5xl mb-6" class="text-accent">
+                    <div class="text-5xl mb-6 text-accent">
                         <i class="fas fa-gem"></i>
                     </div>
                     <div class="text-6xl font-bold mb-4" style="color: rgba(212, 175, 55, 0.2);">01</div>
@@ -510,7 +493,7 @@
 
                 <!-- Pillar 2 -->
                 <div class="engagement-card">
-                    <div class="text-5xl mb-6" class="text-accent">
+                    <div class="text-5xl mb-6 text-accent">
                         <i class="fas fa-check-circle"></i>
                     </div>
                     <div class="text-6xl font-bold mb-4" style="color: rgba(212, 175, 55, 0.2);">02</div>
@@ -524,7 +507,7 @@
 
                 <!-- Pillar 3 -->
                 <div class="engagement-card">
-                    <div class="text-5xl mb-6" class="text-accent">
+                    <div class="text-5xl mb-6 text-accent">
                         <i class="fas fa-lightbulb"></i>
                     </div>
                     <div class="text-6xl font-bold mb-4" style="color: rgba(212, 175, 55, 0.2);">03</div>
@@ -540,14 +523,14 @@
     </section>
 
     <!-- Témoignages Section -->
-    <section id="temoignages" class="py-20 px-6">
+    <section id="temoignages py-20 px-6">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">{{ content.testimonials.title.value if content.testimonials and content.testimonials.title else 'Témoignages' }} <span class="text-accent">Clients</span></h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">{{ content.testimonials.description.value if content.testimonials and content.testimonials.description else 'Ce que nos clients disent de nous' }}</p>
             </div>
             <div class="max-w-4xl mx-auto">
-                <div id="testimonials-container" class="relative">
+                <div id="testimonials-container relative">
                     <!-- Testimonials will be dynamically loaded here -->
                 </div>
                 <div class="flex justify-center mt-8 space-x-2" id="testimonial-dots">
@@ -558,7 +541,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6" style="background: rgba(15, 15, 15, 0.8);">
+    <section id="contact py-20 px-6" style="background: rgba(15, 15, 15, 0.8);">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 uppercase tracking-tight">Infos <span class="text-accent">Contact</span></h2>
@@ -567,25 +550,25 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Contact Info -->
                 <div>
-                    <h3 class="text-2xl font-bold mb-6" class="text-accent">{{ content.contact.company_name.value if content.contact and content.contact.company_name else 'KANSOTEX' }}</h3>
+                    <h3 class="text-2xl font-bold mb-6 text-accent">{{ content.contact.company_name.value if content.contact and content.contact.company_name else 'KANSOTEX' }}</h3>
                     <p class="text-gray-400 mb-6">
                         {{ content.contact.company_description.value if content.contact and content.contact.company_description else 'Expert en textiles de qualité premium, nous vous accompagnons depuis plus de 20 ans dans vos projets hôteliers, médicaux et résidentiels.' }}
                     </p>
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-building text-xl w-6" class="text-accent"></i>
+                            <i class="fas fa-building text-xl w-6 text-accent"></i>
                             <span><strong>ICE:</strong> {{ content.contact.contact_ice.value if content.contact and content.contact.contact_ice else '002323065B06' }}</span>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-phone text-xl w-6" class="text-accent"></i>
-                            <a href="tel:{{ content.contact.contact_phone.value if content.contact and content.contact.contact_phone else '+21250898989' }}" class="hover-text-accent transition">{{ content.contact.contact_phone.value if content.contact and content.contact.contact_phone else '+212 50 898 989' }}</a>
+                            <i class="fas fa-phone text-xl w-6 text-accent"></i>
+                            <a href="tel:{{ content.contact.contact_phone.value if content.contact and content.contact.contact_phone else '+21250898989' }} hover-text-accent transition">{{ content.contact.contact_phone.value if content.contact and content.contact.contact_phone else '+212 50 898 989' }}</a>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-envelope text-xl w-6" class="text-accent"></i>
-                            <a href="mailto:{{ content.contact.contact_email.value if content.contact and content.contact.contact_email else 'contact@kansotex.com' }}" class="hover-text-accent transition">{{ content.contact.contact_email.value if content.contact and content.contact.contact_email else 'contact@kansotex.com' }}</a>
+                            <i class="fas fa-envelope text-xl w-6 text-accent"></i>
+                            <a href="mailto:{{ content.contact.contact_email.value if content.contact and content.contact.contact_email else 'contact@kansotex.com' }} hover-text-accent transition">{{ content.contact.contact_email.value if content.contact and content.contact.contact_email else 'contact@kansotex.com' }}</a>
                         </div>
                         <div class="flex items-center space-x-3">
-                            <i class="fas fa-map-marker-alt text-xl w-6" class="text-accent"></i>
+                            <i class="fas fa-map-marker-alt text-xl w-6 text-accent"></i>
                             <span>{{ content.contact.contact_address.value if content.contact and content.contact.contact_address else 'Maroc' }}</span>
                         </div>
                     </div>
@@ -594,7 +577,7 @@
                 <!-- Contact Form -->
                 <div class="p-8 rounded-lg border" style="background: #0a0a0a; border-color: rgba(212, 175, 55, 0.3);">
                     <h3 class="text-2xl font-bold mb-6">{{ content.contact.form_title.value if content.contact and content.contact.form_title else 'Contactez-nous' }}</h3>
-                    <form id="contact-form" class="space-y-4">
+                    <form id="contact-form space-y-4">
                         <div>
                             <input type="text" 
                                    id="name" 
@@ -617,8 +600,7 @@
                             <input type="tel" 
                                    id="phone" 
                                    name="phone" 
-                                   placeholder="{{ content.contact.form_phone_placeholder.value if content.contact and content.contact.form_phone_placeholder else 'Votre téléphone' }}" 
-                                   class="w-full px-4 py-3 rounded-lg focus:outline-none transition"
+                                   placeholder="{{ content.contact.form_phone_placeholder.value if content.contact and content.contact.form_phone_placeholder else 'Votre téléphone' }} w-full px-4 py-3 rounded-lg focus:outline-none transition"
                                    style="background: #141414; border: 1px solid rgba(100, 100, 100, 0.3);">
                         </div>
                         <div>
@@ -630,13 +612,12 @@
                                       class="w-full px-4 py-3 rounded-lg focus:outline-none transition"
                                       style="background: #141414; border: 1px solid rgba(100, 100, 100, 0.3);"></textarea>
                         </div>
-                        <button type="submit" 
-                                class="w-full text-black font-bold py-3 px-6 rounded-lg transition transform hover:scale-105"
+                        <button type="submit w-full text-black font-bold py-3 px-6 rounded-lg transition transform hover:scale-105"
                                 style="background: #B8941E;">
                             {{ content.contact.form_submit_text.value if content.contact and content.contact.form_submit_text else 'Envoyer le message' }}
                         </button>
                     </form>
-                    <div id="form-message" class="mt-4 text-center hidden"></div>
+                    <div id="form-message mt-4 text-center hidden"></div>
                 </div>
             </div>
         </div>
@@ -648,8 +629,7 @@
         <!-- Background Pattern -->
         <div class="absolute inset-0 z-0 opacity-5">
             <img src="{{ (content.footer.background_image|image_url) or url_for('static', filename='images/footer-bg.jpg') }}" 
-                 alt="Footer Background" 
-                 class="w-full h-full object-cover">
+                 alt="Footer Background w-full h-full object-cover">
         </div>
         
         <!-- Gradient Overlay -->
@@ -668,54 +648,54 @@
                         {{ content.footer.company_description.value if content.footer and content.footer.company_description else 'Expert en textiles de qualité premium depuis plus de 20 ans. Nous vous accompagnons dans vos projets hôteliers, médicaux et résidentiels avec passion et excellence.' }}
                     </p>
                     <div class="flex items-center space-x-2 text-gray-400 mb-6">
-                        <i class="fas fa-award" class="text-accent"></i>
+                        <i class="fas fa-award text-accent"></i>
                         <span class="text-sm">{{ content.footer.company_tagline.value if content.footer and content.footer.company_tagline else '+20 ans d\'excellence | ICE: 002323065B06' }}</span>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <span class="text-sm font-semibold" class="text-accent">{{ content.footer.social_label.value if content.footer and content.footer.social_label else 'Suivez-nous:' }}</span>
-                        <a href="{{ content.footer.social_facebook.value if content.footer and content.footer.social_facebook else 'https://facebook.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
-                            <i class="fab fa-facebook-f" class="text-accent"></i>
+                        <span class="text-sm font-semibold text-accent">{{ content.footer.social_label.value if content.footer and content.footer.social_label else 'Suivez-nous:' }}</span>
+                        <a href="{{ content.footer.social_facebook.value if content.footer and content.footer.social_facebook else 'https://facebook.com' }}" target="_blank w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
+                            <i class="fab fa-facebook-f text-accent"></i>
                         </a>
-                        <a href="{{ content.footer.social_instagram.value if content.footer and content.footer.social_instagram else 'https://instagram.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
-                            <i class="fab fa-instagram" class="text-accent"></i>
+                        <a href="{{ content.footer.social_instagram.value if content.footer and content.footer.social_instagram else 'https://instagram.com' }}" target="_blank w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
+                            <i class="fab fa-instagram text-accent"></i>
                         </a>
-                        <a href="{{ content.footer.social_linkedin.value if content.footer and content.footer.social_linkedin else 'https://linkedin.com' }}" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
-                            <i class="fab fa-linkedin-in" class="text-accent"></i>
+                        <a href="{{ content.footer.social_linkedin.value if content.footer and content.footer.social_linkedin else 'https://linkedin.com' }}" target="_blank w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: rgba(184, 148, 30, 0.1); border: 1px solid rgba(184, 148, 30, 0.3);">
+                            <i class="fab fa-linkedin-in text-accent"></i>
                         </a>
                     </div>
                 </div>
                 
                 <!-- Links Column -->
                 <div>
-                    <h4 class="text-lg font-bold mb-6 uppercase tracking-wider" class="text-accent">Navigation</h4>
+                    <h4 class="text-lg font-bold mb-6 uppercase tracking-wider text-accent">Navigation</h4>
                     <ul class="space-y-3">
                         <li>
-                            <a href="#accueil" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" class="text-accent"></i>
+                            <a href="#accueil text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
+                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-accent"></i>
                                 <span>Accueil</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#collection" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" class="text-accent"></i>
+                            <a href="#collection text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
+                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-accent"></i>
                                 <span>Collection</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#volets" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" class="text-accent"></i>
+                            <a href="#volets text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
+                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-accent"></i>
                                 <span>Nos Volets</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#forces" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" class="text-accent"></i>
+                            <a href="#forces text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
+                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-accent"></i>
                                 <span>Points Forts</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
-                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity" class="text-accent"></i>
+                            <a href="#contact text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
+                                <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-opacity text-accent"></i>
                                 <span>Contact</span>
                             </a>
                         </li>
@@ -724,20 +704,20 @@
                 
                 <!-- Contact Column -->
                 <div>
-                    <h4 class="text-lg font-bold mb-6 uppercase tracking-wider" class="text-accent">{{ content.footer.contact_title.value if content.footer and content.footer.contact_title else 'Contact' }}</h4>
+                    <h4 class="text-lg font-bold mb-6 uppercase tracking-wider text-accent">{{ content.footer.contact_title.value if content.footer and content.footer.contact_title else 'Contact' }}</h4>
                     <ul class="space-y-4">
                         <li>
-                            <a href="tel:{{ content.footer.contact_phone.value if content.footer and content.footer.contact_phone else '+21250898989' }}" class="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-300 group">
+                            <a href="tel:{{ content.footer.contact_phone.value if content.footer and content.footer.contact_phone else '+21250898989' }} flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-300 group">
                                 <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(184, 148, 30, 0.1);">
-                                    <i class="fas fa-phone" class="text-accent"></i>
+                                    <i class="fas fa-phone text-accent"></i>
                                 </div>
                                 <span>{{ content.footer.contact_phone.value if content.footer and content.footer.contact_phone else '+212 50 898 989' }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="mailto:{{ content.footer.contact_email.value if content.footer and content.footer.contact_email else 'contact@kansotex.com' }}" class="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-300 group">
+                            <a href="mailto:{{ content.footer.contact_email.value if content.footer and content.footer.contact_email else 'contact@kansotex.com' }} flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-300 group">
                                 <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(184, 148, 30, 0.1);">
-                                    <i class="fas fa-envelope" class="text-accent"></i>
+                                    <i class="fas fa-envelope text-accent"></i>
                                 </div>
                                 <span>{{ content.footer.contact_email.value if content.footer and content.footer.contact_email else 'contact@kansotex.com' }}</span>
                             </a>
@@ -745,7 +725,7 @@
                         <li>
                             <div class="flex items-center space-x-3 text-gray-400">
                                 <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(184, 148, 30, 0.1);">
-                                    <i class="fas fa-map-marker-alt" class="text-accent"></i>
+                                    <i class="fas fa-map-marker-alt text-accent"></i>
                                 </div>
                                 <span>{{ content.footer.contact_address.value if content.footer and content.footer.contact_address else 'Maroc' }}</span>
                             </div>

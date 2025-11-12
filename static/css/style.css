@@ -16,24 +16,32 @@
     --shadow-opacity: 0.15;
 }
 
+/* THEME OR (GOLD) - Dark gold avec éclat */
 body[data-theme="gold"] {
     --accent-light: #B8941E;
     --accent-mid: #D4AF37;
-    --accent-dark: #B8860B;
+    --accent-dark: #9A7B15;
     --accent-rgb: 184, 148, 30;
-    --border-opacity: 0.2;
-    --hover-border-opacity: 0.6;
-    --shadow-opacity: 0.15;
-}
-
-body[data-theme="silver"] {
-    --accent-light: #E5E7EB;
-    --accent-mid: #F3F4F6;
-    --accent-dark: #D1D5DB;
-    --accent-rgb: 229, 231, 235;
     --border-opacity: 0.3;
     --hover-border-opacity: 0.7;
     --shadow-opacity: 0.2;
+    --button-bg: #B8941E;
+    --button-hover-bg: #D4AF37;
+    --button-text: #000000;
+}
+
+/* THEME ARGENT (SILVER) - Blanc et noir uniquement */
+body[data-theme="silver"] {
+    --accent-light: #FFFFFF;
+    --accent-mid: #F5F5F5;
+    --accent-dark: #E0E0E0;
+    --accent-rgb: 255, 255, 255;
+    --border-opacity: 0.3;
+    --hover-border-opacity: 0.8;
+    --shadow-opacity: 0.15;
+    --button-bg: #FFFFFF;
+    --button-hover-bg: #E0E0E0;
+    --button-text: #000000;
 }
 
 * {
@@ -70,8 +78,33 @@ body {
 
 .bg-accent-gradient {
     background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-mid) 100%) !important;
-    color: black !important;
+    color: var(--button-text) !important;
     font-weight: bold;
+}
+
+/* Boutons principaux avec système dynamique */
+.btn-primary {
+    background: var(--button-bg) !important;
+    color: var(--button-text) !important;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--button-hover-bg) !important;
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.3);
+}
+
+/* Boutons de navigation (flèches) */
+.nav-arrow {
+    background: rgba(var(--accent-rgb), 0.9) !important;
+    transition: all 0.3s ease;
+}
+
+.nav-arrow:hover {
+    background: var(--button-bg) !important;
+    transform: scale(1.1);
 }
 
 .bg-accent-subtle {
