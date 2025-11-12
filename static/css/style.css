@@ -548,11 +548,24 @@ body[data-theme-mode="light"] #mobile-menu {
 
 body[data-theme-mode="light"] .strength-card {
     background: var(--bg-card);
+    border: 1px solid rgba(var(--accent-rgb), 0.3);
 }
 
 body[data-theme-mode="light"] .strength-card:hover {
     background: rgba(255, 255, 255, 1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+body[data-theme-mode="light"] .strength-card h3,
+body[data-theme-mode="light"] .strength-card h4,
+body[data-theme-mode="light"] .strength-card p,
+body[data-theme-mode="light"] .strength-card span,
+body[data-theme-mode="light"] .strength-card i {
+    color: var(--text-primary) !important;
+}
+
+body[data-theme-mode="light"] .strength-card .text-gray-400 {
+    color: var(--text-secondary) !important;
 }
 
 /* Additional comprehensive light mode overrides */
@@ -571,9 +584,16 @@ body[data-theme-mode="light"] .collection-slide {
 }
 
 body[data-theme-mode="light"] .collection-slide h3,
+body[data-theme-mode="light"] .collection-slide h4,
 body[data-theme-mode="light"] .collection-slide p,
-body[data-theme-mode="light"] .collection-slide span {
+body[data-theme-mode="light"] .collection-slide span,
+body[data-theme-mode="light"] .collection-slide small {
     color: var(--text-primary) !important;
+}
+
+body[data-theme-mode="light"] .collection-slide .text-gray-400,
+body[data-theme-mode="light"] .collection-slide .text-gray-300 {
+    color: var(--text-secondary) !important;
 }
 
 body[data-theme-mode="light"] nav a {
@@ -588,6 +608,10 @@ body[data-theme-mode="light"] .nav-arrow,
 body[data-theme-mode="light"] .slider-dot {
     background: rgba(var(--accent-rgb), 0.3) !important;
     border: 2px solid rgba(var(--accent-rgb), 0.5) !important;
+}
+
+body[data-theme-mode="light"] .nav-arrow i {
+    color: var(--text-primary) !important;
 }
 
 body[data-theme-mode="light"] .nav-arrow:hover,
@@ -623,6 +647,42 @@ body[data-theme-mode="light"] section {
 body[data-theme-mode="light"] .bg-gradient-to-b,
 body[data-theme-mode="light"] .bg-gradient-to-r {
     background: var(--bg-primary) !important;
+}
+
+body[data-theme-mode="light"] #contact {
+    background: rgba(245, 245, 245, 0.5) !important;
+}
+
+body[data-theme-mode="light"] #contact h2,
+body[data-theme-mode="light"] #contact h3,
+body[data-theme-mode="light"] #contact h4,
+body[data-theme-mode="light"] #contact p,
+body[data-theme-mode="light"] #contact span,
+body[data-theme-mode="light"] #contact i,
+body[data-theme-mode="light"] #contact a,
+body[data-theme-mode="light"] #contact label {
+    color: var(--text-primary) !important;
+}
+
+body[data-theme-mode="light"] #contact .text-gray-400 {
+    color: var(--text-secondary) !important;
+}
+
+body[data-theme-mode="light"] #contact-form input,
+body[data-theme-mode="light"] #contact-form textarea {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border-color: rgba(var(--accent-rgb), 0.3) !important;
+}
+
+body[data-theme-mode="light"] #contact-form input::placeholder,
+body[data-theme-mode="light"] #contact-form textarea::placeholder {
+    color: var(--text-secondary) !important;
+}
+
+body[data-theme-mode="light"] .p-8.rounded-lg.border {
+    background: var(--bg-card) !important;
+    border-color: rgba(var(--accent-rgb), 0.3) !important;
 }
 
 /* Floating buttons container - stacks vertically on left side */
