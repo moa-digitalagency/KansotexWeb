@@ -308,17 +308,23 @@ def update_section_api(slug):
         if field_type == 'image':
             image_id_str = request.form.get(f'{key}_image_id', '')
             image_id = int(image_id_str) if image_id_str else None
-            value = ''
+            value_fr = ''
+            value_en = ''
+            button_link = None
         else:
-            value = request.form.get(key, '')
+            value_fr = request.form.get(f'{key}_fr', '')
+            value_en = request.form.get(f'{key}_en', '')
+            button_link = request.form.get(f'{key}_link', '')
             image_id = None
         
         content_service.update_field(
             section.id,
             key,
-            value,
+            value_fr,
             field_type,
-            image_id
+            image_id,
+            value_en=value_en,
+            button_link=button_link
         )
     
     db.session.commit()

@@ -12,6 +12,9 @@ def build_section_payload(section):
             'id': field.id,
             'type': field.field_type,
             'value': field.value or '',
+            'value_fr': field.value_fr or field.value or '',
+            'value_en': field.value_en or '',
+            'button_link': field.button_link or '',
             'image': field.image.to_dict() if field.image else None
         }
     
@@ -40,20 +43,26 @@ class ContentService:
         return section
     
     @staticmethod
-    def update_field(section_id, key, value, field_type='text', image_id=None):
+    def update_field(section_id, key, value, field_type='text', image_id=None, value_en=None, button_link=None):
         field = ContentField.query.filter_by(section_id=section_id, key=key).first()
         
         if field:
             field.value = value
+            field.value_fr = value
+            field.value_en = value_en
             field.field_type = field_type
             field.image_id = image_id
+            field.button_link = button_link
         else:
             field = ContentField(
                 section_id=section_id,
                 key=key,
                 value=value,
+                value_fr=value,
+                value_en=value_en,
                 field_type=field_type,
-                image_id=image_id
+                image_id=image_id,
+                button_link=button_link
             )
             db.session.add(field)
         
