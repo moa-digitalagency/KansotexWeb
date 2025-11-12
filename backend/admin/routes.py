@@ -4,11 +4,15 @@ from datetime import datetime, timedelta
 from functools import wraps
 from flask import render_template, request, redirect, url_for, flash, jsonify, session
 from backend.admin import admin_bp
-from backend.admin.forms import LoginForm, ContentFieldForm, ImageUploadForm, ImageCropForm
+from backend.admin.forms import (LoginForm, ContentFieldForm, ImageUploadForm, ImageCropForm,
+                                   BlogArticleForm, TestimonialForm, ThemeSettingsForm)
 from backend.admin.services.content_service import content_service, build_section_payload
 from backend.admin.services.image_service import image_service
+from backend.admin.services.blog_service import blog_service
+from backend.admin.services.testimonial_service import testimonial_service
 from backend.models import db
-from backend.models.content import AdminSession
+from backend.models.content import AdminSession, SiteSetting
+from backend.models.blog import BlogArticle, Testimonial
 
 ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD')
 if not ADMIN_PASSWORD:
@@ -433,3 +437,210 @@ def upload_cropped_image():
         })
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
+
+# ===== BLOG ROUTES =====
+
+@admin_bp.route('/blog')
+@login_required
+def blog_list():
+    """List all blog articles"""
+    articles = blog_service.get_all_articles()
+    return render_template('admin/blog_list.html', articles=articles)
+
+@admin_bp.route('/blog/new', methods=['GET', 'POST'])
+@login_required
+def blog_new():
+    """Create a new blog article"""
+    form = BlogArticleForm()
+    
+    if form.validate_on_submit():
+        data = {
+            'slug': form.slug.data,
+            'title_fr': form.title_fr.data,
+            'title_en': form.title_en.data,
+            'excerpt_fr': form.excerpt_fr.data,
+            'excerpt_en': form.excerpt_en.data,
+            'content_fr': form.content_fr.data,
+            'content_en': form.content_en.data,
+            'category_fr': form.category_fr.data,
+            'category_en': form.category_en.data,
+            'tags_fr': form.tags_fr.data,
+            'tags_en': form.tags_en.data,
+            'featured_image_id': form.featured_image_id.data,
+            'author_name': form.author_name.data,
+            'meta_title_fr': form.meta_title_fr.data,
+            'meta_title_en': form.meta_title_en.data,
+            'meta_description_fr': form.meta_description_fr.data,
+            'meta_description_en': form.meta_description_en.data,
+            'meta_keywords_fr': form.meta_keywords_fr.data,
+            'meta_keywords_en': form.meta_keywords_en.data,
+            'is_published': form.is_published.data
+        }
+        
+        article = blog_service.create_article(data)
+        flash(f'Article "{article.title_fr}" créé avec succès!', 'success')
+        return redirect(url_for('admin.blog_list'))
+    
+    images = image_service.get_all_images()
+    return render_template('admin/blog_edit.html', form=form, article=None, images=images)
+
+@admin_bp.route('/blog/<int:article_id>/edit', methods=['GET', 'POST'])
+@login_required
+def blog_edit(article_id):
+    """Edit an existing blog article"""
+    article = blog_service.get_article_by_id(article_id)
+    if not article:
+        flash('Article non trouvé', 'error')
+        return redirect(url_for('admin.blog_list'))
+    
+    form = BlogArticleForm(obj=article)
+    
+    if form.validate_on_submit():
+        data = {
+            'slug': form.slug.data,
+            'title_fr': form.title_fr.data,
+            'title_en': form.title_en.data,
+            'excerpt_fr': form.excerpt_fr.data,
+            'excerpt_en': form.excerpt_en.data,
+            'content_fr': form.content_fr.data,
+            'content_en': form.content_en.data,
+            'category_fr': form.category_fr.data,
+            'category_en': form.category_en.data,
+            'tags_fr': form.tags_fr.data,
+            'tags_en': form.tags_en.data,
+            'featured_image_id': form.featured_image_id.data,
+            'author_name': form.author_name.data,
+            'meta_title_fr': form.meta_title_fr.data,
+            'meta_title_en': form.meta_title_en.data,
+            'meta_description_fr': form.meta_description_fr.data,
+            'meta_description_en': form.meta_description_en.data,
+            'meta_keywords_fr': form.meta_keywords_fr.data,
+            'meta_keywords_en': form.meta_keywords_en.data,
+            'is_published': form.is_published.data
+        }
+        
+        blog_service.update_article(article_id, data)
+        flash(f'Article "{article.title_fr}" mis à jour avec succès!', 'success')
+        return redirect(url_for('admin.blog_list'))
+    
+    images = image_service.get_all_images()
+    return render_template('admin/blog_edit.html', form=form, article=article, images=images)
+
+@admin_bp.route('/blog/<int:article_id>/delete', methods=['POST'])
+@login_required
+def blog_delete(article_id):
+    """Delete a blog article"""
+    if blog_service.delete_article(article_id):
+        flash('Article supprimé avec succès!', 'success')
+    else:
+        flash('Article non trouvé', 'error')
+    
+    return redirect(url_for('admin.blog_list'))
+
+
+# ===== TESTIMONIAL ROUTES =====
+
+@admin_bp.route('/testimonials')
+@login_required
+def testimonials_list():
+    """List all testimonials"""
+    testimonials = testimonial_service.get_all_testimonials()
+    return render_template('admin/testimonials_list.html', testimonials=testimonials)
+
+@admin_bp.route('/testimonials/new', methods=['GET', 'POST'])
+@login_required
+def testimonial_new():
+    """Create a new testimonial"""
+    form = TestimonialForm()
+    
+    if form.validate_on_submit():
+        data = {
+            'client_name': form.client_name.data,
+            'client_title_fr': form.client_title_fr.data,
+            'client_title_en': form.client_title_en.data,
+            'client_company': form.client_company.data,
+            'client_photo_id': form.client_photo_id.data,
+            'content_fr': form.content_fr.data,
+            'content_en': form.content_en.data,
+            'rating': form.rating.data or 5,
+            'is_featured': form.is_featured.data,
+            'is_published': form.is_published.data,
+            'display_order': form.display_order.data or 0
+        }
+        
+        testimonial = testimonial_service.create_testimonial(data)
+        flash(f'Témoignage de "{testimonial.client_name}" créé avec succès!', 'success')
+        return redirect(url_for('admin.testimonials_list'))
+    
+    images = image_service.get_all_images()
+    return render_template('admin/testimonial_edit.html', form=form, testimonial=None, images=images)
+
+@admin_bp.route('/testimonials/<int:testimonial_id>/edit', methods=['GET', 'POST'])
+@login_required
+def testimonial_edit(testimonial_id):
+    """Edit an existing testimonial"""
+    testimonial = testimonial_service.get_testimonial_by_id(testimonial_id)
+    if not testimonial:
+        flash('Témoignage non trouvé', 'error')
+        return redirect(url_for('admin.testimonials_list'))
+    
+    form = TestimonialForm(obj=testimonial)
+    
+    if form.validate_on_submit():
+        data = {
+            'client_name': form.client_name.data,
+            'client_title_fr': form.client_title_fr.data,
+            'client_title_en': form.client_title_en.data,
+            'client_company': form.client_company.data,
+            'client_photo_id': form.client_photo_id.data,
+            'content_fr': form.content_fr.data,
+            'content_en': form.content_en.data,
+            'rating': form.rating.data or 5,
+            'is_featured': form.is_featured.data,
+            'is_published': form.is_published.data,
+            'display_order': form.display_order.data or 0
+        }
+        
+        testimonial_service.update_testimonial(testimonial_id, data)
+        flash(f'Témoignage de "{testimonial.client_name}" mis à jour avec succès!', 'success')
+        return redirect(url_for('admin.testimonials_list'))
+    
+    images = image_service.get_all_images()
+    return render_template('admin/testimonial_edit.html', form=form, testimonial=testimonial, images=images)
+
+@admin_bp.route('/testimonials/<int:testimonial_id>/delete', methods=['POST'])
+@login_required
+def testimonial_delete(testimonial_id):
+    """Delete a testimonial"""
+    if testimonial_service.delete_testimonial(testimonial_id):
+        flash('Témoignage supprimé avec succès!', 'success')
+    else:
+        flash('Témoignage non trouvé', 'error')
+    
+    return redirect(url_for('admin.testimonials_list'))
+
+
+# ===== THEME SETTINGS ROUTES =====
+
+@admin_bp.route('/theme-settings', methods=['GET', 'POST'])
+@login_required
+def theme_settings():
+    """Manage theme settings"""
+    form = ThemeSettingsForm()
+    
+    # Load current settings
+    current_theme = SiteSetting.get_setting('theme_mode', 'dark')
+    allow_toggle = SiteSetting.get_setting('allow_user_theme_toggle', 'true') == 'true'
+    
+    if request.method == 'GET':
+        form.theme_mode.data = current_theme
+        form.allow_user_toggle.data = allow_toggle
+    
+    if form.validate_on_submit():
+        SiteSetting.set_setting('theme_mode', form.theme_mode.data, 'string', 'Default theme mode (dark/light/auto)')
+        SiteSetting.set_setting('allow_user_theme_toggle', 'true' if form.allow_user_toggle.data else 'false', 'boolean', 'Allow users to toggle theme')
+        
+        flash('Paramètres de thème mis à jour avec succès!', 'success')
+        return redirect(url_for('admin.theme_settings'))
+    
+    return render_template('admin/theme_settings.html', form=form)
