@@ -54,7 +54,7 @@
                         {% set theme_mode = settings.theme_mode or 'dark' %}
                         {% set logo_img_id = logo_config.images.dark_id if theme_mode == 'dark' else logo_config.images.light_id %}
                         {% if logo_img_id %}
-                            <img src="/static/uploads/{{ logo_img_id }}.jpg" alt="{{ logo_config.alt_text or 'Logo' }}" class="h-8">
+                            <img src="{{ logo_img_id | image_url }}" alt="{{ logo_config.alt_text or 'Logo' }}" class="h-8">
                         {% else %}
                             {{ logo_config.text.dark[current_lang] if theme_mode == 'dark' else logo_config.text.light[current_lang] }}
                         {% endif %}
@@ -733,7 +733,17 @@
                 <!-- About Column -->
                 <div class="md:col-span-2">
                     <h3 class="text-3xl font-bold mb-4">
-                        <span class="gradient-text">{{ content.footer.company_name.value if content.footer and content.footer.company_name else 'KANSOTEX' }}</span>
+                        {% if logo_config.mode == 'image' %}
+                            {% set theme_mode = settings.theme_mode or 'dark' %}
+                            {% set logo_img_id = logo_config.images.dark_id if theme_mode == 'dark' else logo_config.images.light_id %}
+                            {% if logo_img_id %}
+                                <img src="{{ logo_img_id | image_url }}" alt="{{ logo_config.alt_text or 'Logo' }}" class="h-12 mb-2">
+                            {% else %}
+                                <span class="gradient-text">{{ logo_config.text.dark[current_lang or 'fr'] if theme_mode == 'dark' else logo_config.text.light[current_lang or 'fr'] }}</span>
+                            {% endif %}
+                        {% else %}
+                            <span class="gradient-text">{{ logo_config.text.dark[current_lang or 'fr'] }}</span>
+                        {% endif %}
                     </h3>
                     <p class="text-gray-400 leading-relaxed mb-6">
                         {{ content.footer.company_description.value if content.footer and content.footer.company_description else 'Expert en textiles de qualité premium depuis plus de 20 ans. Nous vous accompagnons dans vos projets hôteliers, médicaux et résidentiels avec passion et excellence.' }}

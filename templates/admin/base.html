@@ -59,6 +59,15 @@
                 <a href="{{ url_for('admin.site_settings') }}" class="admin-nav-link block px-4 py-3 mb-2 rounded">
                     <i class="fas fa-cog mr-2"></i> Param&egrave;tres du Site
                 </a>
+                <a href="{{ url_for('admin.logo_config') }}" class="admin-nav-link block px-4 py-3 mb-2 rounded">
+                    <i class="fas fa-signature mr-2"></i> Configuration Logo
+                </a>
+                <a href="{{ url_for('admin.collection_slides') }}" class="admin-nav-link block px-4 py-3 mb-2 rounded">
+                    <i class="fas fa-sliders-h mr-2"></i> Slides Collection
+                </a>
+                <a href="{{ url_for('admin.section_panels') }}" class="admin-nav-link block px-4 py-3 mb-2 rounded">
+                    <i class="fas fa-th-large mr-2"></i> Panels Sections
+                </a>
                 <div class="border-t border-gray-700 my-4"></div>
                 <form action="{{ url_for('admin.logout') }}" method="POST">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
