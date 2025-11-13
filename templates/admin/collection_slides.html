@@ -1,0 +1,96 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Slides de Collection{% endblock %}
+
+{% block content %}
+<div class="mb-8 flex justify-between items-center">
+    <div>
+        <h2 class="text-3xl font-bold mb-2 text-accent">Slides de Collection</h2>
+        <p class="text-gray-400">Gérez les slides de la section "Collection"</p>
+    </div>
+    <a href="{{ url_for('admin.collection_slide_create') }}" class="px-6 py-3 bg-accent text-black font-bold rounded hover:opacity-90 transition">
+        <i class="fas fa-plus mr-2"></i>Nouveau Slide
+    </a>
+</div>
+
+{% if slides %}
+<div class="bg-gray-800 rounded-lg overflow-hidden">
+    <table class="w-full">
+        <thead class="bg-gray-700">
+            <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                    Ordre
+                </th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                    Titre (FR)
+                </th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                    Image
+                </th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                    Visible
+                </th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-700">
+            {% for slide in slides %}
+            <tr class="hover:bg-gray-700">
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="text-sm font-medium">{{ slide.display_order }}</span>
+                </td>
+                <td class="px-6 py-4">
+                    <div class="text-sm font-medium">{{ slide.title_fr }}</div>
+                    <div class="text-xs text-gray-400">{{ slide.title_en }}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    {% if slide.image %}
+                    <img src="{{ slide.image_id | image_url }}" alt="Preview" class="h-12 w-20 object-cover rounded">
+                    {% else %}
+                    <span class="text-xs text-gray-500">Pas d'image</span>
+                    {% endif %}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    {% if slide.is_visible %}
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-200">
+                        <i class="fas fa-eye mr-1"></i>Visible
+                    </span>
+                    {% else %}
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-700 text-gray-400">
+                        <i class="fas fa-eye-slash mr-1"></i>Masqué
+                    </span>
+                    {% endif %}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                    <a href="{{ url_for('admin.collection_slide_edit', slide_id=slide.id) }}" 
+                       class="text-blue-400 hover:text-blue-300 mr-4">
+                        <i class="fas fa-edit"></i> Éditer
+                    </a>
+                    <form action="{{ url_for('admin.collection_slide_delete', slide_id=slide.id) }}" 
+                          method="POST" 
+                          class="inline"
+                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce slide ?');">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <button type="submit" class="text-red-400 hover:text-red-300">
+                            <i class="fas fa-trash"></i> Supprimer
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="bg-gray-800 rounded-lg p-8 text-center">
+    <i class="fas fa-images text-6xl text-gray-600 mb-4"></i>
+    <p class="text-gray-400 mb-4">Aucun slide de collection trouvé</p>
+    <a href="{{ url_for('admin.collection_slide_create') }}" class="inline-block px-6 py-3 bg-accent text-black font-bold rounded hover:opacity-90 transition">
+        <i class="fas fa-plus mr-2"></i>Créer le premier slide
+    </a>
+</div>
+{% endif %}
+
+{% endblock %}

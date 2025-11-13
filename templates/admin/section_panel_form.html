@@ -1,0 +1,185 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ 'Éditer' if panel else 'Créer' }} Panel de Section{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h2 class="text-3xl font-bold mb-2 text-accent">{{ 'Éditer' if panel else 'Créer' }} Panel de Section</h2>
+    <p class="text-gray-400">{{ 'Modifiez' if panel else 'Ajoutez' }} un panel pour la section "Nos Volets"</p>
+</div>
+
+<form method="POST" class="space-y-8">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    
+    <!-- French Content -->
+    <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4 text-accent">
+            <i class="fas fa-language mr-2"></i>Contenu Français
+        </h3>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Titre (FR) *</label>
+                <input type="text" 
+                       name="title_fr" 
+                       value="{{ panel.title_fr if panel else '' }}"
+                       required
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="Titre en français">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Sous-titre (FR)</label>
+                <input type="text" 
+                       name="subtitle_fr" 
+                       value="{{ panel.subtitle_fr if panel else '' }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="Sous-titre en français">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Description (FR)</label>
+                <textarea name="description_fr" 
+                          rows="3"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                          placeholder="Description en français">{{ panel.description_fr if panel else '' }}</textarea>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Texte du bouton (FR)</label>
+                <input type="text" 
+                       name="button_text_fr" 
+                       value="{{ panel.button_text_fr if panel else '' }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="En savoir plus">
+            </div>
+        </div>
+    </div>
+    
+    <!-- English Content -->
+    <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4 text-accent">
+            <i class="fas fa-language mr-2"></i>English Content
+        </h3>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Title (EN) *</label>
+                <input type="text" 
+                       name="title_en" 
+                       value="{{ panel.title_en if panel else '' }}"
+                       required
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="Title in English">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Subtitle (EN)</label>
+                <input type="text" 
+                       name="subtitle_en" 
+                       value="{{ panel.subtitle_en if panel else '' }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="Subtitle in English">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Description (EN)</label>
+                <textarea name="description_en" 
+                          rows="3"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                          placeholder="Description in English">{{ panel.description_en if panel else '' }}</textarea>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Button Text (EN)</label>
+                <input type="text" 
+                       name="button_text_en" 
+                       value="{{ panel.button_text_en if panel else '' }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="Learn more">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Visual & Settings -->
+    <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4 text-accent">
+            <i class="fas fa-cog mr-2"></i>Visuel & Paramètres
+        </h3>
+        
+        <div class="grid grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-medium mb-2">Icône (Font Awesome)</label>
+                <input type="text" 
+                       name="icon_class" 
+                       value="{{ panel.icon_class if panel else 'fa-star' }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="fa-star">
+                <p class="text-xs text-gray-500 mt-1">Classe Font Awesome (ex: fa-bed, fa-hotel, fa-star)</p>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Couleur de fond</label>
+                <input type="text" 
+                       name="background_color" 
+                       value="{{ panel.background_color if panel else '' }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="#1a1a1a">
+                <p class="text-xs text-gray-500 mt-1">Code couleur hexadécimal (optionnel)</p>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Image de fond</label>
+                <select name="image_id" 
+                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none">
+                    <option value="">-- Aucune image --</option>
+                    {% for image in images %}
+                    <option value="{{ image.id }}" {% if panel and panel.image_id == image.id %}selected{% endif %}>
+                        {{ image.original_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Lien du bouton</label>
+                <input type="text" 
+                       name="button_link" 
+                       value="{{ panel.button_link if panel else '' }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="#contact">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Ordre d'affichage</label>
+                <input type="number" 
+                       name="display_order" 
+                       value="{{ panel.display_order if panel else 0 }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="0">
+                <p class="text-xs text-gray-500 mt-1">Plus le nombre est petit, plus le panel apparaît en premier</p>
+            </div>
+            
+            <div>
+                <label class="flex items-center space-x-3 cursor-pointer">
+                    <input type="checkbox" 
+                           name="is_visible" 
+                           {{ 'checked' if not panel or panel.is_visible else '' }}
+                           class="w-5 h-5 text-accent bg-gray-700 border-gray-600 rounded focus:ring-accent">
+                    <span class="text-sm font-medium">Visible sur le site</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex justify-end space-x-4">
+        <a href="{{ url_for('admin.section_panels') }}" class="px-6 py-3 bg-gray-700 text-white rounded hover:bg-gray-600 transition">
+            Annuler
+        </a>
+        <button type="submit" class="px-6 py-3 bg-accent text-black font-bold rounded hover:opacity-90 transition">
+            <i class="fas fa-save mr-2"></i>Enregistrer
+        </button>
+    </div>
+</form>
+
+{% endblock %}

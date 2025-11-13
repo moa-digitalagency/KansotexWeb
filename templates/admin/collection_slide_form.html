@@ -1,0 +1,147 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ 'Éditer' if slide else 'Créer' }} Slide de Collection{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h2 class="text-3xl font-bold mb-2 text-accent">{{ 'Éditer' if slide else 'Créer' }} Slide de Collection</h2>
+    <p class="text-gray-400">{{ 'Modifiez' if slide else 'Ajoutez' }} un slide pour la section "Collection"</p>
+</div>
+
+<form method="POST" class="space-y-8">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    
+    <!-- French Content -->
+    <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4 text-accent">
+            <i class="fas fa-language mr-2"></i>Contenu Français
+        </h3>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Titre (FR) *</label>
+                <input type="text" 
+                       name="title_fr" 
+                       value="{{ slide.title_fr if slide else '' }}"
+                       required
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="Titre en français">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Description (FR)</label>
+                <textarea name="description_fr" 
+                          rows="3"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                          placeholder="Description en français">{{ slide.description_fr if slide else '' }}</textarea>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Texte du bouton (FR)</label>
+                <input type="text" 
+                       name="button_text_fr" 
+                       value="{{ slide.button_text_fr if slide else '' }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="Découvrir">
+            </div>
+        </div>
+    </div>
+    
+    <!-- English Content -->
+    <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4 text-accent">
+            <i class="fas fa-language mr-2"></i>English Content
+        </h3>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium mb-2">Title (EN) *</label>
+                <input type="text" 
+                       name="title_en" 
+                       value="{{ slide.title_en if slide else '' }}"
+                       required
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="Title in English">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Description (EN)</label>
+                <textarea name="description_en" 
+                          rows="3"
+                          class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                          placeholder="Description in English">{{ slide.description_en if slide else '' }}</textarea>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Button Text (EN)</label>
+                <input type="text" 
+                       name="button_text_en" 
+                       value="{{ slide.button_text_en if slide else '' }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="Discover">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Image & Settings -->
+    <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4 text-accent">
+            <i class="fas fa-cog mr-2"></i>Image & Paramètres
+        </h3>
+        
+        <div class="grid grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-medium mb-2">Image</label>
+                <select name="image_id" 
+                        class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none">
+                    <option value="">-- Aucune image --</option>
+                    {% for image in images %}
+                    <option value="{{ image.id }}" {% if slide and slide.image_id == image.id %}selected{% endif %}>
+                        {{ image.original_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Lien du bouton</label>
+                <input type="text" 
+                       name="button_link" 
+                       value="{{ slide.button_link if slide else '' }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="#collection">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium mb-2">Ordre d'affichage</label>
+                <input type="number" 
+                       name="display_order" 
+                       value="{{ slide.display_order if slide else 0 }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="0">
+                <p class="text-xs text-gray-500 mt-1">Plus le nombre est petit, plus le slide apparaît en premier</p>
+            </div>
+            
+            <div>
+                <label class="flex items-center space-x-3 cursor-pointer">
+                    <input type="checkbox" 
+                           name="is_visible" 
+                           {{ 'checked' if not slide or slide.is_visible else '' }}
+                           class="w-5 h-5 text-accent bg-gray-700 border-gray-600 rounded focus:ring-accent">
+                    <span class="text-sm font-medium">Visible sur le site</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex justify-end space-x-4">
+        <a href="{{ url_for('admin.collection_slides') }}" class="px-6 py-3 bg-gray-700 text-white rounded hover:bg-gray-600 transition">
+            Annuler
+        </a>
+        <button type="submit" class="px-6 py-3 bg-accent text-black font-bold rounded hover:opacity-90 transition">
+            <i class="fas fa-save mr-2"></i>Enregistrer
+        </button>
+    </div>
+</form>
+
+{% endblock %}
