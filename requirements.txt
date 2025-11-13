@@ -7,6 +7,7 @@ Flask-Login==0.6.3
 Flask-WTF==1.2.1
 Pillow==10.1.0
 gunicorn
+Flask-Migrate==4.1.0
 Flask
 Flask-CORS
 Flask-Login
@@ -16,3 +17,4 @@ gunicorn
 Pillow
 psycopg2-binary
 python-dotenv
+Flask-Migrate

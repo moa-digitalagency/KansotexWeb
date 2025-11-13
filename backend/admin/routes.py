@@ -694,3 +694,194 @@ def theme_settings():
         return redirect(url_for('admin.theme_settings'))
     
     return render_template('admin/theme_settings.html', form=form)
+
+
+# ===== LOGO CONFIGURATION ROUTES =====
+
+@admin_bp.route('/logo-config', methods=['GET', 'POST'])
+@login_required
+def logo_config():
+    """Manage logo configuration"""
+    if request.method == 'POST':
+        mode = request.form.get('mode', 'text')
+        
+        config_data = {
+            'mode': mode,
+            'text': {
+                'dark': {
+                    'fr': request.form.get('text_dark_fr', 'KANSOTEX'),
+                    'en': request.form.get('text_dark_en', 'KANSOTEX')
+                },
+                'light': {
+                    'fr': request.form.get('text_light_fr', 'KANSOTEX'),
+                    'en': request.form.get('text_light_en', 'KANSOTEX')
+                }
+            },
+            'images': {
+                'dark_id': int(request.form.get('image_dark_id')) if request.form.get('image_dark_id') else None,
+                'light_id': int(request.form.get('image_light_id')) if request.form.get('image_light_id') else None
+            },
+            'alt_text': request.form.get('alt_text', 'Logo')
+        }
+        
+        LogoService.update_logo_config(config_data)
+        flash('Configuration du logo mise à jour avec succès!', 'success')
+        return redirect(url_for('admin.logo_config'))
+    
+    logo_config = LogoService.get_logo_config()
+    images = image_service.get_all_images()
+    return render_template('admin/logo_config.html', logo_config=logo_config, images=images)
+
+
+# ===== COLLECTION SLIDES ROUTES =====
+
+@admin_bp.route('/collection-slides', methods=['GET'])
+@login_required
+def collection_slides():
+    """List all collection slides"""
+    slides = CollectionService.get_all_slides()
+    return render_template('admin/collection_slides.html', slides=slides)
+
+@admin_bp.route('/collection-slides/create', methods=['GET', 'POST'])
+@login_required
+def collection_slide_create():
+    """Create a new collection slide"""
+    if request.method == 'POST':
+        data = {
+            'title_fr': request.form.get('title_fr', ''),
+            'title_en': request.form.get('title_en', ''),
+            'description_fr': request.form.get('description_fr', ''),
+            'description_en': request.form.get('description_en', ''),
+            'button_text_fr': request.form.get('button_text_fr', ''),
+            'button_text_en': request.form.get('button_text_en', ''),
+            'button_link': request.form.get('button_link', ''),
+            'image_id': int(request.form.get('image_id')) if request.form.get('image_id') else None,
+            'display_order': int(request.form.get('display_order', 0)),
+            'is_visible': request.form.get('is_visible') == 'on'
+        }
+        CollectionService.create_slide(data)
+        flash('Slide de collection créé avec succès!', 'success')
+        return redirect(url_for('admin.collection_slides'))
+    
+    images = image_service.get_all_images()
+    return render_template('admin/collection_slide_form.html', slide=None, images=images)
+
+@admin_bp.route('/collection-slides/<int:slide_id>/edit', methods=['GET', 'POST'])
+@login_required
+def collection_slide_edit(slide_id):
+    """Edit a collection slide"""
+    slide = CollectionService.get_slide_by_id(slide_id)
+    if not slide:
+        flash('Slide non trouvé', 'error')
+        return redirect(url_for('admin.collection_slides'))
+    
+    if request.method == 'POST':
+        data = {
+            'title_fr': request.form.get('title_fr', ''),
+            'title_en': request.form.get('title_en', ''),
+            'description_fr': request.form.get('description_fr', ''),
+            'description_en': request.form.get('description_en', ''),
+            'button_text_fr': request.form.get('button_text_fr', ''),
+            'button_text_en': request.form.get('button_text_en', ''),
+            'button_link': request.form.get('button_link', ''),
+            'image_id': int(request.form.get('image_id')) if request.form.get('image_id') else None,
+            'display_order': int(request.form.get('display_order', 0)),
+            'is_visible': request.form.get('is_visible') == 'on'
+        }
+        CollectionService.update_slide(slide_id, data)
+        flash('Slide de collection mis à jour avec succès!', 'success')
+        return redirect(url_for('admin.collection_slides'))
+    
+    images = image_service.get_all_images()
+    return render_template('admin/collection_slide_form.html', slide=slide, images=images)
+
+@admin_bp.route('/collection-slides/<int:slide_id>/delete', methods=['POST'])
+@login_required
+def collection_slide_delete(slide_id):
+    """Delete a collection slide"""
+    if CollectionService.delete_slide(slide_id):
+        flash('Slide de collection supprimé avec succès!', 'success')
+    else:
+        flash('Slide non trouvé', 'error')
+    return redirect(url_for('admin.collection_slides'))
+
+
+# ===== SECTION PANELS (VOLETS) ROUTES =====
+
+@admin_bp.route('/section-panels', methods=['GET'])
+@login_required
+def section_panels():
+    """List all section panels"""
+    panels = PanelService.get_all_panels()
+    return render_template('admin/section_panels.html', panels=panels)
+
+@admin_bp.route('/section-panels/create', methods=['GET', 'POST'])
+@login_required
+def section_panel_create():
+    """Create a new section panel"""
+    if request.method == 'POST':
+        data = {
+            'title_fr': request.form.get('title_fr', ''),
+            'title_en': request.form.get('title_en', ''),
+            'subtitle_fr': request.form.get('subtitle_fr', ''),
+            'subtitle_en': request.form.get('subtitle_en', ''),
+            'description_fr': request.form.get('description_fr', ''),
+            'description_en': request.form.get('description_en', ''),
+            'icon_class': request.form.get('icon_class', 'fa-star'),
+            'button_text_fr': request.form.get('button_text_fr', ''),
+            'button_text_en': request.form.get('button_text_en', ''),
+            'button_link': request.form.get('button_link', ''),
+            'image_id': int(request.form.get('image_id')) if request.form.get('image_id') else None,
+            'background_color': request.form.get('background_color', ''),
+            'display_order': int(request.form.get('display_order', 0)),
+            'is_visible': request.form.get('is_visible') == 'on'
+        }
+        PanelService.create_panel(data)
+        flash('Panel créé avec succès!', 'success')
+        return redirect(url_for('admin.section_panels'))
+    
+    images = image_service.get_all_images()
+    return render_template('admin/section_panel_form.html', panel=None, images=images)
+
+@admin_bp.route('/section-panels/<int:panel_id>/edit', methods=['GET', 'POST'])
+@login_required
+def section_panel_edit(panel_id):
+    """Edit a section panel"""
+    panel = PanelService.get_panel_by_id(panel_id)
+    if not panel:
+        flash('Panel non trouvé', 'error')
+        return redirect(url_for('admin.section_panels'))
+    
+    if request.method == 'POST':
+        data = {
+            'title_fr': request.form.get('title_fr', ''),
+            'title_en': request.form.get('title_en', ''),
+            'subtitle_fr': request.form.get('subtitle_fr', ''),
+            'subtitle_en': request.form.get('subtitle_en', ''),
+            'description_fr': request.form.get('description_fr', ''),
+            'description_en': request.form.get('description_en', ''),
+            'icon_class': request.form.get('icon_class', 'fa-star'),
+            'button_text_fr': request.form.get('button_text_fr', ''),
+            'button_text_en': request.form.get('button_text_en', ''),
+            'button_link': request.form.get('button_link', ''),
+            'image_id': int(request.form.get('image_id')) if request.form.get('image_id') else None,
+            'background_color': request.form.get('background_color', ''),
+            'display_order': int(request.form.get('display_order', 0)),
+            'is_visible': request.form.get('is_visible') == 'on'
+        }
+        PanelService.update_panel(panel_id, data)
+        flash('Panel mis à jour avec succès!', 'success')
+        return redirect(url_for('admin.section_panels'))
+    
+    images = image_service.get_all_images()
+    return render_template('admin/section_panel_form.html', panel=panel, images=images)
+
+@admin_bp.route('/section-panels/<int:panel_id>/delete', methods=['POST'])
+@login_required
+def section_panel_delete(panel_id):
+    """Delete a section panel"""
+    if PanelService.delete_panel(panel_id):
+        flash('Panel supprimé avec succès!', 'success')
+    else:
+        flash('Panel non trouvé', 'error')
+    return redirect(url_for('admin.section_panels'))

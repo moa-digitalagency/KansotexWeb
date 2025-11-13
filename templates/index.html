@@ -49,7 +49,19 @@
     <header id="main-header" class="fixed top-0 left-0 right-0 z-50 border-b border-accent-faint transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 max-w-6xl">
             <div class="flex items-center justify-between">
-                <div class="text-2xl font-bold text-accent">KANSOTEX</div>
+                <div class="text-2xl font-bold text-accent">
+                    {% if logo_config.mode == 'image' %}
+                        {% set theme_mode = settings.theme_mode or 'dark' %}
+                        {% set logo_img_id = logo_config.images.dark_id if theme_mode == 'dark' else logo_config.images.light_id %}
+                        {% if logo_img_id %}
+                            <img src="/static/uploads/{{ logo_img_id }}.jpg" alt="{{ logo_config.alt_text or 'Logo' }}" class="h-8">
+                        {% else %}
+                            {{ logo_config.text.dark[current_lang] if theme_mode == 'dark' else logo_config.text.light[current_lang] }}
+                        {% endif %}
+                    {% else %}
+                        {{ logo_config.text.dark[current_lang or 'fr'] }}
+                    {% endif %}
+                </div>
                 <div class="flex items-center space-x-8">
                     <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide">
                     <a href="/{{ current_lang or 'fr' }}#accueil" class="uppercase hover-text-accent transition">{% if current_lang == 'en' %}Home{% else %}Accueil{% endif %}</a>
@@ -121,7 +133,13 @@
                     <span class="text-sm font-semibold tracking-wider text-accent">{{ content.hero.tagline.value if content.hero and content.hero.tagline else 'EXCELLENCE DEPUIS 2005' }}</span>
                 </div>
                 <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tight leading-tight">
-                    <span class="gradient-text">{{ content.hero.title.value if content.hero and content.hero.title else 'KANSOTEX' }}</span>
+                    <span class="gradient-text">
+                        {% if logo_config.mode == 'text' %}
+                            {{ logo_config.text.dark[current_lang or 'fr'] }}
+                        {% else %}
+                            {{ content.hero.title.value if content.hero and content.hero.title else logo_config.text.dark[current_lang or 'fr'] }}
+                        {% endif %}
+                    </span>
                 </h1>
                 <p class="text-xl md:text-2xl mb-8 text-gray-300 font-light max-w-2xl mx-auto">{{ content.hero.subtitle.value if content.hero and content.hero.subtitle else 'Expert en Textiles de Qualité Premium' }}</p>
                 <div class="flex justify-center items-center space-x-3 mb-10">
