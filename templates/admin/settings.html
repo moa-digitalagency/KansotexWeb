@@ -37,6 +37,16 @@
             </div>
             
             <div>
+                <label class="block text-sm font-medium mb-2">Favicon du site (URL)</label>
+                <input type="text" 
+                       name="site_favicon" 
+                       value="{{ settings.site_favicon }}"
+                       class="w-full px-4 py-2 bg-gray-700 rounded border border-gray-600 ring-accent focus:outline-none"
+                       placeholder="/static/images/favicon.ico">
+                <p class="text-xs text-gray-500 mt-1">URL ou chemin vers le favicon du site (format .ico, .png ou .svg recommandé)</p>
+            </div>
+            
+            <div>
                 <label class="block text-sm font-medium mb-2">Adresse de l'entreprise</label>
                 <textarea name="company_address" 
                           rows="2"

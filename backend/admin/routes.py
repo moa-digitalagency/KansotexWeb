@@ -271,7 +271,7 @@ def seo_settings():
 def site_settings():
     if request.method == 'POST':
         settings_keys = [
-            'site_name', 'site_logo', 'company_address', 'company_phone',
+            'site_name', 'site_logo', 'site_favicon', 'company_address', 'company_phone',
             'company_email', 'company_ice', 'facebook_url', 'instagram_url',
             'linkedin_url', 'twitter_url', 'color_theme', 'contact_recipient_email',
             'smtp_host', 'smtp_port', 'smtp_use_tls', 'smtp_sender_email',
@@ -313,7 +313,7 @@ def site_settings():
     
     settings = {}
     settings_keys = [
-        'site_name', 'site_logo', 'company_address', 'company_phone',
+        'site_name', 'site_logo', 'site_favicon', 'company_address', 'company_phone',
         'company_email', 'company_ice', 'facebook_url', 'instagram_url',
         'linkedin_url', 'twitter_url', 'color_theme', 'contact_recipient_email',
         'smtp_host', 'smtp_port', 'smtp_use_tls', 'smtp_sender_email',

@@ -2,6 +2,7 @@ from datetime import datetime
 from backend.models import db
 from backend.models.content import ContentSection, ContentField, SiteSetting, ImageAsset
 from backend.models.blog import BlogArticle, Testimonial
+from backend.models.dynamic_sections import CollectionSlide, SectionPanel
 
 def init_database_content():
     """Initialize database with default bilingual content - called from main.py"""
@@ -390,5 +391,120 @@ def init_database_content():
         db.session.add(testimonial)
     
     db.session.commit()
+    
+    # Seed Collection Slides (only if none exist)
+    if CollectionSlide.query.count() == 0:
+        print("Seeding collection slides...")
+        first_image = ImageAsset.query.first()
+        image_id = first_image.id if first_image else None
+        
+        collection_slides_data = [
+        {
+            'title_fr': 'Textile Hôtelier Premium',
+            'title_en': 'Premium Hotel Textiles',
+            'description_fr': 'Draps, serviettes et linge de luxe pour hôtels 5 étoiles',
+            'description_en': 'Sheets, towels and luxury linens for 5-star hotels',
+            'button_text_fr': 'Découvrir',
+            'button_text_en': 'Discover',
+            'button_link': '#contact',
+            'image_id': image_id,
+            'display_order': 1,
+            'is_visible': True
+        },
+        {
+            'title_fr': 'Linge Médical Certifié',
+            'title_en': 'Certified Medical Linens',
+            'description_fr': 'Textiles conformes aux normes médicales les plus strictes',
+            'description_en': 'Textiles compliant with the strictest medical standards',
+            'button_text_fr': 'En savoir plus',
+            'button_text_en': 'Learn more',
+            'button_link': '#contact',
+            'image_id': image_id,
+            'display_order': 2,
+            'is_visible': True
+        },
+        {
+            'title_fr': 'Collection Maison',
+            'title_en': 'Home Collection',
+            'description_fr': 'Textiles de qualité supérieure pour votre domicile',
+            'description_en': 'Superior quality textiles for your home',
+            'button_text_fr': 'Explorer',
+            'button_text_en': 'Explore',
+            'button_link': '#contact',
+            'image_id': image_id,
+            'display_order': 3,
+            'is_visible': True
+        }
+    ]
+    
+        for slide_data in collection_slides_data:
+            slide = CollectionSlide(**slide_data)
+            db.session.add(slide)
+        db.session.commit()
+        print("✓ Collection slides seeded!")
+    
+    # Seed Section Panels (only if none exist)
+    if SectionPanel.query.count() == 0:
+        print("Seeding section panels...")
+        first_image = ImageAsset.query.first()
+        image_id = first_image.id if first_image else None
+        
+        section_panels_data = [
+        {
+            'title_fr': 'Hôtellerie',
+            'title_en': 'Hospitality',
+            'subtitle_fr': 'Excellence Hôtelière',
+            'subtitle_en': 'Hotel Excellence',
+            'description_fr': 'Draps, serviettes et linge de maison haut de gamme pour hôtels et établissements de luxe',
+            'description_en': 'High-end sheets, towels and linens for hotels and luxury establishments',
+            'icon_class': 'fa-hotel',
+            'button_text_fr': 'Découvrir',
+            'button_text_en': 'Discover',
+            'button_link': '#contact',
+            'image_id': image_id,
+            'background_color': '#1a1a2e',
+            'display_order': 1,
+            'is_visible': True
+        },
+        {
+            'title_fr': 'Médical',
+            'title_en': 'Medical',
+            'subtitle_fr': 'Hygiène & Confort',
+            'subtitle_en': 'Hygiene & Comfort',
+            'description_fr': 'Linge médical certifié aux normes les plus strictes pour cliniques et hôpitaux',
+            'description_en': 'Certified medical linens meeting the strictest standards for clinics and hospitals',
+            'icon_class': 'fa-heartbeat',
+            'button_text_fr': 'En savoir plus',
+            'button_text_en': 'Learn more',
+            'button_link': '#contact',
+            'image_id': image_id,
+            'background_color': '#2d3748',
+            'display_order': 2,
+            'is_visible': True
+        },
+        {
+            'title_fr': 'Maison',
+            'title_en': 'Home',
+            'subtitle_fr': 'Confort & Élégance',
+            'subtitle_en': 'Comfort & Elegance',
+            'description_fr': 'Textiles premium pour sublimer votre intérieur avec style et confort',
+            'description_en': 'Premium textiles to enhance your interior with style and comfort',
+            'icon_class': 'fa-home',
+            'button_text_fr': 'Explorer',
+            'button_text_en': 'Explore',
+            'button_link': '#contact',
+            'image_id': image_id,
+            'background_color': '#1a202c',
+            'display_order': 3,
+            'is_visible': True
+        }
+    ]
+    
+        for panel_data in section_panels_data:
+            panel = SectionPanel(**panel_data)
+            db.session.add(panel)
+        db.session.commit()
+        print("✓ Section panels seeded!")
+    
     print("✓ Complete content seeded successfully!")
     print("✓ Blog articles and testimonials seeded!")
