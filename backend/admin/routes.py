@@ -10,6 +10,8 @@ from backend.admin.services.content_service import content_service, build_sectio
 from backend.admin.services.image_service import image_service
 from backend.admin.services.blog_service import blog_service
 from backend.admin.services.testimonial_service import testimonial_service
+from backend.services.collection_service import CollectionService, PanelService
+from backend.services.logo_service import LogoService
 from backend.models import db
 from backend.models.content import AdminSession, SiteSetting
 from backend.models.blog import BlogArticle, Testimonial
