@@ -900,3 +900,128 @@ def section_panel_delete(panel_id):
     else:
         flash('Panel non trouvé', 'error')
     return redirect(url_for('admin.section_panels'))
+
+
+# ===== API JSON ROUTES FOR INLINE CRUD =====
+
+@admin_bp.route('/api/collection-slides', methods=['POST'])
+@login_required
+def api_collection_slide_create():
+    """API endpoint to create a collection slide"""
+    try:
+        data = {
+            'title_fr': request.json.get('title_fr', ''),
+            'title_en': request.json.get('title_en', ''),
+            'description_fr': request.json.get('description_fr', ''),
+            'description_en': request.json.get('description_en', ''),
+            'button_text_fr': request.json.get('button_text_fr', ''),
+            'button_text_en': request.json.get('button_text_en', ''),
+            'button_link': request.json.get('button_link', ''),
+            'image_id': request.json.get('image_id'),
+            'display_order': request.json.get('display_order', 0),
+            'is_visible': request.json.get('is_visible', True)
+        }
+        slide = CollectionService.create_slide(data)
+        return jsonify({'success': True, 'slide': slide.to_dict_admin()}), 201
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
+
+@admin_bp.route('/api/collection-slides/<int:slide_id>', methods=['PUT'])
+@login_required
+def api_collection_slide_update(slide_id):
+    """API endpoint to update a collection slide"""
+    try:
+        data = {
+            'title_fr': request.json.get('title_fr', ''),
+            'title_en': request.json.get('title_en', ''),
+            'description_fr': request.json.get('description_fr', ''),
+            'description_en': request.json.get('description_en', ''),
+            'button_text_fr': request.json.get('button_text_fr', ''),
+            'button_text_en': request.json.get('button_text_en', ''),
+            'button_link': request.json.get('button_link', ''),
+            'image_id': request.json.get('image_id'),
+            'display_order': request.json.get('display_order', 0),
+            'is_visible': request.json.get('is_visible', True)
+        }
+        slide = CollectionService.update_slide(slide_id, data)
+        if slide:
+            return jsonify({'success': True, 'slide': slide.to_dict_admin()}), 200
+        return jsonify({'success': False, 'error': 'Slide non trouvé'}), 404
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
+
+@admin_bp.route('/api/collection-slides/<int:slide_id>', methods=['DELETE'])
+@login_required
+def api_collection_slide_delete(slide_id):
+    """API endpoint to delete a collection slide"""
+    try:
+        if CollectionService.delete_slide(slide_id):
+            return jsonify({'success': True}), 200
+        return jsonify({'success': False, 'error': 'Slide non trouvé'}), 404
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
+
+@admin_bp.route('/api/section-panels', methods=['POST'])
+@login_required
+def api_section_panel_create():
+    """API endpoint to create a section panel"""
+    try:
+        data = {
+            'title_fr': request.json.get('title_fr', ''),
+            'title_en': request.json.get('title_en', ''),
+            'subtitle_fr': request.json.get('subtitle_fr', ''),
+            'subtitle_en': request.json.get('subtitle_en', ''),
+            'description_fr': request.json.get('description_fr', ''),
+            'description_en': request.json.get('description_en', ''),
+            'icon_class': request.json.get('icon_class', 'fa-star'),
+            'button_text_fr': request.json.get('button_text_fr', ''),
+            'button_text_en': request.json.get('button_text_en', ''),
+            'button_link': request.json.get('button_link', ''),
+            'image_id': request.json.get('image_id'),
+            'background_color': request.json.get('background_color', ''),
+            'display_order': request.json.get('display_order', 0),
+            'is_visible': request.json.get('is_visible', True)
+        }
+        panel = PanelService.create_panel(data)
+        return jsonify({'success': True, 'panel': panel.to_dict_admin()}), 201
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
+
+@admin_bp.route('/api/section-panels/<int:panel_id>', methods=['PUT'])
+@login_required
+def api_section_panel_update(panel_id):
+    """API endpoint to update a section panel"""
+    try:
+        data = {
+            'title_fr': request.json.get('title_fr', ''),
+            'title_en': request.json.get('title_en', ''),
+            'subtitle_fr': request.json.get('subtitle_fr', ''),
+            'subtitle_en': request.json.get('subtitle_en', ''),
+            'description_fr': request.json.get('description_fr', ''),
+            'description_en': request.json.get('description_en', ''),
+            'icon_class': request.json.get('icon_class', 'fa-star'),
+            'button_text_fr': request.json.get('button_text_fr', ''),
+            'button_text_en': request.json.get('button_text_en', ''),
+            'button_link': request.json.get('button_link', ''),
+            'image_id': request.json.get('image_id'),
+            'background_color': request.json.get('background_color', ''),
+            'display_order': request.json.get('display_order', 0),
+            'is_visible': request.json.get('is_visible', True)
+        }
+        panel = PanelService.update_panel(panel_id, data)
+        if panel:
+            return jsonify({'success': True, 'panel': panel.to_dict_admin()}), 200
+        return jsonify({'success': False, 'error': 'Panel non trouvé'}), 404
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
+
+@admin_bp.route('/api/section-panels/<int:panel_id>', methods=['DELETE'])
+@login_required
+def api_section_panel_delete(panel_id):
+    """API endpoint to delete a section panel"""
+    try:
+        if PanelService.delete_panel(panel_id):
+            return jsonify({'success': True}), 200
+        return jsonify({'success': False, 'error': 'Panel non trouvé'}), 404
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
