@@ -394,11 +394,21 @@ def edit_all_sections():
     
     active_section = None
     fields = {}
+    collection_slides = []
+    section_panels = []
+    all_images = []
     
     if active_slug:
         active_section = content_service.get_section_by_slug(active_slug)
         if active_section:
             fields = content_service.get_section_fields(active_slug)
+            
+            if active_slug == 'collection':
+                collection_slides = CollectionService.get_all_slides(visible_only=False)
+                all_images = image_service.get_all_images()
+            elif active_slug in ['volets', 'engagement']:
+                section_panels = PanelService.get_all_panels(visible_only=False)
+                all_images = image_service.get_all_images()
     
     if request.method == 'POST':
         section_slug = request.form.get('section_slug')
@@ -451,7 +461,10 @@ def edit_all_sections():
     return render_template('admin/edit_all_sections.html', 
                          sections=sections, 
                          active_section=active_section, 
-                         fields=fields)
+                         fields=fields,
+                         collection_slides=collection_slides,
+                         section_panels=section_panels,
+                         images=all_images)
 
 @admin_bp.route('/api/upload-cropped-image', methods=['POST'])
 @login_required
