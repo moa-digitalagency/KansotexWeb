@@ -18,3 +18,13 @@ Pillow
 psycopg2-binary
 python-dotenv
 Flask-Migrate
+Flask
+Flask-CORS
+Flask-Login
+Flask-Migrate
+Flask-SQLAlchemy
+Flask-WTF
+gunicorn
+Pillow
+psycopg2-binary
+python-dotenv
